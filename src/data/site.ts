@@ -29,7 +29,7 @@ export const site = {
   pubmed: 'https://pubmed.ncbi.nlm.nih.gov/?term=desalermos',
   umass: 'https://profiles.umassmed.edu/display/19900773',
   bookNote: 'Κατόπιν ραντεβού',
-  hours: 'Δευτέρα – Παρασκευή, κατόπιν ραντεβού',
+  hours: 'Κατόπιν ραντεβού',
 } as const;
 
 export const nav = [
