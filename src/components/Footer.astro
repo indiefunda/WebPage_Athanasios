@@ -1,0 +1,98 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+
+const columns = [
+  {
+    title: 'Πλοήγηση',
+    links: [
+      { label: 'Αρχική', href: '/' },
+      { label: 'Ο Ιατρός', href: '/o-iatros' },
+      { label: 'Το Ιατρείο', href: '/iatreio' },
+      { label: 'Νέα', href: '/nea' },
+    ],
+  },
+  {
+    title: 'Κλινική',
+    links: [
+      { label: 'Παθήσεις', href: '/pathiseis' },
+      { label: 'Επεμβάσεις', href: '/epemvaseis' },
+      { label: 'Επικοινωνία', href: '/epikoinonia' },
+      { label: 'Αποποίηση', href: '/apopoiisi' },
+    ],
+  },
+];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p class="footer-name">{site.name}</p>
+        <p class="footer-role">{site.role} <span>·</span> {site.credentials}</p>
+        <a class="footer-cta" href="/epikoinonia#rantevou">
+          Κλείστε ραντεβού
+          <Icon name="arrow-up-right" size={18} />
+        </a>
+      </div>
+
+      <div class="footer-cols">
+        {
+          columns.map((column) => (
+            <div class="footer-col">
+              <p class="eyebrow">{column.title}</p>
+              <ul>
+                {column.links.map((link) => (
+                  <li>
+                    <a href={link.href}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+        <div class="footer-col footer-col--contact">
+          <p class="eyebrow">Επικοινωνία</p>
+          <ul>
+            <li><a href={`tel:+30${site.mobile}`}>{site.mobileDisplay}</a></li>
+            <li><a href={`tel:+30${site.phone}`}>{site.phoneDisplay}</a></li>
+            <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+            <li><span>{site.addressOneLine}</span></li>
+          </ul>
+          <div class="footer-social">
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <Icon name="linkedin" size={17} />
+            </a>
+            <a href={site.pubmed} target="_blank" rel="noopener noreferrer" aria-label="PubMed">
+              <span aria-hidden="true">PubMed</span>
+              <span class="visually-hidden">Δημοσιεύσεις στο PubMed</span>
+            </a>
+            <a href={site.umass} target="_blank" rel="noopener noreferrer" aria-label="UMass Chan Medical School">
+              <span aria-hidden="true">UMass</span>
+              <span class="visually-hidden">Προφίλ στο UMass Chan Medical School</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-disclaimer">
+      <p>
+        Οι πληροφορίες που παρέχονται σε αυτόν τον ιστότοπο είναι γενικής ενημερωτικής φύσης και δεν
+        αντικαθιστούν την εξατομικευμένη ιατρική συμβουλή, διάγνωση ή θεραπεία. Για οποιοδήποτε
+        πρόβλημα υγείας, απευθυνθείτε σε εξειδικευμένο ιατρό.
+      </p>
+      <p>
+        Σε περίπτωση επείγοντος περιστατικού καλέστε το <a href="tel:166">166</a> ή απευθυνθείτε στο
+        πλησιέστερο νοσοκομείο.
+      </p>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {year} {site.name}. Με την επιφύλαξη παντός δικαιώματος.</p>
+      <p class="footer-credit">Αθήνα, Ελλάδα</p>
+    </div>
+  </div>
+</footer>

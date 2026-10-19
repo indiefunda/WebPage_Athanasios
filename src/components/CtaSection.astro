@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  text?: string;
+  eyebrow?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  class?: string;
+}
+
+const {
+  title = 'Το επόμενο βήμα είναι μια συζήτηση.',
+  text = 'Κλείστε ραντεβού στο ιατρείο του Μαρούσι ή επικοινωνήστε τηλεφωνικά για οποιαδήποτε απορία.',
+  eyebrow = 'Ραντεβού',
+  primaryLabel = 'Κλείστε ραντεβού',
+  primaryHref = '/epikoinonia#rantevou',
+  class: className = '',
+} = Astro.props;
+---
+
+<section class={`cta ${className}`}>
+  <div class="container cta__inner">
+    <div class="cta__copy">
+      <p class="eyebrow"><span class="eyebrow__dot"></span>{eyebrow}</p>
+      <h2>{title}</h2>
+      <p>{text}</p>
+    </div>
+
+    <div class="cta__actions">
+      <a class="btn btn--light" href={primaryHref}>
+        {primaryLabel}
+        <Icon name="arrow-up-right" size={15} />
+      </a>
+      <a class="cta__tel" href={`tel:+30${site.mobile}`}>
+        <span class="cta__tel-label">Τηλέφωνο</span>
+        <span class="cta__tel-value">{site.mobileDisplay}</span>
+      </a>
+      <a class="cta__mail" href={`mailto:${site.email}`}>{site.email}</a>
+    </div>
+  </div>
+</section>

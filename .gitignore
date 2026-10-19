@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.firebase/
+.research/
+art-source/
+_shots/
+preview/
+*.log
+.DS_Store
+Thumbs.db

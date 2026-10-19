@@ -1,0 +1,138 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { nav, site } from '../data/site';
+
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`);
+
+const telHref = `tel:+30${site.mobile}`;
+---
+
+<header class="site-header" data-header>
+  <div class="header-inner container">
+    <Logo class="header-brand" />
+
+    <nav class="primary-nav" aria-label="Κύρια πλοήγηση">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-tel" href={telHref}>
+        <Icon name="phone" size={15} />
+        <span>{site.mobileDisplay}</span>
+      </a>
+      <a class="btn btn--sm header-cta" href="/epikoinonia#rantevou">
+        Ραντεβού
+        <Icon name="arrow-up-right" size={14} />
+      </a>
+      <button
+        class="menu-toggle"
+        type="button"
+        data-menu-open
+        aria-expanded="false"
+        aria-controls="site-menu"
+      >
+        <span class="menu-toggle__label">Μενού</span>
+        <span class="menu-toggle__lines" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog class="site-menu" id="site-menu" data-menu aria-label="Μενού ιστότοπου">
+  <div class="site-menu__inner container">
+    <div class="site-menu__top">
+      <Logo />
+      <button class="site-menu__close" type="button" data-menu-close autofocus>
+        <span>Κλείσιμο</span>
+        <Icon name="close" size={18} />
+      </button>
+    </div>
+
+    <nav class="site-menu__nav" aria-label="Πλοήγηση">
+      <ul>
+        {
+          nav.map((item, index) => (
+            <li style={`--i:${index}`}>
+              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                <span class="site-menu__num">{String(index + 1).padStart(2, '0')}</span>
+                <span class="site-menu__label">{item.label}</span>
+                <Icon name="arrow-up-right" size={22} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="site-menu__foot">
+      <div>
+        <p class="eyebrow">Ραντεβού</p>
+        <a class="site-menu__tel" href={telHref}>{site.mobileDisplay}</a>
+        <a class="site-menu__mail" href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+      <div>
+        <p class="eyebrow">Ιατρείο</p>
+        <p class="site-menu__address">{site.addressOneLine}</p>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const dialog = document.querySelector<HTMLDialogElement>('[data-menu]');
+  const openButton = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+  const closeButton = document.querySelector<HTMLButtonElement>('[data-menu-close]');
+
+  const setHeaderState = () => {
+    if (!header) return;
+    header.classList.toggle('is-scrolled', window.scrollY > 12);
+  };
+
+  setHeaderState();
+  window.addEventListener('scroll', setHeaderState, { passive: true });
+
+  const setMenuState = (open: boolean) => {
+    openButton?.setAttribute('aria-expanded', String(open));
+    document.documentElement.classList.toggle('menu-open', open);
+  };
+
+  openButton?.addEventListener('click', () => {
+    if (!dialog) return;
+    dialog.showModal();
+    setMenuState(true);
+    closeButton?.focus();
+  });
+
+  closeButton?.addEventListener('click', () => dialog?.close());
+
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  dialog?.addEventListener('close', () => {
+    setMenuState(false);
+    openButton?.focus();
+  });
+
+  dialog?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => dialog.close());
+  });
+</script>

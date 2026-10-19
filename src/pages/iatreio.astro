@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Pic from '../components/Pic.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
+import MapCard from '../components/MapCard.astro';
+import { site } from '../data/site';
+import '../styles/pages.css';
+---
+
+<BaseLayout
+  title="Το Ιατρείο — Μαρούσι, Αθήνα"
+  description="Το ιατρείο του Αθανάσιου Δεσαλέρμου στο Μαρούσι: Κηφισίας 58, 1ος όροφος. Ένας σύγχρονος, διακριτικός χώρος για γαστρεντερολογική και ηπατολογική φροντίδα."
+>
+  <PageHero
+    eyebrow="Το Ιατρείο"
+    index="02"
+    title="Ένας χώρος<br />για να ακουστείτε."
+    lede="Στο Μαρούσι, ένα σύγχρονο και καλαίσθητο περιβάλλον, σχεδιασμένο για άνεση, ασφάλεια και διακριτικότητα."
+    crumbs={[{ label: 'Το Ιατρείο' }]}
+  />
+
+  <section class="section">
+    <div class="container about-page__grid">
+      <div class="about-page__body">
+        <h2 data-reveal>Η φροντίδα ως εμπειρία</h2>
+        <p data-reveal>
+          Η κλινική μας αποτελεί ένα σύγχρονο και καλαίσθητο περιβάλλον, σχεδιασμένο για να προσφέρει
+          άνεση, ασφάλεια και διακριτικότητα σε κάθε ασθενή.
+        </p>
+        <p data-reveal>
+          Με προσοχή στη λεπτομέρεια και φιλικό κλίμα, υποδεχόμαστε τους ασθενείς σε έναν χώρο που
+          συνδυάζει την επιστημονική αρτιότητα με την προσωπική φροντίδα.
+        </p>
+        <p data-reveal>
+          Το ιατρείο βρίσκεται στη λεωφόρο Κηφισίας 58, στον πρώτο όροφο, στο Μαρούσι. Οι επισκέψεις
+          γίνονται κατόπιν ραντεβού, ώστε να υπάρχει ο απαραίτητος χρόνος για κάθε άνθρωπο και για
+          κάθε ερώτηση.
+        </p>
+
+        <dl class="about-facts" data-reveal>
+          <div class="about-fact">
+            <dt>Διεύθυνση</dt>
+            <dd>{site.address.street}, {site.address.locality}</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Ραντεβού</dt>
+            <dd>{site.bookNote}</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Τηλέφωνα</dt>
+            <dd>{site.mobileDisplay} · {site.phoneDisplay}</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Email</dt>
+            <dd>{site.email}</dd>
+          </div>
+        </dl>
+
+        <div class="about-page__links" data-reveal>
+          <a class="btn" href="/epikoinonia#rantevou">
+            Κλείστε ραντεβού
+            <Icon name="arrow-up-right" size={15} />
+          </a>
+          <a class="btn btn--ghost" href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
+            Οδηγίες πρόσβασης
+            <Icon name="external" size={14} />
+          </a>
+        </div>
+      </div>
+
+      <div class="about-page__media">
+        <div class="about-page__portrait" data-reveal="fade" style="aspect-ratio: 4 / 5; max-width: none;">
+          <Pic name="clinic-1" sizes="(min-width: 900px) 42vw, 92vw" />
+        </div>
+        <p class="about-page__caption" data-reveal="fade">
+          <span>Ιατρείο Μαρούσι</span>
+          <span>Κηφισίας 58</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow"><span class="eyebrow__num">01</span>Ο χώρος</p>
+          <h2>Ηρεμία, φως<br />και διακριτικότητα.</h2>
+        </div>
+        <p class="section-head__aside">
+          Κάθε λεπτομέρεια του χώρου έχει επιλεγεί ώστε η επίσκεψη να είναι όσο το δυνατόν πιο ήρεμη
+          — από την υποδοχή έως την εξέταση.
+        </p>
+      </div>
+
+      <div class="clinic__gallery" data-reveal="fade">
+        <figure class="clinic__shot">
+          <Pic name="clinic-2" sizes="(min-width: 900px) 44vw, 46vw" />
+          <figcaption>Η αίθουσα εξέτασης</figcaption>
+        </figure>
+        <figure class="clinic__shot">
+          <Pic name="clinic-3" sizes="(min-width: 900px) 44vw, 46vw" />
+          <figcaption>Το γραφείο</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="prosvasi">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow"><span class="eyebrow__num">02</span>Πρόσβαση</p>
+          <h2>Πώς θα μας βρείτε.</h2>
+        </div>
+        <p class="section-head__aside">
+          Το ιατρείο βρίσκεται στη λεωφόρο Κηφισίας 58, στο Μαρούσι, στον πρώτο όροφο. Η πρόσβαση
+          γίνεται εύκολα με αυτοκίνητο ή μέσα μαζικής μεταφοράς.
+        </p>
+      </div>
+
+      <div class="about-page__grid">
+        <div>
+          <dl class="about-facts" style="margin-top: 0;">
+            <div class="about-fact">
+              <dt>Διεύθυνση</dt>
+              <dd>{site.address.street}, {site.address.locality} {site.address.postalCode}</dd>
+            </div>
+            <div class="about-fact">
+              <dt>Όροφος</dt>
+              <dd>1ος όροφος</dd>
+            </div>
+            <div class="about-fact">
+              <dt>Ραντεβού</dt>
+              <dd>{site.bookNote}</dd>
+            </div>
+          </dl>
+
+          <div class="about-page__links">
+            <a class="btn" href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
+              Άνοιγμα στους χάρτες
+              <Icon name="external" size={14} />
+            </a>
+            <a class="btn btn--ghost" href={`tel:+30${site.mobile}`}>
+              <Icon name="phone" size={15} />
+              {site.mobileDisplay}
+            </a>
+          </div>
+        </div>
+
+        <div class="map" style="margin-top: 0;">
+          <MapCard />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    eyebrow="Επικοινωνία"
+    title="Θα χαρούμε να σας εξυπηρετήσουμε."
+    text="Τηλεφωνήστε για ραντεβού ή στείλτε μας μήνυμα. Θα σας ενημερώσουμε για τη διαδικασία και ό,τι χρειάζεται να γνωρίζετε πριν την επίσκεψη."
+  />
+</BaseLayout>

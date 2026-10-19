@@ -1,0 +1,52 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { conditions } from '../../data/conditions';
+import { procedures } from '../../data/procedures';
+import { conditionCategoryLabel, relatedProcedures } from '../../data/taxonomy';
+import type { Condition } from '../../data/types';
+
+export function getStaticPaths() {
+  return conditions.map((condition) => ({
+    params: { slug: condition.slug },
+    props: { condition },
+  }));
+}
+
+const { condition } = Astro.props as { condition: Condition };
+const related = relatedProcedures(condition, procedures);
+const more = conditions
+  .filter((item) => item.category === condition.category && item.slug !== condition.slug)
+  .slice(0, 3)
+  .map((item) => ({
+    title: item.title,
+    href: `/pathiseis/${item.slug}`,
+    short: item.short,
+  }));
+---
+
+<ArticleLayout
+  title={condition.title}
+  short={condition.short}
+  category={conditionCategoryLabel(condition.category)}
+  image={condition.image}
+  paragraphs={condition.paragraphs}
+  references={condition.references}
+  crumbs={[
+    { label: 'Παθήσεις', href: '/pathiseis' },
+    { label: condition.title },
+  ]}
+  indexPath="/pathiseis"
+  indexLabel="Παθήσεις"
+  relatedTitle="Σχετικές επεμβάσεις"
+  related={related.map((procedure) => ({
+    title: procedure.title,
+    href: `/epemvaseis/${procedure.slug}`,
+    short: procedure.short,
+  }))}
+  more={more}
+  moreTitle="Σχετικές παθήσεις"
+  schema={{
+    about: { '@type': 'MedicalCondition', name: condition.title },
+    specialty: { '@type': 'MedicalSpecialty', name: 'Gastroenterologic' },
+  }}
+/>

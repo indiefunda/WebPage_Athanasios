@@ -1,0 +1,46 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { news } from '../../data/news';
+import { conditions } from '../../data/conditions';
+import type { Post } from '../../data/types';
+
+export function getStaticPaths() {
+  return news.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as { post: Post };
+
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat('el-GR', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+    new Date(iso),
+  );
+
+const related = conditions
+  .filter((condition) =>
+    ['dyskoiliothta', 'eyerethisto-entero', 'dyspepsia-kai-metewrismos'].includes(condition.slug),
+  )
+  .map((condition) => ({
+    title: condition.title,
+    href: `/pathiseis/${condition.slug}`,
+    short: condition.short,
+  }));
+---
+
+<ArticleLayout
+  title={post.title}
+  short={post.excerpt}
+  category={post.category}
+  image={post.image}
+  paragraphs={post.paragraphs}
+  references={post.references}
+  crumbs={[{ label: 'Νέα', href: '/nea' }, { label: 'Άρθρο' }]}
+  indexPath="/nea"
+  indexLabel="Νέα"
+  backLabel="Όλα τα άρθρα"
+  relatedTitle="Σχετικές παθήσεις"
+  related={related}
+  metaLabel={formatDate(post.date)}
+/>

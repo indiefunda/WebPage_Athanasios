@@ -1,0 +1,26 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  compact?: boolean;
+  class?: string;
+}
+
+const { compact = false, class: className = '' } = Astro.props;
+---
+
+<a class={`brand ${className}`} href="/" aria-label={`${site.name} — Αρχική`}>
+  <svg class="brand__mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+    <path
+      d="M20 4.5 35.5 33.5H4.5L20 4.5Z"
+      stroke="currentColor"
+      stroke-width="1.4"
+      stroke-linejoin="round"
+    ></path>
+    <circle cx="20" cy="27" r="2.3" fill="var(--accent)"></circle>
+  </svg>
+  <span class="brand__text">
+    <span class="brand__name">{compact ? site.lastName : site.name}</span>
+    <span class="brand__meta">Γαστρεντερολογία · Ηπατολογία</span>
+  </span>
+</a>

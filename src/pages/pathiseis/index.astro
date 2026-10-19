@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import { conditions } from '../../data/conditions';
+import {
+  conditionCategories,
+  conditionCategoryLabel,
+  groupConditions,
+} from '../../data/taxonomy';
+import '../../styles/pages.css';
+
+const groups = groupConditions(conditions).map((group) => ({
+  ...group,
+  items: [...group.items].sort((a, b) => a.title.localeCompare(b.title, 'el')),
+}));
+
+const countByCategory = (key: string) =>
+  conditions.filter((condition) => condition.category === key).length;
+---
+
+<BaseLayout
+  title="Παθήσεις — Γαστρεντερολογία & Ηπατολογία"
+  description="Ενημερωθείτε για τις πιο συχνές παθήσεις του πεπτικού και του ήπατος: συμπτώματα, αιτίες και σύγχρονες επιλογές αντιμετώπισης."
+>
+  <PageHero
+    eyebrow="Παθήσεις"
+    index="04"
+    title="Από την καούρα<br />στην ηπατική υγεία."
+    lede="Τριάντα παθήσεις του πεπτικού και του ήπατος, με σαφή ενημέρωση για τα συμπτώματα, τη διάγνωση και τη θεραπεία."
+    crumbs={[{ label: 'Παθήσεις' }]}
+  />
+
+  <section class="directory">
+    <div class="container">
+      <div class="directory__toolbar">
+        <div class="search-field">
+          <label class="visually-hidden" for="condition-search">Αναζήτηση πάθησης</label>
+          <input
+            id="condition-search"
+            type="search"
+            placeholder="Αναζήτηση: καούρα, ήπαρ, Crohn…"
+            autocomplete="off"
+            data-search
+          />
+          <Icon name="search" size={17} />
+        </div>
+
+        <div class="filter-chips" role="group" aria-label="Φίλτρο κατηγορίας">
+          <button class="filter-chip" type="button" data-filter="all" aria-pressed="true">
+            Όλες
+            <span>{String(conditions.length).padStart(2, '0')}</span>
+          </button>
+          {
+            conditionCategories.map((category) => (
+              <button
+                class="filter-chip"
+                type="button"
+                data-filter={category.key}
+                aria-pressed="false"
+              >
+                {category.label}
+                <span>{String(countByCategory(category.key)).padStart(2, '0')}</span>
+              </button>
+            ))
+          }
+        </div>
+
+        <div class="directory__meta">
+          <p class="directory__count" data-count aria-live="polite">
+            {conditions.length} παθήσεις
+          </p>
+          <p class="directory__hint">Επιλέξτε μια πάθηση για περισσότερες πληροφορίες.</p>
+        </div>
+      </div>
+
+      {
+        groups.map((group) => (
+          <section class="dir-group" data-group={group.key} aria-labelledby={`group-${group.key}`}>
+            <div class="dir-group__head">
+              <h2 id={`group-${group.key}`}>{group.label}</h2>
+              <p>{group.description}</p>
+              <span class="dir-group__count">{String(group.items.length).padStart(2, '0')}</span>
+            </div>
+
+            <div class="dir-list">
+              {group.items.map((condition) => (
+                <a
+                  class="dir-row"
+                  href={`/pathiseis/${condition.slug}`}
+                  data-condition-row
+                  data-category={condition.category}
+                  data-search={`${condition.title} ${condition.short} ${conditionCategoryLabel(condition.category)}`.toLowerCase()}
+                >
+                  <span class="dir-row__main">
+                    <h3>{condition.title}</h3>
+                    <p>{condition.short}</p>
+                  </span>
+                  <span class="dir-row__arrow">
+                    <Icon name="arrow-up-right" size={13} />
+                  </span>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+
+      <p class="empty-state" data-empty hidden>
+        Δεν βρέθηκαν παθήσεις με αυτούς τους όρους. Δοκιμάστε διαφορετική αναζήτηση ή επιλέξτε
+        «Όλες».
+      </p>
+
+      <div class="article-note" style="margin-top: 48px;">
+        <p class="article-note__label">
+          <Icon name="stethoscope" size={16} />
+          Σημαντική σημείωση
+        </p>
+        <p>
+          Οι πληροφορίες είναι ενημερωτικού χαρακτήρα και δεν αντικαθιστούν την εξατομικευμένη
+          ιατρική συμβουλή. Διαβάστε την <a href="/apopoiisi">αποποίηση ευθύνης</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    eyebrow="Ραντεβού"
+    title="Δεν είστε σίγουροι τι σας απασχολεί;"
+    text="Η σωστή διάγνωση ξεκινά με μια λεπτομερή συζήτηση για το ιστορικό και τα συμπτώματα. Κλείστε ραντεβού για εκτίμηση."
+  />
+</BaseLayout>
+
+<script>
+  const normalize = (value: string) =>
+    value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim();
+
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('[data-condition-row]'));
+  const groups = Array.from(document.querySelectorAll<HTMLElement>('[data-group]'));
+  const search = document.querySelector<HTMLInputElement>('[data-search]');
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter]'));
+  const count = document.querySelector<HTMLElement>('[data-count]');
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+
+  let activeCategory = 'all';
+
+  const apply = () => {
+    const query = normalize(search?.value ?? '');
+    let visible = 0;
+
+    rows.forEach((row) => {
+      const matchesCategory =
+        activeCategory === 'all' || row.dataset.category === activeCategory;
+      const matchesText = !query || normalize(row.dataset.search ?? '').includes(query);
+      const show = matchesCategory && matchesText;
+      row.hidden = !show;
+      if (show) visible += 1;
+    });
+
+    groups.forEach((group) => {
+      const countInGroup = group.querySelectorAll('[data-condition-row]:not([hidden])').length;
+      group.hidden = countInGroup === 0;
+    });
+
+    if (count) {
+      count.textContent = `${visible} ${visible === 1 ? 'πάθηση' : 'παθήσεις'}`;
+    }
+    if (empty) empty.hidden = visible > 0;
+  };
+
+  search?.addEventListener('input', apply);
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      activeCategory = chip.dataset.filter ?? 'all';
+      chips.forEach((item) => item.setAttribute('aria-pressed', String(item === chip)));
+      apply();
+    });
+  });
+
+  apply();
+</script>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Pic from '../../components/Pic.astro';
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import { news } from '../../data/news';
+import '../../styles/pages.css';
+
+const [featured] = news;
+
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat('el-GR', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+    new Date(iso),
+  );
+---
+
+<BaseLayout
+  title="Νέα — Σημειώσεις για την υγεία"
+  description="Άρθρα και σημειώσεις του Αθανάσιου Δεσαλέρμου για συμπτώματα, εξετάσεις και συνήθειες που αφορούν την υγεία του πεπτικού και του ήπατος."
+>
+  <PageHero
+    eyebrow="Νέα"
+    index="06"
+    title="Σημειώσεις<br />για την υγεία."
+    lede="Σύντομα, τεκμηριωμένα άρθρα για συμπτώματα, εξετάσεις και καθημερινές συνήθειες που κάνουν τη διαφορά."
+    crumbs={[{ label: 'Νέα' }]}
+  />
+
+  <section class="section">
+    <div class="container">
+      {
+        featured && (
+          <a class="news-lead" href={`/nea/${featured.slug}`} data-reveal>
+            <div class="news-lead__media">
+              <Pic name={featured.image} sizes="(min-width: 900px) 55vw, 92vw" />
+            </div>
+            <div>
+              <p class="news-meta">
+                <span>{featured.category}</span>
+                <span>{formatDate(featured.date)}</span>
+              </p>
+              <h2>{featured.title}</h2>
+              <p>{featured.excerpt}</p>
+              <span class="link-arrow">
+                Διαβάστε το άρθρο
+                <Icon name="arrow-right" size={15} />
+              </span>
+            </div>
+          </a>
+        )
+      }
+
+      <div class="article-note" style="margin-top: 64px;">
+        <p class="article-note__label">
+          <Icon name="stethoscope" size={16} />
+          Σχετικά με το περιεχόμενο
+        </p>
+        <p>
+          Τα άρθρα έχουν ενημερωτικό χαρακτήρα και δεν αντικαθιστούν την εξατομικευμένη ιατρική
+          συμβουλή. Για προσωπικά ιατρικά ζητήματα, κλείστε ραντεβού ή επικοινωνήστε με το ιατρείο.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

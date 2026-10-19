@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactForm from '../components/ContactForm.astro';
+import MapCard from '../components/MapCard.astro';
+import { site } from '../data/site';
+import '../styles/pages.css';
+---
+
+<BaseLayout
+  title="Επικοινωνία — Ραντεβού στο Μαρούσι"
+  description="Επικοινωνήστε με το ιατρείο του Αθανάσιου Δεσαλέρμου: Κηφισίας 58, Μαρούσι. Τηλέφωνα 699 225 2277 και 210 615 7438, email desalermosclinic@gmail.com."
+>
+  <PageHero
+    eyebrow="Επικοινωνία"
+    index="05"
+    title="Ας μιλήσουμε."
+    lede="Κλείστε ραντεβού ή στείλτε μας το ερώτημά σας. Το ιατρείο βρίσκεται στο Μαρούσι, στη λεωφόρο Κηφισίας 58."
+    crumbs={[{ label: 'Επικοινωνία' }]}
+  />
+
+  <section class="contact-page" id="rantevou">
+    <div class="container contact-page__grid">
+      <div class="contact-info">
+        <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>Στοιχεία επικοινωνίας</p>
+        <h2 data-reveal style="--i:1">Το ιατρείο<br />στο Μαρούσι.</h2>
+        <p data-reveal style="--i:2">
+          Οι επισκέψεις γίνονται κατόπιν ραντεβού, ώστε να υπάρχει ο απαραίτητος χρόνος για κάθε
+          ασθενή. Για ραντεβού ή απορίες μπορείτε να καλέσετε ή να στείλετε email.
+        </p>
+
+        <dl class="contact-list" data-reveal style="--i:3">
+          <div class="contact-item">
+            <dt>Διεύθυνση</dt>
+            <dd>
+              {site.address.street}<br />
+              {site.address.locality} {site.address.postalCode}
+            </dd>
+          </div>
+          <div class="contact-item">
+            <dt>Κινητό</dt>
+            <dd><a href={`tel:+30${site.mobile}`}>{site.mobileDisplay}</a></dd>
+          </div>
+          <div class="contact-item">
+            <dt>Σταθερό</dt>
+            <dd><a href={`tel:+30${site.phone}`}>{site.phoneDisplay}</a></dd>
+          </div>
+          <div class="contact-item">
+            <dt>Email</dt>
+            <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+          </div>
+          <div class="contact-item">
+            <dt>Ραντεβού</dt>
+            <dd>{site.hours}</dd>
+          </div>
+          <div class="contact-item">
+            <dt>Πρόσβαση</dt>
+            <dd>
+              <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
+                Οδηγίες στους χάρτες <Icon name="external" size={13} />
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+        <div class="contact-note" data-reveal>
+          <Icon name="stethoscope" size={18} />
+          <p>
+            Για επείγοντα περιστατικά μην χρησιμοποιείτε τη φόρμα. Καλέστε το <a href="tel:166">166</a>
+            ή απευθυνθείτε στο πλησιέστερο νοσοκομείο.
+          </p>
+        </div>
+      </div>
+
+      <div data-reveal="fade">
+        <ContactForm />
+      </div>
+    </div>
+
+    <div class="container">
+      <MapCard />
+    </div>
+  </section>
+</BaseLayout>

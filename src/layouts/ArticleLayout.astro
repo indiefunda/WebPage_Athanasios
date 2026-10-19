@@ -1,0 +1,233 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Pic from '../components/Pic.astro';
+import Icon from '../components/Icon.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { site } from '../data/site';
+import imageData from '../data/images.json';
+import '../styles/pages.css';
+
+interface RelatedLink {
+  title: string;
+  href: string;
+  short?: string;
+}
+
+interface Props {
+  title: string;
+  short: string;
+  category: string;
+  image: string;
+  paragraphs: string[];
+  references?: { label: string; url: string }[];
+  crumbs: { label: string; href?: string }[];
+  indexPath?: string;
+  indexLabel?: string;
+  backLabel?: string;
+  related?: RelatedLink[];
+  relatedTitle?: string;
+  more?: RelatedLink[];
+  moreTitle?: string;
+  note?: string;
+  metaLabel?: string;
+  schema?: Record<string, unknown>;
+}
+
+const {
+  title,
+  short,
+  category,
+  image,
+  paragraphs,
+  references = [],
+  crumbs,
+  indexPath = '/pathiseis',
+  indexLabel = 'Παθήσεις',
+  backLabel,
+  related = [],
+  relatedTitle = 'Σχετικά',
+  more = [],
+  moreTitle = 'Σχετικά θέματα',
+  note,
+  metaLabel = 'Ιατρική ενημέρωση',
+  schema,
+} = Astro.props;
+
+const words = paragraphs.join(' ').split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(2, Math.ceil(words / 180));
+const backText = backLabel ?? `Όλες οι ${indexLabel.toLowerCase()}`;
+const socialImage =
+  (imageData as Record<string, any>)[image]?.variants?.at(-1)?.webp ?? '/og.jpg';
+
+const defaultNote =
+  'Αν εμφανίσετε έντονο ή επίμονο πόνο, αιμορραγία από το πεπτικό, πυρετό, ανεξήγητη απώλεια βάρους ή επίμονη αλλαγή στις κενώσεις, αναζητήστε άμεσα ιατρική εκτίμηση.';
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: title,
+  description: short,
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  inLanguage: 'el',
+  isPartOf: { '@type': 'WebSite', name: site.name, url: site.url },
+  author: {
+    '@type': 'Physician',
+    name: site.name,
+    url: site.url,
+  },
+  ...schema,
+};
+---
+
+<BaseLayout
+  title={`${title} — ${indexLabel}`}
+  description={short}
+  image={socialImage}
+  type="article"
+  schema={pageSchema}
+>
+  <article class="article">
+    <div class="container">
+      <header class="article-head">
+        <Breadcrumbs items={crumbs} />
+
+        <div class="article-head__grid">
+          <div>
+            <p class="eyebrow article-head__eyebrow" data-reveal>
+              <span class="eyebrow__num">{category}</span>
+            </p>
+            <h1 class="article-head__title" data-reveal style="--i:1">{title}</h1>
+          </div>
+          <div class="article-head__aside" data-reveal style="--i:2">
+            <p class="article-head__lede">{short}</p>
+            <p class="article-head__meta">
+              <span>{readingTime} λεπτά ανάγνωσης</span>
+              <span>{metaLabel}</span>
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <figure class="article-media" data-reveal="fade">
+        <Pic name={image} sizes="(min-width: 1100px) 1080px, 92vw" loading="eager" />
+      </figure>
+
+      <div class="article-grid">
+        <div class="article-body">
+          <div class="prose">
+            {
+              paragraphs.map((paragraph) =>
+                paragraph.startsWith('## ') ? (
+                  <h2>{paragraph.replace('## ', '')}</h2>
+                ) : (
+                  <p set:html={paragraph} />
+                ),
+              )
+            }
+          </div>
+
+          <div class="article-note">
+            <p class="article-note__label">
+              <Icon name="stethoscope" size={16} />
+              Πότε να αναζητήσετε βοήθεια
+            </p>
+            <p>{note ?? defaultNote}</p>
+          </div>
+
+          {
+            references.length > 0 && (
+              <div class="article-references">
+                <p class="eyebrow">Πηγές</p>
+                <ul>
+                  {references.map((reference) => (
+                    <li>
+                      <a href={reference.url} target="_blank" rel="noopener noreferrer">
+                        {reference.label}
+                        <Icon name="external" size={13} />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+
+          <nav class="article-back" aria-label="Επιστροφή">
+            <a class="link-arrow" href={indexPath}>
+              <Icon name="arrow-right" size={15} />
+              {backText}
+            </a>
+          </nav>
+        </div>
+
+        <aside class="article-aside">
+          <div class="book-card">
+            <p class="eyebrow"><span class="eyebrow__dot"></span>Ραντεβού</p>
+            <p class="book-card__title">Χρειάζεστε εκτίμηση;</p>
+            <p class="book-card__text">
+              Κλείστε ραντεβού στο ιατρείο του Μαρούσι. Θα συζητήσουμε το ιστορικό και τις
+              εξετάσεις που χρειάζονται.
+            </p>
+            <a class="btn btn--sm book-card__btn" href="/epikoinonia#rantevou">
+              Κλείστε ραντεβού
+              <Icon name="arrow-up-right" size={14} />
+            </a>
+            <a class="book-card__link" href={`tel:+30${site.mobile}`}>
+              <Icon name="phone" size={14} />
+              {site.mobileDisplay}
+            </a>
+            <a class="book-card__link" href={`mailto:${site.email}`}>
+              <Icon name="mail" size={14} />
+              {site.email}
+            </a>
+          </div>
+
+          {
+            related.length > 0 && (
+              <div class="aside-block">
+                <p class="eyebrow">{relatedTitle}</p>
+                <ul class="aside-links">
+                  {related.map((item) => (
+                    <li>
+                      <a href={item.href}>
+                        <span>{item.title}</span>
+                        <Icon name="arrow-up-right" size={13} />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+        </aside>
+      </div>
+    </div>
+  </article>
+
+  {
+    more.length > 0 && (
+      <section class="section section--paper-soft related-section">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-head__top">
+              <p class="eyebrow">Συνέχεια</p>
+              <h2>{moreTitle}</h2>
+            </div>
+          </div>
+          <div class="related-grid">
+            {more.slice(0, 3).map((item) => (
+              <a class="related-card" href={item.href}>
+                <h3>{item.title}</h3>
+                {item.short && <p>{item.short}</p>}
+                <span class="link-arrow">
+                  Περισσότερα
+                  <Icon name="arrow-right" size={14} />
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

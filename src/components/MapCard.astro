@@ -1,0 +1,37 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+
+<figure class="map-card">
+  <a
+    class="map-card__link"
+    href={site.mapsUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Άνοιγμα της διεύθυνσης του ιατρείου στους χάρτες"
+  >
+    <img
+      src="/images/map-marousi.jpg"
+      srcset="/images/map-marousi-800.jpg 800w, /images/map-marousi.jpg 1600w"
+      sizes="(min-width: 1000px) 54vw, 94vw"
+      width="1600"
+      height="720"
+      alt={`Χάρτης της περιοχής του ιατρείου: ${site.addressOneLine}`}
+      loading="lazy"
+      decoding="async"
+    />
+    <span class="map-card__tag">
+      <Icon name="pin" size={14} />
+      {site.address.street}, {site.address.locality}
+    </span>
+    <span class="map-card__cta">
+      Οδηγίες στους χάρτες
+      <Icon name="arrow-up-right" size={14} />
+    </span>
+  </a>
+  <figcaption class="map-card__caption">
+    <span>{site.addressOneLine}</span>
+    <span>Χάρτης © OpenStreetMap contributors</span>
+  </figcaption>
+</figure>

@@ -1,0 +1,121 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+
+<form class="contact-form" data-contact-form novalidate>
+  <div class="contact-form__head">
+    <p class="eyebrow"><span class="eyebrow__dot"></span>Φόρμα επικοινωνίας</p>
+    <h2>Στείλτε μας μήνυμα.</h2>
+    <p>Συμπληρώστε τα στοιχεία σας και θα επικοινωνήσουμε μαζί σας.</p>
+  </div>
+
+  <div class="form-grid">
+    <div class="field">
+      <label for="cf-name">Ονοματεπώνυμο *</label>
+      <input id="cf-name" name="name" type="text" autocomplete="name" required />
+    </div>
+
+    <div class="field">
+      <label for="cf-phone">Τηλέφωνο</label>
+      <input id="cf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" />
+    </div>
+
+    <div class="field field--full">
+      <label for="cf-email">Email *</label>
+      <input id="cf-email" name="email" type="email" autocomplete="email" required />
+    </div>
+
+    <div class="field field--full">
+      <label for="cf-subject">Θέμα *</label>
+      <select id="cf-subject" name="subject" required>
+        <option value="" selected disabled>Επιλέξτε θέμα</option>
+        <option value="Ραντεβού">Ραντεβού</option>
+        <option value="Ερώτηση για πάθηση">Ερώτηση για πάθηση</option>
+        <option value="Δεύτερη γνώμη">Δεύτερη γνώμη</option>
+        <option value="Επέμβαση / εξέταση">Επέμβαση / εξέταση</option>
+        <option value="Άλλο">Άλλο</option>
+      </select>
+    </div>
+
+    <div class="field field--full">
+      <label for="cf-message">Μήνυμα *</label>
+      <textarea
+        id="cf-message"
+        name="message"
+        required
+        placeholder="Γράψτε σύντομα τι σας απασχολεί. Μη συμπεριλάβετε ευαίσθητα ιατρικά δεδομένα."
+      ></textarea>
+    </div>
+
+    <label class="form-consent field--full">
+      <input type="checkbox" name="consent" required />
+      <span>
+        Συμφωνώ να χρησιμοποιηθούν τα στοιχεία μου για την επικοινωνία σχετικά με το αίτημά μου.
+        Διαβάστε την <a href="/apopoiisi">αποποίηση ευθύνης</a>.
+      </span>
+    </label>
+  </div>
+
+  <div class="form-submit">
+    <button class="btn" type="submit">
+      Αποστολή μηνύματος
+      <Icon name="arrow-up-right" size={15} />
+    </button>
+    <p class="small muted">Η φόρμα ανοίγει το πρόγραμμα email σας.</p>
+  </div>
+
+  <p class="form-status" role="status" aria-live="polite" data-status></p>
+
+  <noscript>
+    <p class="small muted" style="margin-top: 16px;">
+      Για να στείλετε μήνυμα χωρίς JavaScript, καλέστε στο
+      <a href={`tel:+30${site.mobile}`}>{site.mobileDisplay}</a> ή στείλτε email στο
+      <a href={`mailto:${site.email}`}>{site.email}</a>.
+    </p>
+  </noscript>
+</form>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  const status = document.querySelector<HTMLElement>('[data-status]');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      if (status) status.textContent = 'Συμπληρώστε τα υποχρεωτικά πεδία.';
+      return;
+    }
+
+    const data = new FormData(form);
+    const name = String(data.get('name') ?? '').trim();
+    const phone = String(data.get('phone') ?? '').trim();
+    const email = String(data.get('email') ?? '').trim();
+    const subject = String(data.get('subject') ?? '').trim();
+    const message = String(data.get('message') ?? '').trim();
+
+    const body = [
+      `Ονοματεπώνυμο: ${name}`,
+      `Email: ${email}`,
+      phone ? `Τηλέφωνο: ${phone}` : null,
+      `Θέμα: ${subject}`,
+      '',
+      message,
+    ]
+      .filter((line) => line !== null)
+      .join('\n');
+
+    const mailto = `mailto:desalermosclinic@gmail.com?subject=${encodeURIComponent(
+      `Αίτημα μέσω ιστοσελίδας — ${subject}`,
+    )}&body=${encodeURIComponent(body)}`;
+
+    if (status) {
+      status.textContent =
+        'Ανοίγει το πρόγραμμα email σας με το μήνυμα έτοιμο. Αν δεν ανοίξει, καλέστε στο 699 225 2277.';
+    }
+
+    window.location.href = mailto;
+  });
+</script>

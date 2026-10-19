@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Pic from '../../components/Pic.astro';
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import { procedures } from '../../data/procedures';
+import { procedureCategories, procedureCategoryLabel } from '../../data/taxonomy';
+import '../../styles/pages.css';
+---
+
+<BaseLayout
+  title="Επεμβάσεις — Ενδοσκοπήσεις & διαγνωστικές εξετάσεις"
+  description="Ενδοσκοπήσεις, λειτουργικές εξετάσεις οισοφάγου, FibroScan και θεραπευτικές επεμβάσεις στο ιατρείο του Αθανάσιου Δεσαλέρμου στην Αθήνα."
+>
+  <PageHero
+    eyebrow="Επεμβάσεις"
+    index="03"
+    title="Διαγνωστικές<br />και θεραπευτικές<br />επεμβάσεις."
+    lede="Εννέα σύγχρονες διαδικασίες για τη διάγνωση, την παρακολούθηση και τη θεραπεία παθήσεων του πεπτικού και του ήπατος."
+    crumbs={[{ label: 'Επεμβάσεις' }]}
+  />
+
+  <section class="directory">
+    <div class="container">
+      <div class="directory__toolbar">
+        <div class="directory__meta">
+          <p class="directory__count">{procedures.length} επεμβάσεις</p>
+          <p class="directory__hint">
+            Ενδοσκοπήσεις, λειτουργικές εξετάσεις, ηπατική ελαστογραφία και θεραπευτικές διαδικασίες.
+          </p>
+        </div>
+        <ul class="filter-legend">
+          {
+            procedureCategories.map((category) => (
+              <li>
+                <span>{category.label}</span>
+                {String(procedures.filter((procedure) => procedure.category === category.key).length).padStart(2, '0')}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="entry-grid">
+        {
+          procedures.map((procedure) => (
+            <a class="entry-card" href={`/epemvaseis/${procedure.slug}`} data-reveal>
+              <div class="entry-card__media">
+                <Pic
+                  name={procedure.image}
+                  sizes="(min-width: 1000px) 30vw, (min-width: 620px) 45vw, 92vw"
+                />
+              </div>
+              <div>
+                <p class="entry-card__meta">{procedureCategoryLabel(procedure.category)}</p>
+                <h3>{procedure.title}</h3>
+                <p>{procedure.short}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="article-note" style="margin-top: 56px;">
+        <p class="article-note__label">
+          <Icon name="stethoscope" size={16} />
+          Πριν την επέμβαση
+        </p>
+        <p>
+          Οι οδηγίες προετοιμασίας, η καταστολή και η διαδικασία συζητούνται εξατομικευμένα πριν από
+          κάθε εξέταση. Επικοινωνήστε με το ιατρείο για οποιαδήποτε απορία.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    eyebrow="Ραντεβού"
+    title="Χρειάζεστε μια εξέταση;"
+    text="Κλείστε ραντεβού για να συζητήσουμε την κατάλληλη διαδικασία, την προετοιμασία και τον χρόνο που χρειάζεται."
+  />
+</BaseLayout>

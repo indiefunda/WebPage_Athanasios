@@ -1,0 +1,48 @@
+---
+import images from '../data/images.json';
+
+interface Props {
+  name: keyof typeof images | string;
+  alt?: string;
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+  imgClass?: string;
+}
+
+const {
+  name,
+  alt,
+  sizes = '100vw',
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  class: className = '',
+  imgClass = '',
+} = Astro.props;
+
+const image = (images as Record<string, any>)[name];
+
+if (!image) {
+  throw new Error(`Unknown image "${name}" — add it to scripts/prepare-images.mjs`);
+}
+
+const avif = image.variants.map((variant: any) => `${variant.avif} ${variant.width}w`).join(', ');
+const webp = image.variants.map((variant: any) => `${variant.webp} ${variant.width}w`).join(', ');
+const fallback = image.variants[image.variants.length - 1];
+---
+
+<picture class={`pic ${className}`}>
+  <source type="image/avif" srcset={avif} sizes={sizes} />
+  <source type="image/webp" srcset={webp} sizes={sizes} />
+  <img
+    class={imgClass}
+    src={fallback.webp}
+    width={image.width}
+    height={image.height}
+    alt={alt ?? image.alt}
+    loading={loading}
+    decoding="async"
+    fetchpriority={fetchpriority}
+  />
+</picture>

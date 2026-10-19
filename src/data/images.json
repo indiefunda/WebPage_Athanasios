@@ -1,0 +1,873 @@
+{
+  "portrait": {
+    "alt": "Ο Αθανάσιος Δεσαλέρμος σε επαγγελματικό πορτρέτο, με σκούρο φόντο.",
+    "width": 1000,
+    "height": 1500,
+    "variants": [
+      {
+        "width": 560,
+        "height": 840,
+        "avif": "/images/portrait-560.avif",
+        "webp": "/images/portrait-560.webp"
+      },
+      {
+        "width": 840,
+        "height": 1260,
+        "avif": "/images/portrait-840.avif",
+        "webp": "/images/portrait-840.webp"
+      },
+      {
+        "width": 1000,
+        "height": 1500,
+        "avif": "/images/portrait-1000.avif",
+        "webp": "/images/portrait-1000.webp"
+      }
+    ]
+  },
+  "portrait-crossed": {
+    "alt": "Ο Αθανάσιος Δεσαλέρμος με σταυρωμένα χέρια.",
+    "width": 502,
+    "height": 750,
+    "variants": [
+      {
+        "width": 502,
+        "height": 750,
+        "avif": "/images/portrait-crossed-502.avif",
+        "webp": "/images/portrait-crossed-502.webp"
+      }
+    ]
+  },
+  "portrait-profile": {
+    "alt": "Πορτρέτο του Αθανάσιου Δεσαλέρμου.",
+    "width": 500,
+    "height": 750,
+    "variants": [
+      {
+        "width": 500,
+        "height": 750,
+        "avif": "/images/portrait-profile-500.avif",
+        "webp": "/images/portrait-profile-500.webp"
+      }
+    ]
+  },
+  "clinic-1": {
+    "alt": "Εξεταστική κλίνη στο ιατρείο, δίπλα σε παράθυρο με θέα πράσινο.",
+    "width": 1000,
+    "height": 750,
+    "variants": [
+      {
+        "width": 640,
+        "height": 480,
+        "avif": "/images/clinic-1-640.avif",
+        "webp": "/images/clinic-1-640.webp"
+      },
+      {
+        "width": 1000,
+        "height": 750,
+        "avif": "/images/clinic-1-1000.avif",
+        "webp": "/images/clinic-1-1000.webp"
+      }
+    ]
+  },
+  "clinic-2": {
+    "alt": "Ο χώρος εξέτασης του ιατρείου με τα διπλώματα και τον εξοπλισμό.",
+    "width": 1000,
+    "height": 750,
+    "variants": [
+      {
+        "width": 640,
+        "height": 480,
+        "avif": "/images/clinic-2-640.avif",
+        "webp": "/images/clinic-2-640.webp"
+      },
+      {
+        "width": 1000,
+        "height": 750,
+        "avif": "/images/clinic-2-1000.avif",
+        "webp": "/images/clinic-2-1000.webp"
+      }
+    ]
+  },
+  "clinic-3": {
+    "alt": "Το γραφείο του ιατρού, με βιβλιοθήκη και πιστοποιητικά στον τοίχο.",
+    "width": 1000,
+    "height": 750,
+    "variants": [
+      {
+        "width": 640,
+        "height": 480,
+        "avif": "/images/clinic-3-640.avif",
+        "webp": "/images/clinic-3-640.webp"
+      },
+      {
+        "width": 1000,
+        "height": 750,
+        "avif": "/images/clinic-3-1000.avif",
+        "webp": "/images/clinic-3-1000.webp"
+      }
+    ]
+  },
+  "boston": {
+    "alt": "Άποψη της Βοστώνης την ώρα του ηλιοβασιλέματος.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/boston-720.avif",
+        "webp": "/images/boston-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/boston-1000.avif",
+        "webp": "/images/boston-1000.webp"
+      }
+    ]
+  },
+  "san-diego": {
+    "alt": "Το πανεπιστήμιο UC San Diego και το τοπίο της Καλιφόρνιας.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/san-diego-720.avif",
+        "webp": "/images/san-diego-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/san-diego-1000.avif",
+        "webp": "/images/san-diego-1000.webp"
+      }
+    ]
+  },
+  "campus": {
+    "alt": "Πανεπιστημιακό κτίριο με σημαία, στις Ηνωμένες Πολιτείες.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/campus-720.avif",
+        "webp": "/images/campus-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/campus-1000.avif",
+        "webp": "/images/campus-1000.webp"
+      }
+    ]
+  },
+  "news-bloating": {
+    "alt": "Εικόνα για το άρθρο σχετικά με τη δυσφορία και το φούσκωμα στην κοιλιά.",
+    "width": 1200,
+    "height": 675,
+    "variants": [
+      {
+        "width": 720,
+        "height": 405,
+        "avif": "/images/news-bloating-720.avif",
+        "webp": "/images/news-bloating-720.webp"
+      },
+      {
+        "width": 1200,
+        "height": 675,
+        "avif": "/images/news-bloating-1200.avif",
+        "webp": "/images/news-bloating-1200.webp"
+      }
+    ]
+  },
+  "condition-kaysos-kai-palindromhsh": {
+    "alt": "Απεικόνιση του πεπτικού συστήματος για την καούρα και την παλινδρόμηση.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-kaysos-kai-palindromhsh-720.avif",
+        "webp": "/images/condition-kaysos-kai-palindromhsh-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-kaysos-kai-palindromhsh-1000.avif",
+        "webp": "/images/condition-kaysos-kai-palindromhsh-1000.webp"
+      }
+    ]
+  },
+  "condition-oisofagos-barretts": {
+    "alt": "Απεικόνιση οισοφάγου Barrett.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-oisofagos-barretts-720.avif",
+        "webp": "/images/condition-oisofagos-barretts-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-oisofagos-barretts-1000.avif",
+        "webp": "/images/condition-oisofagos-barretts-1000.webp"
+      }
+    ]
+  },
+  "condition-provlhma-sthn-kataposh": {
+    "alt": "Απεικόνιση της κατάποσης και του οισοφάγου.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-provlhma-sthn-kataposh-720.avif",
+        "webp": "/images/condition-provlhma-sthn-kataposh-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-provlhma-sthn-kataposh-1000.avif",
+        "webp": "/images/condition-provlhma-sthn-kataposh-1000.webp"
+      }
+    ]
+  },
+  "condition-dyspepsia-kai-metewrismos": {
+    "alt": "Απεικόνιση λειτουργικής δυσπεψίας.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-dyspepsia-kai-metewrismos-720.avif",
+        "webp": "/images/condition-dyspepsia-kai-metewrismos-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-dyspepsia-kai-metewrismos-1000.avif",
+        "webp": "/images/condition-dyspepsia-kai-metewrismos-1000.webp"
+      }
+    ]
+  },
+  "condition-loimwxh-me-to-elikobakthridio-toy-pylwroy": {
+    "alt": "Απεικόνιση της λοίμωξης από ελικοβακτηρίδιο του πυλωρού.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-loimwxh-me-to-elikobakthridio-toy-pylwroy-720.avif",
+        "webp": "/images/condition-loimwxh-me-to-elikobakthridio-toy-pylwroy-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-loimwxh-me-to-elikobakthridio-toy-pylwroy-1000.avif",
+        "webp": "/images/condition-loimwxh-me-to-elikobakthridio-toy-pylwroy-1000.webp"
+      }
+    ]
+  },
+  "condition-peptiko-elkos": {
+    "alt": "Απεικόνιση πεπτικού έλκους.",
+    "width": 600,
+    "height": 400,
+    "variants": [
+      {
+        "width": 600,
+        "height": 400,
+        "avif": "/images/condition-peptiko-elkos-600.avif",
+        "webp": "/images/condition-peptiko-elkos-600.webp"
+      }
+    ]
+  },
+  "condition-aimorragia-peptikoy": {
+    "alt": "Αίθουσα επεμβατικής ενδοσκόπησης.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-aimorragia-peptikoy-720.avif",
+        "webp": "/images/condition-aimorragia-peptikoy-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-aimorragia-peptikoy-1000.avif",
+        "webp": "/images/condition-aimorragia-peptikoy-1000.webp"
+      }
+    ]
+  },
+  "condition-eyerethisto-entero": {
+    "alt": "Απεικόνιση ευερέθιστου εντέρου.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-eyerethisto-entero-720.avif",
+        "webp": "/images/condition-eyerethisto-entero-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-eyerethisto-entero-1000.avif",
+        "webp": "/images/condition-eyerethisto-entero-1000.webp"
+      }
+    ]
+  },
+  "condition-dyskoiliothta": {
+    "alt": "Απεικόνιση δυσκοιλιότητας.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-dyskoiliothta-720.avif",
+        "webp": "/images/condition-dyskoiliothta-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-dyskoiliothta-1000.avif",
+        "webp": "/images/condition-dyskoiliothta-1000.webp"
+      }
+    ]
+  },
+  "condition-diarrhea": {
+    "alt": "Απεικόνιση διάρροιας.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-diarrhea-720.avif",
+        "webp": "/images/condition-diarrhea-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-diarrhea-1000.avif",
+        "webp": "/images/condition-diarrhea-1000.webp"
+      }
+    ]
+  },
+  "condition-koiliokakh": {
+    "alt": "Απεικόνιση κοιλιοκάκης.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-koiliokakh-720.avif",
+        "webp": "/images/condition-koiliokakh-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-koiliokakh-1000.avif",
+        "webp": "/images/condition-koiliokakh-1000.webp"
+      }
+    ]
+  },
+  "condition-dysanexia-trofwn": {
+    "alt": "Απεικόνιση δυσανεξίας τροφών.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-dysanexia-trofwn-720.avif",
+        "webp": "/images/condition-dysanexia-trofwn-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-dysanexia-trofwn-1000.avif",
+        "webp": "/images/condition-dysanexia-trofwn-1000.webp"
+      }
+    ]
+  },
+  "condition-nosos-toy-crohn": {
+    "alt": "Απεικόνιση νόσου του Crohn.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-nosos-toy-crohn-720.avif",
+        "webp": "/images/condition-nosos-toy-crohn-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-nosos-toy-crohn-1000.avif",
+        "webp": "/images/condition-nosos-toy-crohn-1000.webp"
+      }
+    ]
+  },
+  "condition-elkwdhs-kolitida": {
+    "alt": "Απεικόνιση ελκώδους κολίτιδας.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-elkwdhs-kolitida-720.avif",
+        "webp": "/images/condition-elkwdhs-kolitida-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-elkwdhs-kolitida-1000.avif",
+        "webp": "/images/condition-elkwdhs-kolitida-1000.webp"
+      }
+    ]
+  },
+  "condition-colitida": {
+    "alt": "Απεικόνιση κολίτιδας.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-colitida-720.avif",
+        "webp": "/images/condition-colitida-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-colitida-1000.avif",
+        "webp": "/images/condition-colitida-1000.webp"
+      }
+    ]
+  },
+  "condition-ekkolpwmata": {
+    "alt": "Απεικόνιση εκκολπωμάτων.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-ekkolpwmata-720.avif",
+        "webp": "/images/condition-ekkolpwmata-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-ekkolpwmata-1000.avif",
+        "webp": "/images/condition-ekkolpwmata-1000.webp"
+      }
+    ]
+  },
+  "condition-polypodes-toy-paxeos-enteroy": {
+    "alt": "Απεικόνιση πολυπόδων του παχέος εντέρου.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-polypodes-toy-paxeos-enteroy-720.avif",
+        "webp": "/images/condition-polypodes-toy-paxeos-enteroy-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-polypodes-toy-paxeos-enteroy-1000.avif",
+        "webp": "/images/condition-polypodes-toy-paxeos-enteroy-1000.webp"
+      }
+    ]
+  },
+  "condition-prolhpsh-kasrkinoy-paxeos-enteroy": {
+    "alt": "Απεικόνιση πρόληψης καρκίνου του παχέος εντέρου.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-prolhpsh-kasrkinoy-paxeos-enteroy-720.avif",
+        "webp": "/images/condition-prolhpsh-kasrkinoy-paxeos-enteroy-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-prolhpsh-kasrkinoy-paxeos-enteroy-1000.avif",
+        "webp": "/images/condition-prolhpsh-kasrkinoy-paxeos-enteroy-1000.webp"
+      }
+    ]
+  },
+  "condition-aimorroides-kai-ragades": {
+    "alt": "Απεικόνιση αιμορροΐδων και ραγάδων.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-aimorroides-kai-ragades-720.avif",
+        "webp": "/images/condition-aimorroides-kai-ragades-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-aimorroides-kai-ragades-1000.avif",
+        "webp": "/images/condition-aimorroides-kai-ragades-1000.webp"
+      }
+    ]
+  },
+  "condition-anaimia": {
+    "alt": "Απεικόνιση αναιμίας από έλλειψη σιδήρου.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-anaimia-720.avif",
+        "webp": "/images/condition-anaimia-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-anaimia-1000.avif",
+        "webp": "/images/condition-anaimia-1000.webp"
+      }
+    ]
+  },
+  "condition-yperanaptyxh-twn-bakthridiwn-toy-leptoy-enteroy": {
+    "alt": "Απεικόνιση υπερανάπτυξης βακτηριδίων του λεπτού εντέρου.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-yperanaptyxh-twn-bakthridiwn-toy-leptoy-enteroy-720.avif",
+        "webp": "/images/condition-yperanaptyxh-twn-bakthridiwn-toy-leptoy-enteroy-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-yperanaptyxh-twn-bakthridiwn-toy-leptoy-enteroy-1000.avif",
+        "webp": "/images/condition-yperanaptyxh-twn-bakthridiwn-toy-leptoy-enteroy-1000.webp"
+      }
+    ]
+  },
+  "condition-diataraxes-toy-mikrobiwmatos": {
+    "alt": "Απεικόνιση διαταραχών του μικροβιώματος.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-diataraxes-toy-mikrobiwmatos-720.avif",
+        "webp": "/images/condition-diataraxes-toy-mikrobiwmatos-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-diataraxes-toy-mikrobiwmatos-1000.avif",
+        "webp": "/images/condition-diataraxes-toy-mikrobiwmatos-1000.webp"
+      }
+    ]
+  },
+  "condition-evexia-toy-enteroy": {
+    "alt": "Απεικόνιση ευεξίας του εντέρου.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-evexia-toy-enteroy-720.avif",
+        "webp": "/images/condition-evexia-toy-enteroy-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-evexia-toy-enteroy-1000.avif",
+        "webp": "/images/condition-evexia-toy-enteroy-1000.webp"
+      }
+    ]
+  },
+  "condition-xronia-hpatikh-nosos": {
+    "alt": "Απεικόνιση χρόνιας ηπατικής νόσου.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-xronia-hpatikh-nosos-720.avif",
+        "webp": "/images/condition-xronia-hpatikh-nosos-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-xronia-hpatikh-nosos-1000.avif",
+        "webp": "/images/condition-xronia-hpatikh-nosos-1000.webp"
+      }
+    ]
+  },
+  "condition-kirrwsh-toy-hpatos": {
+    "alt": "Απεικόνιση κίρρωσης του ήπατος.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-kirrwsh-toy-hpatos-720.avif",
+        "webp": "/images/condition-kirrwsh-toy-hpatos-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-kirrwsh-toy-hpatos-1000.avif",
+        "webp": "/images/condition-kirrwsh-toy-hpatos-1000.webp"
+      }
+    ]
+  },
+  "condition-lipwdhs-hpar": {
+    "alt": "Απεικόνιση λιπώδους ήπατος.",
+    "width": 600,
+    "height": 400,
+    "variants": [
+      {
+        "width": 600,
+        "height": 400,
+        "avif": "/images/condition-lipwdhs-hpar-600.avif",
+        "webp": "/images/condition-lipwdhs-hpar-600.webp"
+      }
+    ]
+  },
+  "condition-iogenhs-hpatitida": {
+    "alt": "Απεικόνιση ιογενούς ηπατίτιδας.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-iogenhs-hpatitida-720.avif",
+        "webp": "/images/condition-iogenhs-hpatitida-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-iogenhs-hpatitida-1000.avif",
+        "webp": "/images/condition-iogenhs-hpatitida-1000.webp"
+      }
+    ]
+  },
+  "condition-oxeia-kai-xronia-pagkreatitida": {
+    "alt": "Απεικόνιση παγκρεατίτιδας.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-oxeia-kai-xronia-pagkreatitida-720.avif",
+        "webp": "/images/condition-oxeia-kai-xronia-pagkreatitida-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-oxeia-kai-xronia-pagkreatitida-1000.avif",
+        "webp": "/images/condition-oxeia-kai-xronia-pagkreatitida-1000.webp"
+      }
+    ]
+  },
+  "condition-hololithoi": {
+    "alt": "Απεικόνιση χολόλιθων και παθήσεων των χοληφόρων.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-hololithoi-720.avif",
+        "webp": "/images/condition-hololithoi-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-hololithoi-1000.avif",
+        "webp": "/images/condition-hololithoi-1000.webp"
+      }
+    ]
+  },
+  "condition-kolikos": {
+    "alt": "Απεικόνιση κολικού.",
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/condition-kolikos-720.avif",
+        "webp": "/images/condition-kolikos-720.webp"
+      },
+      {
+        "width": 1000,
+        "height": 667,
+        "avif": "/images/condition-kolikos-1000.avif",
+        "webp": "/images/condition-kolikos-1000.webp"
+      }
+    ]
+  },
+  "procedure-kolonoskophsh": {
+    "alt": "Απεικόνιση κολονοσκόπησης.",
+    "width": 400,
+    "height": 267,
+    "variants": [
+      {
+        "width": 400,
+        "height": 267,
+        "avif": "/images/procedure-kolonoskophsh-400.avif",
+        "webp": "/images/procedure-kolonoskophsh-400.webp"
+      }
+    ]
+  },
+  "procedure-anwterh-endoskophsh": {
+    "alt": "Απεικόνιση ανώτερης ενδοσκόπησης.",
+    "width": 900,
+    "height": 600,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/procedure-anwterh-endoskophsh-720.avif",
+        "webp": "/images/procedure-anwterh-endoskophsh-720.webp"
+      },
+      {
+        "width": 900,
+        "height": 600,
+        "avif": "/images/procedure-anwterh-endoskophsh-900.avif",
+        "webp": "/images/procedure-anwterh-endoskophsh-900.webp"
+      }
+    ]
+  },
+  "procedure-eykampth-sigmoeidoskophsh": {
+    "alt": "Απεικόνιση εύκαμπτης σιγμοειδοσκόπησης.",
+    "width": 400,
+    "height": 267,
+    "variants": [
+      {
+        "width": 400,
+        "height": 267,
+        "avif": "/images/procedure-eykampth-sigmoeidoskophsh-400.avif",
+        "webp": "/images/procedure-eykampth-sigmoeidoskophsh-400.webp"
+      }
+    ]
+  },
+  "procedure-kapsoyla-endoskophshs": {
+    "alt": "Κάψουλα ενδοσκόπησης.",
+    "width": 900,
+    "height": 600,
+    "variants": [
+      {
+        "width": 720,
+        "height": 480,
+        "avif": "/images/procedure-kapsoyla-endoskophshs-720.avif",
+        "webp": "/images/procedure-kapsoyla-endoskophshs-720.webp"
+      },
+      {
+        "width": 900,
+        "height": 600,
+        "avif": "/images/procedure-kapsoyla-endoskophshs-900.avif",
+        "webp": "/images/procedure-kapsoyla-endoskophshs-900.webp"
+      }
+    ]
+  },
+  "procedure-manometria-oisofagoy": {
+    "alt": "Απεικόνιση μανομετρίας οισοφάγου.",
+    "width": 400,
+    "height": 267,
+    "variants": [
+      {
+        "width": 400,
+        "height": 267,
+        "avif": "/images/procedure-manometria-oisofagoy-400.avif",
+        "webp": "/images/procedure-manometria-oisofagoy-400.webp"
+      }
+    ]
+  },
+  "procedure-ph-metria": {
+    "alt": "Απεικόνιση pH-μετρίας.",
+    "width": 400,
+    "height": 267,
+    "variants": [
+      {
+        "width": 400,
+        "height": 267,
+        "avif": "/images/procedure-ph-metria-400.avif",
+        "webp": "/images/procedure-ph-metria-400.webp"
+      }
+    ]
+  },
+  "procedure-axiologisi-oisofagou-me-endoflip": {
+    "alt": "Συσκευή EndoFLIP για την αξιολόγηση του οισοφάγου.",
+    "width": 533,
+    "height": 355,
+    "variants": [
+      {
+        "width": 533,
+        "height": 355,
+        "avif": "/images/procedure-axiologisi-oisofagou-me-endoflip-533.avif",
+        "webp": "/images/procedure-axiologisi-oisofagou-me-endoflip-533.webp"
+      }
+    ]
+  },
+  "procedure-elastografia-ipatos-me-fibroscan": {
+    "alt": "Απεικόνιση ελαστογραφίας ήπατος.",
+    "width": 400,
+    "height": 267,
+    "variants": [
+      {
+        "width": 400,
+        "height": 267,
+        "avif": "/images/procedure-elastografia-ipatos-me-fibroscan-400.avif",
+        "webp": "/images/procedure-elastografia-ipatos-me-fibroscan-400.webp"
+      }
+    ]
+  },
+  "procedure-diastolh-oisofagoy": {
+    "alt": "Απεικόνιση διαστολής οισοφάγου.",
+    "width": 400,
+    "height": 267,
+    "variants": [
+      {
+        "width": 400,
+        "height": 267,
+        "avif": "/images/procedure-diastolh-oisofagoy-400.avif",
+        "webp": "/images/procedure-diastolh-oisofagoy-400.webp"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import '../styles/pages.css';
+---
+
+<BaseLayout title="Η σελίδα δεν βρέθηκε" description="Η σελίδα που αναζητάτε δεν βρέθηκε." noindex>
+  <section class="notfound">
+    <div class="container">
+      <p class="notfound__code">404</p>
+      <h1>Η σελίδα δεν βρέθηκε.</h1>
+      <p>
+        Η διεύθυνση μπορεί να έχει αλλάξει ή να μην είναι πλέον διαθέσιμη. Επιστρέψτε στην αρχική ή
+        δείτε τις παθήσεις και τις επεμβάσεις.
+      </p>
+      <div class="notfound__actions">
+        <a class="btn" href="/">
+          Αρχική
+          <Icon name="arrow-right" size={15} />
+        </a>
+        <a class="btn btn--ghost" href="/pathiseis">Παθήσεις</a>
+        <a class="btn btn--ghost" href="/epikoinonia">Επικοινωνία</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

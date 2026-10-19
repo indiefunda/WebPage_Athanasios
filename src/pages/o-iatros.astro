@@ -1,0 +1,305 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Pic from '../components/Pic.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { site, journey } from '../data/site';
+import '../styles/pages.css';
+
+const publications = [
+  {
+    title:
+      'Safety of Immunizations for the Adult Patient With Inflammatory Bowel Disease — A Systematic Review and Meta-analysis',
+    journal: 'Inflammatory Bowel Diseases',
+    year: '2022',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/34849941/',
+  },
+  {
+    title:
+      'Outcomes of endoscopic retrograde cholangiopancreatography in patients with inflammatory bowel disease: a nationwide study',
+    journal: 'International Journal of Colorectal Disease',
+    year: '2023',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/36692549/',
+  },
+  {
+    title:
+      'Effect of Obesogenic Medications on Weight-Loss Outcomes in a Behavioral Weight-Management Program',
+    journal: 'Obesity',
+    year: '2019',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/31012292/',
+  },
+  {
+    title:
+      'The effects of provider-prescribed obesogenic drugs on post-laparoscopic sleeve gastrectomy outcomes',
+    journal: 'International Journal of Obesity',
+    year: '2019',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/30242239/',
+  },
+  {
+    title: 'Short-Term Effects of Tirzepatide in Obese Adults: A Real-World Prospective Study',
+    journal: 'Cureus',
+    year: '2025',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/40662047/',
+  },
+  {
+    title:
+      'A multi-host approach for the systematic analysis of virulence factors in Cryptococcus neoformans',
+    journal: 'The Journal of Infectious Diseases',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/25114160/',
+  },
+];
+
+const stats = [
+  { value: '2007', label: 'Αποφοίτηση από την Ιατρική Σχολή Αθηνών' },
+  { value: '5', label: 'Πανεπιστήμια σε Ελλάδα και ΗΠΑ' },
+  { value: '20+', label: 'Δημοσιεύσεις σε διεθνή περιοδικά' },
+  { value: 'FESBGH', label: 'Υπότροφος Ευρωπαϊκής Εταιρείας Γαστρεντερολογίας' },
+];
+
+const profileSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Physician',
+    name: site.name,
+    medicalSpecialty: ['Gastroenterologic', 'Hepatology'],
+    url: `${site.url}/o-iatros`,
+    sameAs: [site.umass, site.pubmed, site.linkedin],
+  },
+};
+---
+
+<BaseLayout
+  title="Ο Ιατρός — Βιογραφικό"
+  description="Η πορεία του Αθανάσιου Δεσαλέρμου: Ιατρική Σχολή Αθηνών, Harvard Medical School, Boston University, UC San Diego, UMass Chan και Ιατρικό Κέντρο Αθηνών."
+  schema={profileSchema}
+>
+  <PageHero
+    eyebrow="Βιογραφικό"
+    index="01"
+    title="Ο Ιατρός."
+    lede="Γαστρεντερολόγος – Ηπατολόγος με εκπαίδευση και κλινική εμπειρία σε κορυφαία κέντρα της Ελλάδας και των Ηνωμένων Πολιτειών."
+    crumbs={[{ label: 'Ο Ιατρός' }]}
+  />
+
+  <section class="section about-page">
+    <div class="container about-page__grid">
+      <div class="about-page__media">
+        <div class="about-page__portrait" data-reveal="fade">
+          <Pic name="portrait-profile" sizes="(min-width: 900px) 34vw, 90vw" />
+        </div>
+        <p class="about-page__caption" data-reveal="fade">
+          <span>Αθανάσιος Δεσαλέρμος</span>
+          <span>MD, FESBGH</span>
+        </p>
+
+        <dl class="about-facts" data-reveal>
+          <div class="about-fact">
+            <dt>Ιδιότητα</dt>
+            <dd>Γαστρεντερολόγος – Ηπατολόγος</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Θέση</dt>
+            <dd>Διευθυντής, Ιατρικό Κέντρο Αθηνών</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Ακαδημαϊκά</dt>
+            <dd>Επίκουρος Καθηγητής, UMass Chan</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Υπότροφος</dt>
+            <dd>FESBGH</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Έδρα</dt>
+            <dd>Μαρούσι, Αθήνα</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="about-page__body">
+        <h2 data-reveal>Η πορεία</h2>
+        <p data-reveal>
+          Ο Αθανάσιος Δεσαλέρμος είναι γαστρεντερολόγος και ηπατολόγος, διευθυντής της
+          Γαστρεντερολογικής – Ηπατολογικής Κλινικής του Ιατρικού Κέντρου Αθηνών. Είναι επίκουρος
+          καθηγητής Γαστρεντερολογίας στην Ιατρική Σχολή UMass Chan και υπότροφος (Fellow) της
+          Ευρωπαϊκής Εταιρείας Γαστρεντερολογίας και Ηπατολογίας.
+        </p>
+        <p data-reveal>
+          Αποφοίτησε από την Ιατρική Σχολή Αθηνών το 2007. Μετά την εκπλήρωση των στρατιωτικών του
+          υποχρεώσεων, μετέβη στις Ηνωμένες Πολιτείες, όπου διορίστηκε μεταδιδακτορικός ερευνητής
+          στην Παθολογία στο Massachusetts General Hospital του Harvard Medical School. Κατά τη
+          διάρκεια της παραμονής του εκεί συμμετείχε σε πλήθος ερευνητικών προγραμμάτων και
+          δημοσίευσε εργασίες βασικής και κλινικής έρευνας.
+        </p>
+        <p data-reveal>
+          Ολοκλήρωσε την ειδίκευση της εσωτερικής παθολογίας στο Boston University, όπου διακρίθηκε
+          για το κλινικό και ερευνητικό του έργο και για τη διδασκαλία φοιτητών. Εργάστηκε δίπλα στον
+          τότε διευθυντή του τμήματος ιδιοπαθών φλεγμονωδών παθήσεων του εντέρου της Mayo Clinic,
+          Dr. Francis Farraye, και έλαβε το δίπλωμα ειδικότητας της παθολογίας στις ΗΠΑ.
+        </p>
+        <p data-reveal>
+          Ακολούθησε τριετής ειδίκευση στη γαστρεντερολογία και την ηπατολογία στο UC San Diego, το
+          οποίο έχει αναδειχθεί σε κορυφαίο πρόγραμμα παγκοσμίως. Εκεί εξειδικεύτηκε στις ιδιοπαθείς
+          φλεγμονώδεις παθήσεις του εντέρου δίπλα στον Dr. William Sandborn, ενώ συνεργάστηκε και με
+          το εργαστήριο μικροβιώματος του Dr. Amir Zarrinpar. Για την έρευνά του βραβεύτηκε με το
+          Ruth L. Kirschstein Institutional National Research Service Award του NIH.
+        </p>
+
+        <blockquote class="about-quote" data-reveal>
+          «Στοχεύουμε στην ολοκληρωμένη διάγνωση και θεραπεία, χρησιμοποιώντας τις πιο εξελιγμένες
+          επεμβατικές τεχνικές και σύγχρονες ιατρικές γνώσεις.»
+        </blockquote>
+
+        <h2 data-reveal>Στις ΗΠΑ και στην Ελλάδα</h2>
+        <p data-reveal>
+          Ως επίκουρος καθηγητής στο UMass Chan Medical School ανέπτυξε μια πρωτοποριακή
+          γαστρεντερολογική και ηπατολογική κλινική στη Μασαχουσέτη, όπου αντιμετώπισε χιλιάδες
+          περιστατικά και πραγματοποίησε χιλιάδες ενδοσκοπήσεις. Συμμετείχε ενεργά στην εκπαίδευση
+          φοιτητών και ειδικευομένων και στην επιτροπή εισαγωγής της ιατρικής σχολής, ενώ διατήρησε
+          συνεργασίες με κέντρα όπως η Mayo Clinic και το Brown University.
+        </p>
+        <p data-reveal>
+          Με την επιστροφή του στην Ελλάδα οργάνωσε και διηύθυνε τη Δ' Γαστρεντερολογική και
+          Ηπατολογική Κλινική του Metropolitan General. Σήμερα συνεχίζει να παρέχει υψηλού επιπέδου
+          φροντίδα ως διευθυντής της αντίστοιχης κλινικής στο Ιατρικό Κέντρο Αθηνών, μοιράζοντας τον
+          χρόνο του μεταξύ Αθήνας και ΗΠΑ.
+        </p>
+
+        <div class="about-page__links" data-reveal>
+          <a class="btn btn--ghost" href={site.umass} target="_blank" rel="noopener noreferrer">
+            Προφίλ UMass
+            <Icon name="external" size={14} />
+          </a>
+          <a class="btn btn--ghost" href={site.pubmed} target="_blank" rel="noopener noreferrer">
+            Δημοσιεύσεις
+            <Icon name="external" size={14} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow"><span class="eyebrow__num">02</span>Σε αριθμούς</p>
+          <h2>Μια διαδρομή<br />με συνέπεια.</h2>
+        </div>
+        <p class="section-head__aside">
+          Από την Αθήνα στη Βοστώνη και το Σαν Ντιέγκο, με σταθερό άξονα την κλινική πράξη και την
+          επιστημονική τεκμηρίωση.
+        </p>
+      </div>
+
+      <div class="stats">
+        {
+          stats.map((stat) => (
+            <div class="stat">
+              <p class="stat__value">{stat.value}</p>
+              <p class="stat__label">{stat.label}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <ol class="timeline">
+        {
+          journey.map((step) => (
+            <li class="timeline__item">
+              <span class="timeline__stage">{step.stage}</span>
+              <div>
+                <p class="timeline__place">{step.place}</p>
+                <h3>{step.title}</h3>
+                <p>{step.detail}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--paper-soft">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow"><span class="eyebrow__num">03</span>Έρευνα</p>
+          <h2>Δημοσιεύσεις<br />και συνεργασίες.</h2>
+        </div>
+        <p class="section-head__aside">
+          Επιλεγμένες εργασίες σε διεθνή περιοδικά, με έμφαση στις φλεγμονώδεις παθήσεις του εντέρου,
+          τη μικροβιολογία και τον μεταβολισμό.
+        </p>
+      </div>
+
+      <div class="about-page__grid">
+        <div>
+          <p class="lede">
+            Η ερευνητική δραστηριότητα του κ. Δεσαλέρμου εκτείνεται από τη βασική έρευνα στη
+            μικροβιολογία έως την κλινική επιδημιολογία και τις σύγχρονες θεραπείες.
+          </p>
+          <div class="academic-links">
+            <a class="academic-link" href={site.pubmed} target="_blank" rel="noopener noreferrer">
+              <span>
+                <span class="academic-link__label">PubMed</span>
+                <span class="academic-link__title">Όλες οι δημοσιεύσεις</span>
+              </span>
+              <Icon name="arrow-up-right" size={18} />
+            </a>
+            <a class="academic-link" href={site.umass} target="_blank" rel="noopener noreferrer">
+              <span>
+                <span class="academic-link__label">UMass Chan</span>
+                <span class="academic-link__title">Ακαδημαϊκό προφίλ</span>
+              </span>
+              <Icon name="arrow-up-right" size={18} />
+            </a>
+            <a class="academic-link" href={site.linkedin} target="_blank" rel="noopener noreferrer">
+              <span>
+                <span class="academic-link__label">LinkedIn</span>
+                <span class="academic-link__title">Επαγγελματικό προφίλ</span>
+              </span>
+              <Icon name="arrow-up-right" size={18} />
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="publication-list">
+            {
+              publications.map((publication, index) => (
+                <a
+                  class="publication"
+                  href={publication.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="publication__num">{String(index + 1).padStart(2, '0')}</span>
+                  <span>
+                    <span class="publication__title">{publication.title}</span>
+                    <span class="publication__meta">
+                      <em>{publication.journal}</em> · {publication.year}
+                    </span>
+                  </span>
+                </a>
+              ))
+            }
+          </div>
+          <a class="link-arrow" href={site.pubmed} target="_blank" rel="noopener noreferrer">
+            Πλήρης λίστα στο PubMed
+            <Icon name="external" size={14} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    eyebrow="Ραντεβού"
+    title="Μια δεύτερη γνώμη, με διεθνή εμπειρία."
+    text="Για περίπλοκα ή επίμονα πεπτικά και ηπατικά προβλήματα, η εκτίμηση από έναν εξειδικευμένο γαστρεντερολόγο μπορεί να αλλάξει την πορεία."
+  />
+</BaseLayout>
