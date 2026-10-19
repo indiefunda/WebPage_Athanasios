@@ -1,0 +1,1837 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="utf-8" />
+    <title>Πέντε κατευθύνσεις — Δρ. Αθανάσιος Δεσαλέρμος</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @page {
+        size: 297mm 210mm;
+        margin: 0;
+      }
+
+      :root {
+        --ink: #141514;
+        --paper: #f6f6f2;
+        --paper-2: #ecece5;
+        --muted: #6b6f6a;
+        --line: rgba(20, 21, 20, 0.14);
+        --coral: #d9542f;
+        --atlas: #1b4dff;
+        --marble: #5a1f1f;
+        --nocturne: #4bd99a;
+        --care: #c96f4a;
+        --aegean: #0b2a5b;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html {
+        background: #d9d9d2;
+      }
+
+      body {
+        font-family: 'Manrope', sans-serif;
+        color: var(--ink);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .deck { display: flex; flex-direction: column; align-items: center; gap: 8mm; padding: 8mm 0; }
+
+      .slide {
+        position: relative;
+        width: 297mm;
+        height: 210mm;
+        background: var(--paper);
+        overflow: hidden;
+        page-break-after: always;
+        break-after: page;
+      }
+
+      .slide:last-child { page-break-after: auto; break-after: auto; }
+
+      @media print {
+        html { background: none; }
+        .deck { gap: 0; padding: 0; }
+        .slide {
+          width: 297.6mm;
+          height: 210.6mm;
+          margin: -0.3mm;
+        }
+      }
+
+      /* ---------- shared ---------- */
+
+      .pad { position: absolute; inset: 12mm; }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 3mm;
+        font-size: 6.6pt;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .eyebrow::before {
+        content: '';
+        width: 4mm;
+        height: 1px;
+        background: var(--coral);
+      }
+
+      .page-num {
+        position: absolute;
+        right: 12mm;
+        bottom: 7mm;
+        font-size: 6pt;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+      }
+
+      .foot-left {
+        position: absolute;
+        left: 12mm;
+        bottom: 7mm;
+        font-size: 6pt;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* ---------- cover ---------- */
+
+      .cover {
+        background: #101211;
+        color: #f4f4ee;
+      }
+
+      .cover::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 18mm 18mm;
+        mask-image: radial-gradient(circle at 78% 30%, black, transparent 68%);
+      }
+
+      .cover .inner {
+        position: absolute;
+        inset: 16mm 14mm 14mm;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cover-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding-bottom: 6mm;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .cover-top .kicker {
+        font-size: 6.6pt;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #a3b2a7;
+      }
+
+      .cover-top .date {
+        font-size: 6.4pt;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #a3b2a7;
+      }
+
+      .cover h1 {
+        margin-top: 26mm;
+        font-family: 'Commissioner', sans-serif;
+        font-size: 39pt;
+        line-height: 1.03;
+        font-weight: 600;
+        letter-spacing: -0.035em;
+        max-width: 205mm;
+      }
+
+      .cover h1 em {
+        font-style: normal;
+        color: #9cffc7;
+      }
+
+      .cover .sub {
+        margin-top: 9mm;
+        max-width: 150mm;
+        font-size: 10pt;
+        line-height: 1.6;
+        font-weight: 400;
+        color: #b7c3ba;
+      }
+
+      .cover .for {
+        margin-top: 5mm;
+        font-size: 8pt;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        color: #e9ece7;
+      }
+
+      .cover-bottom {
+        margin-top: auto;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 10mm;
+      }
+
+      .chip-row {
+        display: flex;
+        gap: 7mm;
+      }
+
+      .chip {
+        display: flex;
+        flex-direction: column;
+        gap: 3mm;
+      }
+
+      .chip i {
+        display: block;
+        width: 34mm;
+        height: 2.2mm;
+      }
+
+      .chip b {
+        font-size: 7pt;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #e6eae4;
+      }
+
+      .chip span {
+        font-size: 6pt;
+        letter-spacing: 0.04em;
+        color: #8d9a90;
+      }
+
+      .cover-note {
+        font-size: 6.2pt;
+        line-height: 1.6;
+        letter-spacing: 0.06em;
+        color: #7e8c82;
+        text-align: right;
+        max-width: 46mm;
+      }
+
+      /* ---------- brief ---------- */
+
+      .brief-head {
+        display: grid;
+        grid-template-columns: 1fr 0.9fr;
+        gap: 18mm;
+        align-items: end;
+      }
+
+      .brief h2,
+      .section-title {
+        font-family: 'Commissioner', sans-serif;
+        font-size: 25pt;
+        line-height: 1.02;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        max-width: 130mm;
+      }
+
+      .brief .intro {
+        font-size: 8.6pt;
+        line-height: 1.7;
+        color: #4f5551;
+        max-width: 92mm;
+      }
+
+      .criteria {
+        margin-top: 12mm;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .criterion {
+        padding: 6mm 5mm 0 0;
+        border-right: 1px solid var(--line);
+      }
+
+      .criterion:last-child { border-right: 0; }
+
+      .criterion + .criterion { padding-left: 5mm; }
+
+      .criterion .n {
+        font-size: 6.4pt;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: var(--coral);
+      }
+
+      .criterion h3 {
+        margin-top: 3mm;
+        font-size: 9.2pt;
+        line-height: 1.2;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      .criterion p {
+        margin-top: 2.5mm;
+        font-size: 7.2pt;
+        line-height: 1.55;
+        color: #5e645f;
+      }
+
+      .brief-quote {
+        position: absolute;
+        left: 12mm;
+        bottom: 53mm;
+        font-family: 'Commissioner', sans-serif;
+        font-size: 15pt;
+        line-height: 1.18;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+
+      .basis {
+        position: absolute;
+        left: 12mm;
+        right: 12mm;
+        bottom: 16mm;
+        display: flex;
+        gap: 8mm;
+        align-items: flex-start;
+        padding: 6mm 7mm;
+        background: var(--paper-2);
+      }
+
+      .basis b {
+        flex: none;
+        font-size: 6.4pt;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--coral);
+        padding-top: 0.6mm;
+      }
+
+      .basis p {
+        font-size: 7.6pt;
+        line-height: 1.6;
+        color: #4f5551;
+        max-width: 225mm;
+      }
+
+      /* ---------- concept pages ---------- */
+
+      .concept-page { background: var(--paper); }
+
+      .c-head {
+        position: absolute;
+        top: 11mm;
+        left: 12mm;
+        right: 12mm;
+        display: flex;
+        align-items: flex-end;
+        gap: 6mm;
+        padding-bottom: 4mm;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .c-num {
+        font-family: 'Commissioner', sans-serif;
+        font-size: 11pt;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--accent, var(--coral));
+        padding-bottom: 0.4mm;
+      }
+
+      .c-name {
+        font-family: 'Commissioner', sans-serif;
+        font-size: 23pt;
+        line-height: 0.9;
+        font-weight: 600;
+        letter-spacing: -0.035em;
+      }
+
+      .c-tag {
+        font-family: 'Commissioner', sans-serif;
+        font-size: 11.5pt;
+        line-height: 1.1;
+        font-weight: 400;
+        color: #5b615c;
+        padding-bottom: 0.6mm;
+      }
+
+      .c-kind {
+        margin-left: auto;
+        font-size: 6.2pt;
+        font-weight: 700;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+        color: var(--accent, var(--coral));
+        padding-bottom: 1mm;
+      }
+
+      .c-body {
+        position: absolute;
+        top: 28mm;
+        left: 12mm;
+        right: 12mm;
+        bottom: 12mm;
+        display: grid;
+        grid-template-columns: 168mm 1fr;
+        gap: 7mm;
+      }
+
+      .c-shot {
+        display: flex;
+        flex-direction: column;
+        gap: 2.2mm;
+      }
+
+      .c-shot-frame {
+        width: 168mm;
+        height: 105mm;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: #ddd;
+      }
+
+      .c-shot-frame img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top left;
+      }
+
+      .c-shot figcaption {
+        display: flex;
+        justify-content: space-between;
+        gap: 4mm;
+        font-size: 6pt;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .c-specimen {
+        display: flex;
+        flex-direction: column;
+        height: 34mm;
+        border: 1px solid var(--line);
+        overflow: hidden;
+      }
+
+      .spec-type {
+        flex: 1;
+        padding: 4mm 5mm;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 4mm;
+        background: var(--spec-bg, #fff);
+        color: var(--spec-ink, #111);
+      }
+
+      .spec-alpha {
+        font-family: var(--spec-font, 'Commissioner', sans-serif);
+        font-size: 36pt;
+        line-height: 0.72;
+        letter-spacing: -0.02em;
+      }
+
+      .spec-family {
+        font-size: 5.8pt;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        opacity: 0.72;
+        padding-bottom: 0.6mm;
+      }
+
+      .spec-colors {
+        display: flex;
+        height: 7mm;
+        flex: none;
+      }
+
+      .spec-color {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1mm;
+        font-size: 4.7pt;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: #fff;
+        border-right: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .spec-color.light { color: rgba(20, 21, 20, 0.7); }
+      .spec-color:last-child { border-right: 0; }
+
+      /* ---------- contents strip ---------- */
+
+      .toc { margin-top: 10mm; }
+
+      .toc-label {
+        font-size: 6.2pt;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .toc-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 5mm;
+        margin-top: 4mm;
+      }
+
+      .toc-item {
+        border-top: 2.2mm solid var(--c);
+        padding-top: 3mm;
+      }
+
+      .toc-item span {
+        font-size: 6pt;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+      }
+
+      .toc-item b {
+        display: block;
+        margin-top: 1.4mm;
+        font-family: 'Commissioner', sans-serif;
+        font-size: 10pt;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      .toc-item p {
+        margin-top: 1.2mm;
+        font-size: 7pt;
+        line-height: 1.4;
+        color: #5e645f;
+      }
+
+      .c-info {
+        display: flex;
+        flex-direction: column;
+        gap: 3.4mm;
+        min-width: 0;
+      }
+
+      .c-block h3,
+      .c-meta h4,
+      .c-split h4 {
+        font-size: 6.2pt;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent, var(--coral));
+      }
+
+      .c-block p {
+        margin-top: 1.4mm;
+        font-size: 7.55pt;
+        line-height: 1.58;
+        color: #424844;
+      }
+
+      .keywords {
+        letter-spacing: 0.03em;
+        font-size: 7.9pt;
+        color: #424844;
+      }
+
+      .c-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5mm;
+        padding-top: 3mm;
+        border-top: 1px solid var(--line);
+      }
+
+      .swatches {
+        display: flex;
+        gap: 1.6mm;
+        margin-top: 1.8mm;
+      }
+
+      .swatches i {
+        display: block;
+        width: 7mm;
+        height: 5mm;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .c-meta p {
+        margin-top: 1.5mm;
+        font-size: 7pt;
+        line-height: 1.5;
+        color: #5a605b;
+      }
+
+      .c-impression {
+        margin-top: 5mm;
+        padding-top: 3.4mm;
+        border-top: 1px solid var(--line);
+      }
+
+      .c-impression h4 {
+        font-size: 6.2pt;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent, var(--coral));
+      }
+
+      .c-impression p {
+        margin-top: 2.2mm;
+        font-family: 'Commissioner', sans-serif;
+        font-size: 10.4pt;
+        line-height: 1.32;
+        font-weight: 400;
+        letter-spacing: -0.015em;
+        color: var(--ink);
+        max-width: 90mm;
+      }
+
+      .c-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5mm;
+        margin-top: auto;
+        padding-top: 3mm;
+        border-top: 1px solid var(--line);
+      }
+
+      .c-split p {
+        margin-top: 1.4mm;
+        font-size: 7.1pt;
+        line-height: 1.55;
+        color: #4c524d;
+      }
+
+      .c-split .watch h4 { color: #8a6a55; }
+
+      /* ---------- comparison ---------- */
+
+      .compare h2 { max-width: none; }
+
+      .compare-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12mm;
+        padding-bottom: 5mm;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .compare-head .note {
+        max-width: 92mm;
+        font-size: 7.6pt;
+        line-height: 1.6;
+        color: #5e645f;
+        text-align: right;
+      }
+
+      table.matrix {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 7mm;
+        table-layout: fixed;
+      }
+
+      .matrix th,
+      .matrix td {
+        text-align: left;
+        vertical-align: top;
+        padding: 3.4mm 3.2mm;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .matrix thead th {
+        border-bottom: 1px solid var(--ink);
+        padding-top: 0;
+        padding-bottom: 3mm;
+      }
+
+      .matrix thead th:first-child { width: 34mm; }
+
+      .matrix .col-name {
+        font-family: 'Commissioner', sans-serif;
+        font-size: 9pt;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        display: flex;
+        align-items: center;
+        gap: 2mm;
+      }
+
+      .matrix .col-name i {
+        width: 2.6mm;
+        height: 2.6mm;
+        display: block;
+        flex: none;
+      }
+
+      .matrix tbody th {
+        font-size: 6.6pt;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .matrix td {
+        font-size: 7.5pt;
+        line-height: 1.45;
+        color: #3f4541;
+      }
+
+      .matrix tbody tr:nth-child(even) td { background: rgba(20, 21, 20, 0.025); }
+
+      .matrix tbody tr:last-child td,
+      .matrix tbody tr:last-child th { border-bottom: 0; }
+
+      .decision {
+        margin-top: 12mm;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-top: 1px solid var(--line);
+      }
+
+      .decision-item {
+        padding: 5mm 6mm 0 0;
+        border-right: 1px solid var(--line);
+      }
+
+      .decision-item + .decision-item { padding-left: 6mm; }
+      .decision-item:last-child { border-right: 0; }
+
+      .decision-item span {
+        font-size: 6.2pt;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .decision-item b {
+        display: block;
+        margin-top: 2.6mm;
+        font-family: 'Commissioner', sans-serif;
+        font-size: 10pt;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        line-height: 1.25;
+        max-width: 68mm;
+      }
+
+      .decision-item p {
+        margin-top: 2mm;
+        font-family: 'Commissioner', sans-serif;
+        font-size: 9pt;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--coral);
+      }
+      /* ---------- proposal ---------- */
+
+      .proposal {
+        background: #101211;
+        color: #f4f4ee;
+      }
+
+      .proposal .pad { inset: 14mm; }
+
+      .proposal .eyebrow { color: #9aa79e; }
+      .proposal .eyebrow::before { background: #9cffc7; }
+
+      .proposal h2 {
+        margin-top: 9mm;
+        font-family: 'Commissioner', sans-serif;
+        font-size: 31pt;
+        line-height: 1.02;
+        font-weight: 600;
+        letter-spacing: -0.035em;
+        max-width: 180mm;
+        color: #f7f8f4;
+      }
+
+      .proposal h2 em { font-style: normal; color: #9cffc7; }
+
+      .proposal-grid {
+        margin-top: 11mm;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 16mm;
+      }
+
+      .proposal p {
+        font-size: 8.4pt;
+        line-height: 1.75;
+        color: #b9c4bb;
+        max-width: 118mm;
+      }
+
+      .proposal p + p { margin-top: 4mm; }
+
+      .proposal-points {
+        display: flex;
+        flex-direction: column;
+        gap: 4mm;
+        padding-top: 1mm;
+      }
+
+      .proposal-point {
+        display: flex;
+        gap: 3.4mm;
+        align-items: flex-start;
+        font-size: 8pt;
+        line-height: 1.55;
+        color: #e3e8e2;
+        padding-bottom: 4mm;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .proposal-point span {
+        color: #9cffc7;
+        font-weight: 700;
+        font-size: 8pt;
+        line-height: 1.55;
+      }
+
+      .proposal-strip {
+        position: absolute;
+        left: 14mm;
+        right: 14mm;
+        bottom: 47mm;
+        display: flex;
+        gap: 4mm;
+        align-items: flex-end;
+      }
+
+      .proposal-strip figure {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      .proposal-strip img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top left;
+      }
+
+      .proposal-strip .s1 { width: 74mm; height: 38mm; }
+      .proposal-strip .s2 { width: 50mm; height: 38mm; }
+      .proposal-strip .s3 { width: 50mm; height: 38mm; }
+
+      .proposal-strip .caption {
+        margin-left: auto;
+        max-width: 52mm;
+        font-size: 6.4pt;
+        line-height: 1.6;
+        color: #8e9c93;
+        text-align: right;
+        padding-bottom: 1mm;
+      }
+
+      .proposal-close {
+        position: absolute;
+        left: 14mm;
+        bottom: 18mm;
+        display: flex;
+        align-items: center;
+        gap: 4mm;
+        font-family: 'Commissioner', sans-serif;
+        font-size: 10pt;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: #e3e8e2;
+      }
+
+      .proposal-close span {
+        display: inline-block;
+        width: 14mm;
+        height: 1px;
+        background: #9cffc7;
+      }
+      /* ---------- next ---------- */
+
+      .next h2 {
+        margin-top: 7mm;
+        max-width: 170mm;
+      }
+
+      .next .lead {
+        margin-top: 5mm;
+        max-width: 150mm;
+        font-size: 8.6pt;
+        line-height: 1.65;
+        color: #555b56;
+      }
+
+      .steps {
+        margin-top: 13mm;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--ink);
+      }
+
+      .step {
+        padding: 6mm 6mm 0 0;
+        border-right: 1px solid var(--line);
+      }
+
+      .step + .step { padding-left: 6mm; }
+      .step:last-child { border-right: 0; }
+
+      .step .n {
+        font-family: 'Commissioner', sans-serif;
+        font-size: 16pt;
+        font-weight: 600;
+        line-height: 1;
+        color: var(--coral);
+      }
+
+      .step h3 {
+        margin-top: 4mm;
+        font-size: 9.6pt;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+
+      .step p {
+        margin-top: 2.6mm;
+        font-size: 7.3pt;
+        line-height: 1.6;
+        color: #5b615c;
+      }
+
+      .next-grid {
+        margin-top: 9mm;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12mm;
+        border-top: 1px solid var(--line);
+        padding-top: 5mm;
+      }
+
+      .next-grid h3 {
+        font-size: 6.4pt;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--coral);
+      }
+
+      .next-grid ul {
+        margin-top: 3mm;
+        display: grid;
+        gap: 2mm;
+      }
+
+      .next-grid li {
+        display: flex;
+        gap: 2.5mm;
+        font-size: 7.6pt;
+        line-height: 1.5;
+        color: #4f5551;
+      }
+
+      .next-grid li::before {
+        content: '';
+        width: 1.6mm;
+        height: 1.6mm;
+        background: var(--coral);
+        margin-top: 1.3mm;
+        flex: none;
+      }
+
+      .next-closing {
+        position: absolute;
+        left: 12mm;
+        bottom: 45mm;
+        font-family: 'Commissioner', sans-serif;
+        font-size: 14pt;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+      .next-note {
+        position: absolute;
+        left: 12mm;
+        right: 12mm;
+        bottom: 20mm;
+        padding-top: 5mm;
+        border-top: 1px solid var(--line);
+        display: flex;
+        gap: 10mm;
+        align-items: baseline;
+      }
+
+      .next-note b {
+        font-size: 6.2pt;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--coral);
+        flex: none;
+      }
+
+      .next-note p {
+        font-size: 7.2pt;
+        line-height: 1.6;
+        color: #5e645f;
+        max-width: 210mm;
+      }
+
+      .thanks {
+        position: absolute;
+        right: 12mm;
+        bottom: 8mm;
+        font-family: 'Commissioner', sans-serif;
+        font-size: 8pt;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="deck">
+      <!-- COVER -->
+      <section class="slide cover">
+        <div class="inner">
+          <div class="cover-top">
+            <span class="kicker">Νέα ιστοσελίδα · Παρουσίαση κατευθύνσεων</span>
+            <span class="date">Οκτώβριος 2026</span>
+          </div>
+
+          <h1>Πέντε κατευθύνσεις<br />για τη νέα <em>ιστοσελίδα.</em></h1>
+
+          <p class="sub">
+            Σχεδιαστικές προτάσεις για μια ιστοσελίδα 2026 με διεθνή χαρακτήρα, ελληνική ταυτότητα
+            και έμφαση στην ανθρώπινη φροντίδα.
+          </p>
+          <p class="for">Για τον Δρ. Αθανάσιο Δεσαλέρμο, MD, FESBGH</p>
+
+          <div class="cover-bottom">
+            <div class="chip-row">
+              <div class="chip">
+                <i style="background: #1b4dff"></i>
+                <b>Atlas</b>
+                <span>Κλινική ακρίβεια</span>
+              </div>
+              <div class="chip">
+                <i style="background: #5a1f1f"></i>
+                <b>Marble</b>
+                <span>Διακριτική πολυτέλεια</span>
+              </div>
+              <div class="chip">
+                <i style="background: #4bd99a"></i>
+                <b>Nocturne</b>
+                <span>Τεχνολογικό μέλλον</span>
+              </div>
+              <div class="chip">
+                <i style="background: #c96f4a"></i>
+                <b>Care</b>
+                <span>Ανθρώπινη ζεστασιά</span>
+              </div>
+              <div class="chip">
+                <i style="background: #0b2a5b"></i>
+                <b>Aegean</b>
+                <span>Ελληνικός μοντερνισμός</span>
+              </div>
+            </div>
+            <p class="cover-note">
+              Για εσωτερική αξιολόγηση.<br />Τα κείμενα στα mockups είναι ενδεικτικά.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BRIEF -->
+      <section class="slide brief">
+        <div class="pad">
+          <div class="brief-head">
+            <div>
+              <p class="eyebrow">Η αφετηρία</p>
+              <h2 style="margin-top: 7mm">Τι πρέπει να πετύχει η νέα ιστοσελίδα</h2>
+            </div>
+            <p class="intro">
+              Δεν ψάχνουμε ένα ακόμη ιατρικό template. Ψάχνουμε μια ψηφιακή παρουσία που να
+              αντιστοιχεί στην πορεία του ιατρού: διεθνής εκπαίδευση, σύγχρονη πράξη, ελληνική έδρα.
+              Πέντε διαφορετικές απαντήσεις στο ίδιο ερώτημα.
+            </p>
+          </div>
+
+          <div class="criteria">
+            <div class="criterion">
+              <div class="n">01</div>
+              <h3>Εμπιστοσύνη, όχι λίστα τίτλων</h3>
+              <p>Το διεθνές βιογραφικό να γίνεται λόγος εμπιστοσύνης, όχι απαρίθμηση πτυχίων.</p>
+            </div>
+            <div class="criterion">
+              <div class="n">02</div>
+              <h3>Ακρίβεια και σαφήνεια</h3>
+              <p>Οι παθήσεις και οι επεμβάσεις να εξηγούνται επιστημονικά και κατανοητά.</p>
+            </div>
+            <div class="criterion">
+              <div class="n">03</div>
+              <h3>Το ραντεβού, προφανές</h3>
+              <p>Τηλέφωνο, email, διεύθυνση και χάρτης σε κάθε οθόνη.</p>
+            </div>
+            <div class="criterion">
+              <div class="n">04</div>
+              <h3>Δύο κοινά, μία φωνή</h3>
+              <p>Έλληνες ασθενείς και διεθνές κοινό, χωρίς να χάνεται η ταυτότητα.</p>
+            </div>
+            <div class="criterion">
+              <div class="n">05</div>
+              <h3>Διαφορετικό, με κύρος</h3>
+              <p>Να ξεχωρίζει από τα έτοιμα πρότυπα, χωρίς να θυσιάζει τη σοβαρότητα.</p>
+            </div>
+          </div>
+
+          <div class="toc">
+            <p class="toc-label">Οι πέντε κατευθύνσεις</p>
+            <div class="toc-grid">
+              <div class="toc-item" style="--c: #1b4dff">
+                <span>01</span>
+                <b>ATLAS</b>
+                <p>Κλινική ακρίβεια, ακαδημαϊκός χαρακτήρας.</p>
+              </div>
+              <div class="toc-item" style="--c: #5a1f1f">
+                <span>02</span>
+                <b>MARBLE</b>
+                <p>Ήρεμη πολυτέλεια, προσωπική σχέση.</p>
+              </div>
+              <div class="toc-item" style="--c: #1f9c6b">
+                <span>03</span>
+                <b>NOCTURNE</b>
+                <p>Τεχνολογικό μέλλον, κινηματογραφικό ύφος.</p>
+              </div>
+              <div class="toc-item" style="--c: #c96f4a">
+                <span>04</span>
+                <b>CARE</b>
+                <p>Ανθρώπινη ζεστασιά, καθησυχαστική εμπειρία.</p>
+              </div>
+              <div class="toc-item" style="--c: #0b2a5b">
+                <span>05</span>
+                <b>AEGEAN</b>
+                <p>Ελληνικός μοντερνισμός, διεθνής αέρας.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="brief-quote">Η επιστημονική αρτιότητα δεν χρειάζεται ψυχρότητα.<br />Χρειάζεται σαφήνεια.</p>
+
+        <div class="basis">
+          <b>Κοινή βάση</b>
+          <p>
+            Και οι πέντε προτάσεις μοιράζονται την ίδια αρχιτεκτονική περιεχομένου: Αρχική, Ο Ιατρός,
+            Παθήσεις, Επεμβάσεις, Το Ιατρείο, Επικοινωνία. Αυτό που αλλάζει είναι η γλώσσα του
+            σχεδιασμού — το ύφος, η τυπογραφία, το χρώμα και ο τρόπος που ο επισκέπτης σχηματίζει
+            την πρώτη εντύπωση.
+          </p>
+        </div>
+
+        <span class="page-num">02 / 10</span>
+      </section>
+
+      <!-- 01 ATLAS -->
+      <section class="slide concept-page" style="--accent: #1b4dff">
+        <header class="c-head">
+          <span class="c-num">01</span>
+          <h2 class="c-name">ATLAS</h2>
+          <p class="c-tag">Η ακρίβεια ως εμπειρία.</p>
+          <span class="c-kind">Κλινική ακρίβεια</span>
+        </header>
+
+        <div class="c-body">
+          <div class="c-left">
+            <figure class="c-shot">
+              <div class="c-shot-frame"><img src="shots/atlas.jpg" alt="Atlas concept" /></div>
+              <figcaption><span>Αρχική σελίδα · desktop</span><span>ATLAS / 01</span></figcaption>
+            </figure>
+
+            <div class="c-specimen" style="--spec-bg: #f4f6f3; --spec-ink: #0a1512; --spec-font: 'IBM Plex Sans'">
+              <div class="spec-type">
+                <span class="spec-alpha">Αα</span>
+                <span class="spec-family">IBM Plex Sans</span>
+              </div>
+              <div class="spec-colors">
+                <div class="spec-color light" style="background: #f4f6f3">#f4f6f3</div>
+                <div class="spec-color " style="background: #0a1512">#0a1512</div>
+                <div class="spec-color" style="background: #1b4dff">#1b4dff</div>
+                <div class="spec-color light" style="background: #9fb0a8">#9fb0a8</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-info">
+            <div class="c-block">
+              <h3>Η ιδέα</h3>
+              <p>
+                Ένα σύστημα εμπνευσμένο από ιατρικά περιοδικά και ερευνητικά εργαστήρια: αυστηρό
+                πλέγμα, μονοχρωμία και μία μόνο ηλεκτρική απόχρωση. Το βιογραφικό παρουσιάζεται ως
+                τεκμηρίωση — όχι ως διαφήμιση.
+              </p>
+            </div>
+
+            <div class="c-block">
+              <h3>Τι λέει για τον ιατρό</h3>
+              <p>
+                Ότι εργάζεται με μεθοδικότητα, μετρά τα αποτελέσματα και κινείται σε διεθνή
+                επιστημονικά πρότυπα.
+            </p>
+            </div>
+
+            <div class="c-block">
+              <h3>Χαρακτήρας</h3>
+              <p class="keywords">Ακαδημαϊκός · Μεθοδικός · Διεθνής</p>
+            </div>
+
+            <div class="c-meta">
+              <div>
+                <h4>Παλέτα</h4>
+                <div class="swatches">
+                  <i style="background: #f4f6f3"></i>
+                  <i style="background: #0a1512"></i>
+                  <i style="background: #1b4dff"></i>
+                  <i style="background: #9fb0a8"></i>
+                </div>
+              </div>
+              <div>
+                <h4>Τυπογραφία</h4>
+                <p>IBM Plex Sans · ετικέτες με αραιή στοίχιση</p>
+              </div>
+            </div>
+
+                        <div class="c-impression">
+              <h4>Η πρώτη εντύπωση</h4>
+              <p>Σοβαρότητα, τάξη και διεθνές επίπεδο — πριν διαβαστεί μία λέξη.</p>
+            </div>
+<div class="c-split">
+              <div>
+                <h4>Δυνατά σημεία</h4>
+                <p>Υψηλή αξιοπιστία, άριστη αναγνωσιμότητα, εύκολη επέκταση σε δεκάδες σελίδες.</p>
+              </div>
+              <div class="watch">
+                <h4>Τι να προσέξουμε</h4>
+                <p>Χρειάζεται ζεστασιά στη φωτογραφία και στον λόγο, για να μη γίνει ψυχρό.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span class="foot-left">Κατεύθυνση 01 · ATLAS</span>
+        <span class="page-num">03 / 10</span>
+      </section>
+
+      <!-- 02 MARBLE -->
+      <section class="slide concept-page" style="--accent: #5a1f1f">
+        <header class="c-head">
+          <span class="c-num">02</span>
+          <h2 class="c-name">MARBLE</h2>
+          <p class="c-tag">Η διακριτικότητα ως πολυτέλεια.</p>
+          <span class="c-kind">Ήρεμη πολυτέλεια</span>
+        </header>
+
+        <div class="c-body">
+          <div class="c-left">
+            <figure class="c-shot">
+              <div class="c-shot-frame"><img src="shots/marble.jpg" alt="Marble concept" /></div>
+              <figcaption><span>Αρχική σελίδα · desktop</span><span>MARBLE / 02</span></figcaption>
+            </figure>
+
+            <div class="c-specimen" style="--spec-bg: #efeae1; --spec-ink: #241a14; --spec-font: 'Literata'">
+              <div class="spec-type">
+                <span class="spec-alpha">Αα</span>
+                <span class="spec-family">Literata</span>
+              </div>
+              <div class="spec-colors">
+                <div class="spec-color light" style="background: #efeae1">#efeae1</div>
+                <div class="spec-color " style="background: #241a14">#241a14</div>
+                <div class="spec-color" style="background: #5a1f1f">#5a1f1f</div>
+                <div class="spec-color light" style="background: #a9855b">#a9855b</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-info">
+            <div class="c-block">
+              <h3>Η ιδέα</h3>
+              <p>
+                Ζεστό χαρτί, μεγάλη serif τυπογραφία και φωτογραφία που αναδεικνύει το πρόσωπο.
+                Λιγότερα στοιχεία, περισσότερος χώρος, μία ισχυρή εικόνα ανά ενότητα.
+              </p>
+            </div>
+
+            <div class="c-block">
+              <h3>Τι λέει για τον ιατρό</h3>
+              <p>
+                Ότι ο ασθενής αντιμετωπίζεται ως πρόσωπο, όχι ως περιστατικό — και ότι η εμπειρία
+                είναι εξατομικευμένη.
+            </p>
+            </div>
+
+            <div class="c-block">
+              <h3>Χαρακτήρας</h3>
+              <p class="keywords">Διακριτικός · Ζεστός · Προσωπικός</p>
+            </div>
+
+            <div class="c-meta">
+              <div>
+                <h4>Παλέτα</h4>
+                <div class="swatches">
+                  <i style="background: #efeae1"></i>
+                  <i style="background: #241a14"></i>
+                  <i style="background: #5a1f1f"></i>
+                  <i style="background: #a9855b"></i>
+                </div>
+              </div>
+              <div>
+                <h4>Τυπογραφία</h4>
+                <p>Literata · Commissioner</p>
+              </div>
+            </div>
+
+                        <div class="c-impression">
+              <h4>Η πρώτη εντύπωση</h4>
+              <p>Ησυχία, προσωπική προσοχή και η αίσθηση ότι κάποιος περίμενε εσάς.</p>
+            </div>
+<div class="c-split">
+              <div>
+                <h4>Δυνατά σημεία</h4>
+                <p>Ξεχωρίζει αμέσως, ταιριάζει σε απαιτητικό κοινό και δίνει βάρος στο πρόσωπο.</p>
+              </div>
+              <div class="watch">
+                <h4>Τι να προσέξουμε</h4>
+                <p>Χωρίς εξαιρετικές φωτογραφίες, η πρόταση χάνει μεγάλο μέρος της δύναμής της.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span class="foot-left">Κατεύθυνση 02 · MARBLE</span>
+        <span class="page-num">04 / 10</span>
+      </section>
+
+      <!-- 03 NOCTURNE -->
+      <section class="slide concept-page" style="--accent: #1f9c6b">
+        <header class="c-head">
+          <span class="c-num">03</span>
+          <h2 class="c-name">NOCTURNE</h2>
+          <p class="c-tag">Το μέλλον, σε πρώτο πλάνο.</p>
+          <span class="c-kind">Τεχνολογικό μέλλον</span>
+        </header>
+
+        <div class="c-body">
+          <div class="c-left">
+            <figure class="c-shot">
+              <div class="c-shot-frame"><img src="shots/nocturne.jpg" alt="Nocturne concept" /></div>
+              <figcaption><span>Αρχική σελίδα · desktop</span><span>NOCTURNE / 03</span></figcaption>
+            </figure>
+
+            <div class="c-specimen" style="--spec-bg: #0b1210; --spec-ink: #e9f2ec; --spec-font: 'Commissioner'">
+              <div class="spec-type">
+                <span class="spec-alpha">Αα</span>
+                <span class="spec-family">Commissioner</span>
+              </div>
+              <div class="spec-colors">
+                <div class="spec-color " style="background: #070b0a">#070b0a</div>
+                <div class="spec-color light" style="background: #9cffc7">#9cffc7</div>
+                <div class="spec-color light" style="background: #e9f2ec">#e9f2ec</div>
+                <div class="spec-color" style="background: #2a3a34">#2a3a34</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-info">
+            <div class="c-block">
+              <h3>Η ιδέα</h3>
+              <p>
+                Μαύρο φόντο, φως που αναδύεται και μια λεπτή γραμμή που θυμίζει ενδοσκόπηση. Η
+                τεχνολογία γίνεται ατμόσφαιρα, χωρίς να χάνεται η σοβαρότητα.
+              </p>
+            </div>
+
+            <div class="c-block">
+              <h3>Τι λέει για τον ιατρό</h3>
+              <p>Ότι βρίσκεται στην αιχμή της επεμβατικής γαστρεντερολογίας.
+            </p>
+            </div>
+
+            <div class="c-block">
+              <h3>Χαρακτήρας</h3>
+              <p class="keywords">Τεχνολογικός · Τολμηρός · Μνημονικός</p>
+            </div>
+
+            <div class="c-meta">
+              <div>
+                <h4>Παλέτα</h4>
+                <div class="swatches">
+                  <i style="background: #070b0a"></i>
+                  <i style="background: #9cffc7"></i>
+                  <i style="background: #e9f2ec"></i>
+                  <i style="background: #2a3a34"></i>
+                </div>
+              </div>
+              <div>
+                <h4>Τυπογραφία</h4>
+                <p>Commissioner · Plex Sans για ετικέτες</p>
+              </div>
+            </div>
+
+                        <div class="c-impression">
+              <h4>Η πρώτη εντύπωση</h4>
+              <p>Ένα μέλλον που φαίνεται ήδη παρόν — και ένας άνθρωπος στο κέντρο του.</p>
+            </div>
+<div class="c-split">
+              <div>
+                <h4>Δυνατά σημεία</h4>
+                <p>Πολύ μνημονικό· εξαιρετικό για διεθνές κοινό και παρουσιάσεις.</p>
+              </div>
+              <div class="watch">
+                <h4>Τι να προσέξουμε</h4>
+                <p>
+                  Μπορεί να φανεί λιγότερο προσβάσιμο σε ασθενείς μεγαλύτερης ηλικίας· απαιτεί άμεσο
+                  τηλέφωνο και καθαρή πλοήγηση.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span class="foot-left">Κατεύθυνση 03 · NOCTURNE</span>
+        <span class="page-num">05 / 10</span>
+      </section>
+
+      <!-- 04 CARE -->
+      <section class="slide concept-page" style="--accent: #c96f4a">
+        <header class="c-head">
+          <span class="c-num">04</span>
+          <h2 class="c-name">CARE</h2>
+          <p class="c-tag">Πρώτα ο άνθρωπος.</p>
+          <span class="c-kind">Ανθρώπινη ζεστασιά</span>
+        </header>
+
+        <div class="c-body">
+          <div class="c-left">
+            <figure class="c-shot">
+              <div class="c-shot-frame"><img src="shots/care.jpg" alt="Care concept" /></div>
+              <figcaption><span>Αρχική σελίδα · desktop</span><span>CARE / 04</span></figcaption>
+            </figure>
+
+            <div class="c-specimen" style="--spec-bg: #f7e8dc; --spec-ink: #2b1e19; --spec-font: 'Alegreya'">
+              <div class="spec-type">
+                <span class="spec-alpha">Αα</span>
+                <span class="spec-family">Alegreya</span>
+              </div>
+              <div class="spec-colors">
+                <div class="spec-color light" style="background: #fff9f3">#fff9f3</div>
+                <div class="spec-color " style="background: #2b1e19">#2b1e19</div>
+                <div class="spec-color" style="background: #c96f4a">#c96f4a</div>
+                <div class="spec-color light" style="background: #8fa68e">#8fa68e</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-info">
+            <div class="c-block">
+              <h3>Η ιδέα</h3>
+              <p>
+                Απαλές καμπύλες, ζεστά χρώματα και φωτογραφία που κοιτά τον ασθενή στα μάτια. Η
+                πληροφορία οργανώνεται σε μικρά, κατανοητά βήματα.
+              </p>
+            </div>
+
+            <div class="c-block">
+              <h3>Τι λέει για τον ιατρό</h3>
+              <p>Ότι η επίσκεψη θα είναι ήρεμη και ότι ο ασθενής θα ακουστεί.
+            </p>
+            </div>
+
+            <div class="c-block">
+              <h3>Χαρακτήρας</h3>
+              <p class="keywords">Ανθρώπινος · Ήρεμος · Καθησυχαστικός</p>
+            </div>
+
+            <div class="c-meta">
+              <div>
+                <h4>Παλέτα</h4>
+                <div class="swatches">
+                  <i style="background: #fff9f3"></i>
+                  <i style="background: #2b1e19"></i>
+                  <i style="background: #c96f4a"></i>
+                  <i style="background: #8fa68e"></i>
+                </div>
+              </div>
+              <div>
+                <h4>Τυπογραφία</h4>
+                <p>Alegreya · Alegreya Sans</p>
+              </div>
+            </div>
+
+                        <div class="c-impression">
+              <h4>Η πρώτη εντύπωση</h4>
+              <p>Αμέσως πιο ήρεμα. Σαν να μειώνεται η απόσταση ανάμεσα σε γιατρό και ασθενή.</p>
+            </div>
+<div class="c-split">
+              <div>
+                <h4>Δυνατά σημεία</h4>
+                <p>Μειώνει το άγχος· εξαιρετικό για τις σελίδες παθήσεων και για ασθενείς που διστάζουν.</p>
+              </div>
+              <div class="watch">
+                <h4>Τι να προσέξουμε</h4>
+                <p>Χρειάζεται προσοχή ώστε να μη χαθεί ο διεθνής και ακαδημαϊκός χαρακτήρας.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span class="foot-left">Κατεύθυνση 04 · CARE</span>
+        <span class="page-num">06 / 10</span>
+      </section>
+
+      <!-- 05 AEGEAN -->
+      <section class="slide concept-page" style="--accent: #0b2a5b">
+        <header class="c-head">
+          <span class="c-num">05</span>
+          <h2 class="c-name">AEGEAN</h2>
+          <p class="c-tag">Διεθνής γνώση. Ελληνική φροντίδα.</p>
+          <span class="c-kind">Ελληνικός μοντερνισμός</span>
+        </header>
+
+        <div class="c-body">
+          <div class="c-left">
+            <figure class="c-shot">
+              <div class="c-shot-frame"><img src="shots/aegean.jpg" alt="Aegean concept" /></div>
+              <figcaption><span>Αρχική σελίδα · desktop</span><span>AEGEAN / 05</span></figcaption>
+            </figure>
+
+            <div class="c-specimen" style="--spec-bg: #efe7d8; --spec-ink: #0b2a5b; --spec-font: 'GFS Neohellenic'">
+              <div class="spec-type">
+                <span class="spec-alpha">Αα</span>
+                <span class="spec-family">GFS Neohellenic</span>
+              </div>
+              <div class="spec-colors">
+                <div class="spec-color light" style="background: #ffffff">#ffffff</div>
+                <div class="spec-color" style="background: #0b2a5b">#0b2a5b</div>
+                <div class="spec-color" style="background: #c4623c">#c4623c</div>
+                <div class="spec-color light" style="background: #efe7d8">#efe7d8</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-info">
+            <div class="c-block">
+              <h3>Η ιδέα</h3>
+              <p>
+                Λευκό, βαθύ μπλε και τερακότα. Μεγάλα γράμματα, αυστηρές γραμμές και μια εικόνα που
+                θυμίζει ελληνικό φως. Η ταυτότητα δεν αντιγράφει το εξωτερικό — το μεταφράζει.
+              </p>
+            </div>
+
+            <div class="c-block">
+              <h3>Τι λέει για τον ιατρό</h3>
+              <p>Ότι η διεθνής εκπαίδευση δεν αποξενώνει από την ελληνική ρίζα· την ενισχύει.
+            </p>
+            </div>
+
+            <div class="c-block">
+              <h3>Χαρακτήρας</h3>
+              <p class="keywords">Ελληνικός · Γεωμετρικός · Αισιόδοξος</p>
+            </div>
+
+            <div class="c-meta">
+              <div>
+                <h4>Παλέτα</h4>
+                <div class="swatches">
+                  <i style="background: #ffffff"></i>
+                  <i style="background: #0b2a5b"></i>
+                  <i style="background: #c4623c"></i>
+                  <i style="background: #efe7d8"></i>
+                </div>
+              </div>
+              <div>
+                <h4>Τυπογραφία</h4>
+                <p>GFS Neohellenic · Manrope</p>
+              </div>
+            </div>
+
+                        <div class="c-impression">
+              <h4>Η πρώτη εντύπωση</h4>
+              <p>Υπερηφάνεια για τον τόπο, χωρίς ίχνος επαρχιωτισμού.</p>
+            </div>
+<div class="c-split">
+              <div>
+                <h4>Δυνατά σημεία</h4>
+                <p>Το πιο διακριτό από τα πέντε· χτίζει ταυτότητα και τοπική συνάφεια.</p>
+              </div>
+              <div class="watch">
+                <h4>Τι να προσέξουμε</h4>
+                <p>Απαιτεί πειθαρχία στη γραφή και στις εικόνες, για να μη γίνει τουριστικό.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span class="foot-left">Κατεύθυνση 05 · AEGEAN</span>
+        <span class="page-num">07 / 10</span>
+      </section>
+
+      <!-- COMPARISON -->
+      <section class="slide compare">
+        <div class="pad">
+          <div class="compare-head">
+            <div>
+              <p class="eyebrow">Σύγκριση</p>
+              <h2 class="section-title" style="margin-top: 6mm">Πώς διαφέρουν</h2>
+            </div>
+            <p class="note">
+              Η κλίμακα είναι ποιοτική, όχι αριθμητική. Κάθε πρόταση μπορεί να προσαρμοστεί· η
+              επιλογή αφορά το χαρακτήρα που θέλετε να έχει η πρώτη εντύπωση.
+            </p>
+          </div>
+
+          <table class="matrix">
+            <thead>
+              <tr>
+                <th></th>
+                <th><span class="col-name"><i style="background: #1b4dff"></i>ATLAS</span></th>
+                <th><span class="col-name"><i style="background: #5a1f1f"></i>MARBLE</span></th>
+                <th><span class="col-name"><i style="background: #1f9c6b"></i>NOCTURNE</span></th>
+                <th><span class="col-name"><i style="background: #c96f4a"></i>CARE</span></th>
+                <th><span class="col-name"><i style="background: #0b2a5b"></i>AEGEAN</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Τόνος</th>
+                <td>Ακαδημαϊκός</td>
+                <td>Διακριτικός</td>
+                <td>Τεχνολογικός</td>
+                <td>Ανθρώπινος</td>
+                <td>Πολιτισμικός</td>
+              </tr>
+              <tr>
+                <th>Κοινό</th>
+                <td>Διεθνές και ιατροί που παραπέμπουν</td>
+                <td>Απαιτητικό κοινό, ιδιωτική περίθαλψη</td>
+                <td>Νεότερο, τεχνολογικό</td>
+                <td>Αγχώδεις ασθενείς</td>
+                <td>Έλληνες και διεθνές κοινό</td>
+              </tr>
+              <tr>
+                <th>Μνημονικότητα</th>
+                <td>Μέτρια</td>
+                <td>Υψηλή</td>
+                <td>Πολύ υψηλή</td>
+                <td>Μέτρια</td>
+                <td>Υψηλή</td>
+              </tr>
+              <tr>
+                <th>Εμπιστοσύνη</th>
+                <td>Πολύ υψηλή</td>
+                <td>Υψηλή</td>
+                <td>Μέτρια–υψηλή</td>
+                <td>Υψηλή</td>
+                <td>Υψηλή</td>
+              </tr>
+              <tr>
+                <th>Συντήρηση</th>
+                <td>Εύκολη</td>
+                <td>Μέτρια</td>
+                <td>Μέτρια</td>
+                <td>Εύκολη</td>
+                <td>Μέτρια</td>
+              </tr>
+              <tr>
+                <th>Ρίσκο</th>
+                <td>Ψυχρό</td>
+                <td>Ελιτίστικο</td>
+                <td>Απόμακρο</td>
+                <td>Υπερβολική οικειότητα</td>
+                <td>Τουριστικό</td>
+              </tr>
+            </tbody>
+          </table>
+
+        <div class="decision">
+          <div class="decision-item">
+            <span>Αν προέχει</span>
+            <b>Η διεθνής επιστημονική ταυτότητα</b>
+            <p>ATLAS</p>
+          </div>
+          <div class="decision-item">
+            <span>Αν προέχει</span>
+            <b>Η προσωπική σχέση με τον ασθενή</b>
+            <p>CARE ή MARBLE</p>
+          </div>
+          <div class="decision-item">
+            <span>Αν προέχει</span>
+            <b>Η έντονη διαφοροποίηση</b>
+            <p>NOCTURNE ή AEGEAN</p>
+          </div>
+        </div>
+        </div>
+
+        <span class="foot-left">Πέντε κατευθύνσεις · σύγκριση</span>
+        <span class="page-num">08 / 10</span>
+      </section>
+
+      <!-- PROPOSAL -->
+      <section class="slide proposal">
+        <div class="pad">
+          <p class="eyebrow">Η πρότασή μου</p>
+          <h2>ATLAS, με τη ζεστασιά<br />του <em>CARE.</em></h2>
+
+          <div class="proposal-grid">
+            <div>
+              <p>
+                Για έναν ιατρό με διεθνή καριέρα και ελληνική έδρα, η πρόταση ATLAS συνδυάζει την
+                ακαδημαϊκή αξιοπιστία με μια σύγχρονη, καθαρή εμπειρία. Προτείνω να κρατήσουμε την
+                ακρίβεια και το πλέγμα του ATLAS, να δανειστούμε τη φωτογραφία και τον χώρο του
+                MARBLE και να προσθέσουμε τη γλώσσα και τη ζεστασιά του CARE.
+              </p>
+              <p>
+                Αν ο στόχος είναι μέγιστη διαφοροποίηση, η πρόταση AEGEAN είναι η πιο τολμηρή
+                επιλογή — με ισχυρή ελληνική ταυτότητα και διεθνή αέρα.
+              </p>
+            </div>
+
+            <div class="proposal-points">
+              <div class="proposal-point"><span>01</span>Καθαρή ιεραρχία, γρήγορη φόρτωση, εύκολη επέκταση.</div>
+              <div class="proposal-point"><span>02</span>Έμφαση στο πρόσωπο και στην ανθρώπινη σχέση.</div>
+              <div class="proposal-point"><span>03</span>Σοβαρότητα χωρίς ψυχρότητα.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="proposal-strip">
+          <figure class="s1"><img src="shots/atlas.jpg" alt="" /></figure>
+          <figure class="s2"><img src="shots/marble.jpg" alt="" /></figure>
+          <figure class="s3"><img src="shots/care.jpg" alt="" /></figure>
+          <p class="caption">
+            Η πρόταση συνδυάζει τρία στοιχεία: το πλέγμα του ATLAS, τη φωτογραφία του MARBLE και τη
+            γλώσσα του CARE.
+          </p>
+        </div>
+
+        <p class="proposal-close"><span></span>Η επόμενη κίνηση: επιλέγουμε κατεύθυνση και ξεκινάμε.</p>
+
+        <span class="page-num">09 / 10</span>
+      </section>
+
+      <!-- NEXT -->
+      <section class="slide next">
+        <div class="pad">
+          <p class="eyebrow">Επόμενα βήματα</p>
+          <h2 class="section-title">Από την επιλογή στη δημοσίευση</h2>
+
+          <p class="lead">
+            Η επιλογή μιας κατεύθυνσης είναι η αρχή. Ακολουθεί ο σχεδιασμός τριών αντιπροσωπευτικών
+            σελίδων, η γλωσσική επιμέλεια και η υλοποίηση.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="n">01</div>
+              <h3>Επιλογή κατεύθυνσης</h3>
+              <p>Μία κύρια κατεύθυνση και, αν θέλετε, μία εναλλακτική.</p>
+            </div>
+            <div class="step">
+              <div class="n">02</div>
+              <h3>Σχεδιασμός τριών σελίδων</h3>
+              <p>Αρχική, Ο Ιατρός και μία αντιπροσωπευτική σελίδα πάθησης.</p>
+            </div>
+            <div class="step">
+              <div class="n">03</div>
+              <h3>Γλωσσική επιμέλεια</h3>
+              <p>Κάθε ελληνικό κείμενο ελέγχεται λέξη προς λέξη, με ιατρική ορολογία και σωστή στίξη.</p>
+            </div>
+            <div class="step">
+              <div class="n">04</div>
+              <h3>Υλοποίηση και δημοσίευση</h3>
+              <p>Πλήρης ιστοσελίδα, προσβασιμότητα, ταχύτητα και δοκιμές σε κινητά και υπολογιστές.</p>
+            </div>
+          </div>
+
+          <div class="next-grid">
+            <div>
+              <h3>Τι θα χρειαστεί από εσάς</h3>
+              <ul>
+                <li>Μία απόφαση για την κύρια κατεύθυνση.</li>
+                <li>Φωτογραφίες υψηλής ανάλυσης, αν υπάρχουν.</li>
+                <li>Έγκριση των τελικών κειμένων.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Τι θα παραλάβετε</h3>
+              <ul>
+                <li>Σχεδιασμό τριών αντιπροσωπευτικών σελίδων.</li>
+                <li>Πλήρη ιστοσελίδα, έτοιμη για δημοσίευση.</li>
+                <li>Σύντομο οδηγό για μελλοντικές αλλαγές.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <p class="next-closing">Ξεκινάμε με μία απόφαση.</p>
+
+        <div class="next-note">
+          <b>Σημείωση</b>
+          <p>
+            Η παρούσα παρουσίαση είναι σχεδιαστική πρόταση. Τα κείμενα στα mockups είναι ενδεικτικά
+            και θα οριστικοποιηθούν μετά την επιλογή κατεύθυνσης. Η κινητή εκδοχή θα σχεδιαστεί
+            αναλυτικά στην επόμενη φάση, για την κατεύθυνση που θα επιλέξετε.
+          </p>
+        </div>
+
+        <span class="thanks">Ευχαριστώ.</span>
+        <span class="page-num">10 / 10</span>
+      </section>
+    </div>
+  </body>
+</html>

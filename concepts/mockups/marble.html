@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1440, initial-scale=1" />
+    <title>MARBLE — concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Commissioner:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #efeae1;
+        --paper-deep: #e6ded2;
+        --ink: #241a14;
+        --muted: #7a6a5c;
+        --oxblood: #5a1f1f;
+        --gold: #a9855b;
+        --cream: #f7f2e8;
+        --line: rgba(36, 26, 20, 0.16);
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html, body {
+        width: 1440px;
+        height: 900px;
+        overflow: hidden;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: 'Commissioner', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.05;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      a { color: inherit; text-decoration: none; }
+      ul { list-style: none; }
+
+      .page {
+        position: relative;
+        width: 1440px;
+        height: 900px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      /* HEADER */
+      .header {
+        position: relative;
+        z-index: 4;
+        flex: 0 0 96px;
+        height: 96px;
+        display: flex;
+        align-items: center;
+        padding: 0 56px;
+        gap: 34px;
+      }
+
+      .brand { display: flex; align-items: center; gap: 14px; }
+
+      .monogram {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--gold);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-family: 'Literata', serif;
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        color: var(--oxblood);
+      }
+
+      .brand-name {
+        font-family: 'Literata', serif;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        line-height: 1.1;
+      }
+
+      .brand-role {
+        margin-top: 4px;
+        font-size: 8px;
+        font-weight: 500;
+        letter-spacing: 0.19em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .nav {
+        display: flex;
+        gap: 30px;
+        margin-left: auto;
+      }
+
+      .nav a {
+        font-size: 9.5px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        padding: 8px 0;
+      }
+
+      .nav a.active { color: var(--ink); }
+      .nav a.active::after {
+        content: '';
+        display: block;
+        width: 18px;
+        height: 1px;
+        background: var(--oxblood);
+        margin-top: 7px;
+      }
+
+      .header-cta {
+        margin-left: 42px;
+        font-size: 9.5px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--oxblood);
+        border-bottom: 1px solid var(--gold);
+        padding-bottom: 5px;
+      }
+
+      /* MAIN */
+      .main {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 800px 1fr;
+      }
+
+      .copy {
+        position: relative;
+        padding: 72px 60px 40px 56px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .eyebrow::before {
+        content: '';
+        width: 34px;
+        height: 1px;
+        background: var(--gold);
+      }
+
+      h1 {
+        margin-top: 38px;
+        font-family: 'Literata', serif;
+        font-size: 69px;
+        font-weight: 500;
+        line-height: 1.06;
+        letter-spacing: -0.028em;
+        max-width: 640px;
+      }
+
+      h1 em {
+        font-style: italic;
+        font-weight: 400;
+        color: var(--oxblood);
+      }
+
+      .sub {
+        margin-top: 30px;
+        max-width: 452px;
+        font-size: 16px;
+        line-height: 1.72;
+        font-weight: 400;
+        color: #5c4d42;
+      }
+
+      .actions {
+        margin-top: 38px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 30px;
+        height: 50px;
+        padding: 0 24px;
+        border: 1px solid var(--oxblood);
+        color: var(--oxblood);
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+
+      .btn-outline span { font-size: 13px; }
+
+      .quiet-link {
+        font-size: 9.5px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 5px;
+      }
+
+      .credentials {
+        margin-top: auto;
+        display: flex;
+        gap: 0;
+        padding-top: 22px;
+        border-top: 1px solid var(--line);
+        max-width: 640px;
+      }
+
+      .credential {
+        flex: 1;
+        padding-right: 22px;
+        border-right: 1px solid var(--line);
+      }
+
+      .credential + .credential { padding-left: 22px; }
+      .credential:last-child { border-right: 0; padding-right: 0; }
+
+      .credential b {
+        display: block;
+        font-family: 'Literata', serif;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+      }
+
+      .credential span {
+        display: block;
+        margin-top: 6px;
+        font-size: 8px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      /* PORTRAIT */
+      .portrait {
+        position: relative;
+        overflow: hidden;
+        background: #2a201a;
+      }
+
+      .portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 2%;
+        filter: sepia(0.18) saturate(0.88) contrast(1.02) brightness(1.02);
+      }
+
+      .portrait::before {
+        content: '';
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 118px;
+        background: linear-gradient(to right, var(--paper), rgba(239, 234, 225, 0));
+        z-index: 2;
+      }
+
+      .portrait::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(24, 15, 11, 0.45), transparent 38%);
+        z-index: 1;
+      }
+
+      .portrait-caption {
+        position: absolute;
+        z-index: 3;
+        right: 22px;
+        top: 50%;
+        transform: rotate(90deg) translateX(50%);
+        transform-origin: right center;
+        font-size: 8px;
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: rgba(247, 242, 232, 0.72);
+        white-space: nowrap;
+      }
+
+      .seal {
+        position: absolute;
+        z-index: 3;
+        left: 34px;
+        bottom: 54px;
+        width: 108px;
+        height: 108px;
+        border: 1px solid rgba(247, 242, 232, 0.55);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        color: var(--cream);
+        background: rgba(36, 26, 20, 0.12);
+        backdrop-filter: blur(2px);
+      }
+
+      .seal b {
+        display: block;
+        font-family: 'Literata', serif;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+      }
+
+      .seal span {
+        display: block;
+        margin-top: 5px;
+        font-size: 7px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        opacity: 0.8;
+      }
+
+      .portrait-note {
+        position: absolute;
+        z-index: 3;
+        left: 160px;
+        bottom: 74px;
+        color: var(--cream);
+      }
+
+      .portrait-note b {
+        font-family: 'Literata', serif;
+        font-style: italic;
+        font-size: 21px;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+      }
+
+      .portrait-note span {
+        display: block;
+        margin-top: 6px;
+        font-size: 7.5px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        opacity: 0.72;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="brand">
+          <span class="monogram">ΑΔ</span>
+          <div>
+            <div class="brand-name">Αθανάσιος Δεσαλέρμος</div>
+            <div class="brand-role">Γαστρεντερολόγος · Ηπατολόγος</div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a class="active">Αρχική</a>
+          <a>Ο Ιατρός</a>
+          <a>Παθήσεις</a>
+          <a>Επεμβάσεις</a>
+          <a>Το Ιατρείο</a>
+          <a>Επικοινωνία</a>
+        </nav>
+
+        <a class="header-cta">Κλείστε ραντεβού</a>
+      </header>
+
+      <main class="main">
+        <div class="copy">
+          <p class="eyebrow">Ο Ιατρός · Αθήνα</p>
+
+          <h1>Η φροντίδα ως<br /><em>προσωπική</em><br />υπόθεση.</h1>
+
+          <p class="sub">
+            Γαστρεντερολόγος – Ηπατολόγος. Διευθυντής της Γαστρεντερολογικής – Ηπατολογικής
+            Κλινικής στο Ιατρικό Κέντρο Αθηνών.
+          </p>
+
+          <div class="actions">
+            <a class="btn-outline">Κλείστε ραντεβού <span>→</span></a>
+            <a class="quiet-link">Το βιογραφικό</a>
+          </div>
+
+          <div class="credentials">
+            <div class="credential">
+              <b>Harvard</b>
+              <span>Medical School</span>
+            </div>
+            <div class="credential">
+              <b>UC San Diego</b>
+              <span>Gastroenterology</span>
+            </div>
+            <div class="credential">
+              <b>UMass Chan</b>
+              <span>Assistant Professor</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portrait">
+          <img src="../assets/portrait.jpg" alt="" />
+          <div class="portrait-note">
+            <b>Αθανάσιος Δεσαλέρμος</b>
+            <span>MD · FESBGH</span>
+          </div>
+          <div class="seal">
+            <div>
+              <b>FESBGH</b>
+              <span>Fellow</span>
+            </div>
+          </div>
+          <div class="portrait-caption">Αθήνα · Μαρούσι</div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -6,6 +6,9 @@ dist/
 art-source/
 _shots/
 preview/
+concepts/shots/*.png
+concepts/deck-shots/
+concepts/pdf-pages/
 *.log
 .DS_Store
 Thumbs.db

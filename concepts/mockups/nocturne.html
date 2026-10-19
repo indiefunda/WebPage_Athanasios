@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1440, initial-scale=1" />
+    <title>NOCTURNE — concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #070b0a;
+        --panel: #0d1412;
+        --ink: #e9f2ec;
+        --muted: #7f948a;
+        --mint: #9cffc7;
+        --line: rgba(156, 255, 199, 0.16);
+        --line-soft: rgba(233, 242, 236, 0.1);
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html, body {
+        width: 1440px;
+        height: 900px;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'Commissioner', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.07;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      a { color: inherit; text-decoration: none; }
+      ul { list-style: none; }
+
+      .page {
+        position: relative;
+        width: 1440px;
+        height: 900px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse 55% 55% at 72% 40%, rgba(156, 255, 199, 0.1), transparent 65%),
+          var(--bg);
+      }
+
+      /* HEADER */
+      .header {
+        position: relative;
+        z-index: 6;
+        flex: 0 0 82px;
+        display: flex;
+        align-items: center;
+        padding: 0 56px;
+        gap: 34px;
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .brand { display: flex; align-items: center; gap: 13px; }
+
+      .mark {
+        width: 34px;
+        height: 34px;
+        border: 1px solid var(--mint);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        position: relative;
+        color: var(--mint);
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .mark::after {
+        content: '';
+        position: absolute;
+        right: -2px;
+        top: -2px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--mint);
+        box-shadow: 0 0 12px var(--mint);
+      }
+
+      .brand-name {
+        font-size: 14.5px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+      }
+
+      .brand-role {
+        margin-top: 3px;
+        font-size: 8px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .nav { display: flex; gap: 28px; margin-left: auto; }
+
+      .nav a {
+        font-size: 9.5px;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+        position: relative;
+        padding: 8px 0;
+      }
+
+      .nav a.active { color: var(--ink); }
+      .nav a.active::before {
+        content: '';
+        position: absolute;
+        left: -12px;
+        top: 50%;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--mint);
+        box-shadow: 0 0 10px var(--mint);
+      }
+
+      .cta {
+        margin-left: 30px;
+        display: inline-flex;
+        align-items: center;
+        gap: 26px;
+        height: 42px;
+        padding: 0 18px;
+        background: var(--mint);
+        color: #06100b;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .cta span { font-size: 13px; }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        z-index: 3;
+        flex: 1;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 760px 1fr;
+      }
+
+      .copy {
+        padding: 82px 40px 46px 56px;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--mint);
+      }
+
+      .eyebrow::before {
+        content: '';
+        width: 26px;
+        height: 1px;
+        background: var(--mint);
+        box-shadow: 0 0 10px var(--mint);
+      }
+
+      h1 {
+        margin-top: 34px;
+        font-size: 64px;
+        line-height: 1.05;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        max-width: 690px;
+      }
+
+      h1 .light {
+        color: var(--mint);
+        text-shadow: 0 0 40px rgba(156, 255, 199, 0.28);
+      }
+
+      .sub {
+        margin-top: 26px;
+        max-width: 440px;
+        font-size: 16.5px;
+        line-height: 1.65;
+        font-weight: 400;
+        color: #a9bab1;
+      }
+
+      .actions {
+        margin-top: 34px;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .actions .cta { height: 48px; width: 210px; margin: 0; justify-content: space-between; }
+
+      .ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 9.5px;
+        font-weight: 600;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--ink);
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 6px;
+      }
+
+      .ghost span { color: var(--mint); }
+
+      .proof {
+        margin-top: auto;
+        padding-top: 26px;
+        border-top: 1px solid var(--line-soft);
+        display: flex;
+        gap: 0;
+        max-width: 610px;
+      }
+
+      .proof-item {
+        flex: 1;
+        padding-right: 20px;
+        border-right: 1px solid var(--line-soft);
+      }
+
+      .proof-item + .proof-item { padding-left: 20px; }
+      .proof-item:last-child { border-right: 0; }
+
+      .proof-item b {
+        display: block;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+      }
+
+      .proof-item span {
+        display: block;
+        margin-top: 5px;
+        font-size: 7.5px;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .micro {
+        margin-top: 22px;
+        display: flex;
+        gap: 30px;
+        font-size: 8px;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .micro b { color: var(--mint); font-weight: 600; }
+
+      /* VISUAL */
+      .visual {
+        position: relative;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .glow {
+        position: absolute;
+        right: -80px;
+        top: 60px;
+        width: 760px;
+        height: 760px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(156, 255, 199, 0.22), transparent 62%);
+        filter: blur(18px);
+        z-index: 0;
+      }
+
+      .ring {
+        position: absolute;
+        right: -120px;
+        top: -40px;
+        width: 720px;
+        height: 720px;
+        border: 1px solid rgba(156, 255, 199, 0.32);
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .ring::after {
+        content: '';
+        position: absolute;
+        left: 7%;
+        top: 26%;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--mint);
+        box-shadow: 0 0 16px 2px var(--mint);
+      }
+
+      .ring-sm {
+        position: absolute;
+        right: 60px;
+        top: 210px;
+        width: 420px;
+        height: 420px;
+        border: 1px solid rgba(156, 255, 199, 0.14);
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .portrait {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 600px;
+        height: 780px;
+        z-index: 2;
+      }
+
+      .portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 10%;
+        filter: contrast(1.06) saturate(0.85) brightness(0.95);
+      }
+
+      .portrait::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(to right, var(--bg) 0%, rgba(7, 11, 10, 0.55) 16%, transparent 42%),
+          linear-gradient(to top, var(--bg) 0%, rgba(7, 11, 10, 0.5) 9%, transparent 32%);
+      }
+
+      .glass {
+        position: absolute;
+        z-index: 4;
+        right: 42px;
+        bottom: 42px;
+        width: 250px;
+        padding: 18px 20px;
+        background: rgba(10, 20, 16, 0.46);
+        border: 1px solid rgba(156, 255, 199, 0.3);
+        backdrop-filter: blur(12px);
+      }
+
+      .glass-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 11px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .glass-head b {
+        font-size: 8.5px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--mint);
+      }
+
+      .glass-head span { font-size: 8px; color: var(--muted); letter-spacing: 0.1em; }
+
+      .glass p {
+        margin-top: 11px;
+        font-size: 13px;
+        line-height: 1.45;
+        font-weight: 400;
+        color: var(--ink);
+      }
+
+      .glass small {
+        display: block;
+        margin-top: 8px;
+        font-size: 8px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .side-label {
+        position: absolute;
+        z-index: 4;
+        right: 14px;
+        top: 50%;
+        transform: rotate(90deg) translateX(50%);
+        transform-origin: right center;
+        font-size: 7.5px;
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: rgba(233, 242, 236, 0.5);
+        white-space: nowrap;
+      }
+
+      .corner {
+        position: absolute;
+        z-index: 4;
+        left: 0;
+        top: 0;
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent, var(--line) 20%, var(--line) 80%, transparent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="brand">
+          <span class="mark">ΑΔ</span>
+          <div>
+            <div class="brand-name">Αθανάσιος Δεσαλέρμος</div>
+            <div class="brand-role">Γαστρεντερολόγος · Ηπατολόγος</div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a class="active">Αρχική</a>
+          <a>Ο Ιατρός</a>
+          <a>Παθήσεις</a>
+          <a>Επεμβάσεις</a>
+          <a>Το Ιατρείο</a>
+          <a>Επικοινωνία</a>
+        </nav>
+
+        <a class="cta">Κλείστε ραντεβού <span>↗</span></a>
+      </header>
+
+      <main class="hero">
+        <div class="copy">
+          <p class="eyebrow">Επεμβατική γαστρεντερολογία</p>
+
+          <h1>Το μέλλον της<br />γαστρεντερολογίας,<br /><span class="light">σήμερα.</span></h1>
+
+          <p class="sub">
+            Διάγνωση και θεραπεία με διεθνή εμπειρία, σύγχρονη τεχνολογία και απόλυτη προσοχή στη
+            λεπτομέρεια.
+          </p>
+
+          <div class="actions">
+            <a class="cta">Κλείστε ραντεβού <span>↗</span></a>
+            <a class="ghost">Δείτε τις επεμβάσεις <span>→</span></a>
+          </div>
+
+          <div class="proof">
+            <div class="proof-item">
+              <b>Harvard</b>
+              <span>Medical School</span>
+            </div>
+            <div class="proof-item">
+              <b>UC San Diego</b>
+              <span>Gastroenterology</span>
+            </div>
+            <div class="proof-item">
+              <b>UMass Chan</b>
+              <span>Assistant Professor</span>
+            </div>
+          </div>
+
+          <div class="micro">
+            <span><b>01</b> Διεθνής εκπαίδευση</span>
+            <span><b>02</b> Σύγχρονη τεχνολογία</span>
+            <span><b>03</b> Ανθρώπινη φροντίδα</span>
+          </div>
+        </div>
+
+        <div class="visual">
+          <div class="glow"></div>
+          <div class="ring"></div>
+          <div class="ring-sm"></div>
+          <div class="corner"></div>
+          <div class="portrait">
+            <img src="../assets/portrait.jpg" alt="" />
+          </div>
+
+          <div class="glass">
+            <div class="glass-head">
+              <b>FESBGH</b>
+              <span>FELLOW</span>
+            </div>
+            <p>Διευθυντής Γαστρεντερολογικής – Ηπατολογικής Κλινικής, Ιατρικό Κέντρο Αθηνών.</p>
+            <small>Κατόπιν ραντεβού · Μαρούσι</small>
+          </div>
+
+          <div class="side-label">Αθήνα · 38.0439° N · 23.8056° E</div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

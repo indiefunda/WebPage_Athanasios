@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1440, initial-scale=1" />
+    <title>ATLAS — concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f4f6f3;
+        --paper: #ffffff;
+        --ink: #0a1512;
+        --muted: #5a6b64;
+        --line: rgba(10, 21, 18, 0.14);
+        --line-soft: rgba(10, 21, 18, 0.08);
+        --blue: #1b4dff;
+        --sage: #9fb0a8;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html, body {
+        width: 1440px;
+        height: 900px;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'IBM Plex Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      ul { list-style: none; }
+
+      .page {
+        position: relative;
+        width: 1440px;
+        height: 900px;
+        display: flex;
+        flex-direction: column;
+        background:
+          radial-gradient(circle at 88% 12%, rgba(27, 77, 255, 0.06), transparent 32%),
+          var(--bg);
+      }
+
+      /* faint measurement grid, top right */
+      .page::before {
+        content: '';
+        position: absolute;
+        inset: 0 0 auto auto;
+        width: 620px;
+        height: 420px;
+        background-image:
+          linear-gradient(to right, var(--line-soft) 1px, transparent 1px),
+          linear-gradient(to bottom, var(--line-soft) 1px, transparent 1px);
+        background-size: 52px 52px;
+        mask-image: linear-gradient(135deg, black, transparent 70%);
+        pointer-events: none;
+      }
+
+      /* NAV */
+      .nav {
+        position: relative;
+        z-index: 5;
+        height: 76px;
+        padding: 0 56px;
+        display: flex;
+        align-items: center;
+        gap: 44px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(244, 246, 243, 0.82);
+        backdrop-filter: blur(8px);
+      }
+
+      .brand { display: flex; align-items: center; gap: 13px; }
+
+      .mark {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        background: var(--blue);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-name {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        line-height: 1.1;
+      }
+
+      .brand-role {
+        margin-top: 3px;
+        font-size: 8.5px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 27px;
+        margin-left: 14px;
+      }
+
+      .nav-links a {
+        font-size: 10.5px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        padding: 6px 0;
+        position: relative;
+      }
+
+      .nav-links a.active { color: var(--ink); }
+      .nav-links a.active::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 2px;
+        background: var(--blue);
+      }
+
+      .nav-right {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 26px;
+      }
+
+      .nav-phone {
+        font-size: 11.5px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        height: 46px;
+        padding: 0 18px;
+        background: var(--blue);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .btn .arrow { font-size: 14px; line-height: 1; }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+        display: grid;
+        grid-template-columns: 748px 1fr;
+        gap: 34px;
+        padding: 52px 56px 32px;
+      }
+
+      .copy { padding-top: 16px; }
+
+      .kicker {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .kicker::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        background: var(--blue);
+      }
+
+      h1 {
+        margin-top: 28px;
+        font-size: 70px;
+        line-height: 1.02;
+        font-weight: 600;
+        letter-spacing: -0.035em;
+      }
+
+      h1 span { color: var(--blue); }
+
+      .sub {
+        margin-top: 24px;
+        max-width: 520px;
+        font-size: 17px;
+        line-height: 1.6;
+        font-weight: 400;
+        color: #35443e;
+      }
+
+      .actions {
+        margin-top: 34px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .actions .btn { width: 214px; }
+
+      .text-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 10.5px;
+        font-weight: 600;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        border-bottom: 1px solid var(--ink);
+        padding-bottom: 5px;
+      }
+
+      .text-link span { color: var(--blue); }
+
+      .meta {
+        margin-top: 54px;
+        display: flex;
+        gap: 0;
+        border-top: 1px solid var(--line);
+        padding-top: 16px;
+        max-width: 640px;
+      }
+
+      .meta-item {
+        flex: 1;
+        padding-right: 22px;
+        border-right: 1px solid var(--line);
+      }
+
+      .meta-item + .meta-item { padding-left: 22px; }
+      .meta-item:last-child { border-right: 0; }
+
+      .meta-value {
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+
+      .meta-label {
+        margin-top: 7px;
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      /* VISUAL */
+      .visual {
+        position: relative;
+        height: 100%;
+      }
+
+      .ring {
+        position: absolute;
+        right: -110px;
+        top: -40px;
+        width: 600px;
+        height: 600px;
+        border: 1px solid rgba(27, 77, 255, 0.22);
+        border-radius: 50%;
+      }
+
+      .ring::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(27, 77, 255, 0.16);
+      }
+
+      .frame {
+        position: absolute;
+        right: 18px;
+        top: 6px;
+        width: 406px;
+        height: 500px;
+        background: #0b1512;
+        overflow: hidden;
+      }
+
+      .frame::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        pointer-events: none;
+      }
+
+      .frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 12%;
+        filter: grayscale(1) contrast(1.04) brightness(1.02);
+      }
+
+      .frame-offset {
+        position: absolute;
+        right: 38px;
+        top: 26px;
+        width: 406px;
+        height: 500px;
+        border: 1px solid var(--blue);
+        z-index: -1;
+      }
+
+      .ticks {
+        position: absolute;
+        left: -26px;
+        top: 94px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .ticks i {
+        display: block;
+        width: 10px;
+        height: 1px;
+        background: var(--line);
+      }
+
+      .ticks i:nth-child(4n) { width: 20px; background: var(--blue); }
+
+      .coords {
+        position: absolute;
+        right: 0;
+        top: 524px;
+        font-size: 8.5px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        writing-mode: vertical-rl;
+      }
+
+      .tag {
+        position: absolute;
+        left: -32px;
+        top: 372px;
+        width: 132px;
+        padding: 13px 14px;
+        background: var(--blue);
+        color: #fff;
+      }
+
+      .tag b {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      .tag span {
+        display: block;
+        margin-top: 4px;
+        font-size: 8px;
+        font-weight: 500;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        opacity: 0.8;
+      }
+
+      .panel {
+        position: absolute;
+        left: -6px;
+        bottom: 26px;
+        width: 262px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 16px 18px 17px;
+        box-shadow: 0 24px 44px -34px rgba(10, 21, 18, 0.5);
+      }
+
+      .panel-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .panel-head b {
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .panel-head span { font-size: 9px; color: var(--blue); font-weight: 600; }
+
+      .panel li {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 7px 0;
+        border-bottom: 1px solid var(--line-soft);
+        font-size: 10.5px;
+        font-weight: 500;
+        color: #26332e;
+      }
+
+      .panel li:last-child { border-bottom: 0; padding-bottom: 0; }
+
+      .panel li::before {
+        content: '';
+        width: 4px;
+        height: 4px;
+        background: var(--blue);
+        flex: none;
+      }
+
+      /* STRIP */
+      .strip {
+        position: relative;
+        z-index: 3;
+        height: 92px;
+        background: var(--ink);
+        color: #eef2ef;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 0 56px;
+      }
+
+      .strip-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 0 24px;
+        border-left: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .strip-item:first-child { border-left: 0; padding-left: 0; }
+
+      .strip-num {
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: #7ba0ff;
+      }
+
+      .strip-title {
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        line-height: 1.25;
+      }
+
+      .strip-desc {
+        margin-top: 3px;
+        font-size: 8.5px;
+        letter-spacing: 0.04em;
+        color: #99aaa2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="nav">
+        <div class="brand">
+          <span class="mark">ΑΔ</span>
+          <div>
+            <div class="brand-name">Αθανάσιος Δεσαλέρμος</div>
+            <div class="brand-role">Γαστρεντερολόγος · Ηπατολόγος</div>
+          </div>
+        </div>
+
+        <nav class="nav-links">
+          <a class="active">Αρχική</a>
+          <a>Ο Ιατρός</a>
+          <a>Παθήσεις</a>
+          <a>Επεμβάσεις</a>
+          <a>Το Ιατρείο</a>
+          <a>Επικοινωνία</a>
+        </nav>
+
+        <div class="nav-right">
+          <span class="nav-phone">699 225 2277</span>
+          <a class="btn">Κλείστε ραντεβού <span class="arrow">↗</span></a>
+        </div>
+      </header>
+
+      <main class="hero">
+        <div class="copy">
+          <p class="kicker">Γαστρεντερολογία · Ηπατολογία — Αθήνα</p>
+          <h1>Ακριβής διάγνωση.<br />Σύγχρονη <span>θεραπεία.</span></h1>
+          <p class="sub">
+            Ο Αθανάσιος Δεσαλέρμος, MD, FESBGH, συνδυάζει τη διεθνή εκπαίδευση με την
+            εξατομικευμένη φροντίδα στο Μαρούσι.
+          </p>
+
+          <div class="actions">
+            <a class="btn">Κλείστε ραντεβού <span class="arrow">↗</span></a>
+            <a class="text-link">Οι επεμβάσεις <span>→</span></a>
+          </div>
+
+          <div class="meta">
+            <div class="meta-item">
+              <div class="meta-value">2007</div>
+              <div class="meta-label">Ιατρική Σχολή Αθηνών</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-value">5</div>
+              <div class="meta-label">Πανεπιστήμια σε Ελλάδα &amp; ΗΠΑ</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-value">FESBGH</div>
+              <div class="meta-label">Ευρωπαϊκή αναγνώριση</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual">
+          <div class="ring"></div>
+          <div class="frame-offset"></div>
+          <div class="ticks">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="frame">
+            <img src="../assets/portrait.jpg" alt="" />
+          </div>
+
+          <div class="tag">
+            <b>FESBGH</b>
+            <span>Fellow</span>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <b>Διεθνής εκπαίδευση</b>
+              <span>01</span>
+            </div>
+            <ul>
+              <li>Harvard Medical School</li>
+              <li>UC San Diego</li>
+              <li>UMass Chan</li>
+              <li>Ιατρικό Κέντρο Αθηνών</li>
+            </ul>
+          </div>
+
+          <div class="coords">38.0439° N · 23.8056° E</div>
+        </div>
+      </main>
+
+      <footer class="strip">
+        <div class="strip-item">
+          <span class="strip-num">01</span>
+          <div>
+            <div class="strip-title">Κολονοσκόπηση</div>
+            <div class="strip-desc">Πρόληψη &amp; αφαίρεση πολυπόδων</div>
+          </div>
+        </div>
+        <div class="strip-item">
+          <span class="strip-num">02</span>
+          <div>
+            <div class="strip-title">Ανώτερη ενδοσκόπηση</div>
+            <div class="strip-desc">Οισοφάγος · Στόμαχος · Δωδεκαδάκτυλο</div>
+          </div>
+        </div>
+        <div class="strip-item">
+          <span class="strip-num">03</span>
+          <div>
+            <div class="strip-title">FibroScan</div>
+            <div class="strip-desc">Μη επεμβατική εκτίμηση ήπατος</div>
+          </div>
+        </div>
+        <div class="strip-item">
+          <span class="strip-num">04</span>
+          <div>
+            <div class="strip-title">EndoFLIP</div>
+            <div class="strip-desc">Λειτουργική αξιολόγηση οισοφάγου</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

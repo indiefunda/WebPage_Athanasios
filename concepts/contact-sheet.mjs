@@ -1,0 +1,10 @@
+﻿import { chromium } from 'playwright-core';
+import { pathToFileURL } from 'node:url';
+const b = await chromium.launch({ executablePath: 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', headless: true });
+const p = await b.newPage({ viewport: { width: 2400, height: 1350 }, deviceScaleFactor: 1 });
+await p.goto(pathToFileURL('F:/MyRepository/Webpage_Athanasios/concepts/contact-sheet.html').href, { waitUntil: 'networkidle' });
+await p.evaluate(async () => { await document.fonts.ready; await Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => i.onload = i.onerror = r))); });
+await p.waitForTimeout(400);
+await p.screenshot({ path: 'concepts/Concepts-Contact-Sheet.jpg', type: 'jpeg', quality: 92 });
+console.log('contact sheet written');
+await b.close();

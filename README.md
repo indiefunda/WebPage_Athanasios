@@ -1,5 +1,7 @@
 # Αθανάσιος Δεσαλέρμος — Gastro & Hepatology
 
+> **Current phase — design directions (October 2026).** The Astro site in `src/` was a first draft and is being replaced. The active work is a set of five distinct design directions for a 2026 website, presented in **`concepts/Desalermos-Website-Concepts-2026.pdf`** (10 pages, A4 landscape, Greek). Each direction has a real homepage mockup, palette, typography and a short rationale. A one-image overview is in `concepts/Concepts-Contact-Sheet.jpg`. Nothing has been deployed from this phase yet.
+
 A modern, editorial website for **Athanasios Desalermos, MD, FESBGH**, gastroenterologist–hepatologist in Athens (Marousi). The content is based on the existing [drdesalermos.gr](https://drdesalermos.gr/), rewritten and restructured around a contemporary identity: warm paper, deep pine ink, a clay accent, Greek Didot typography and restrained motion.
 
 Built with **Astro 7** and shipped as static HTML/CSS/JS. No UI framework, no client runtime beyond a few kilobytes of vanilla TypeScript for the menu, the condition finder and the contact form.

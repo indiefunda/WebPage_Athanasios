@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1440, initial-scale=1" />
+    <title>AEGEAN — concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=GFS+Neohellenic:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --white: #ffffff;
+        --blue: #0b2a5b;
+        --blue-deep: #071c3e;
+        --terracotta: #c4623c;
+        --sand: #efe7d8;
+        --ink: #0b1a2e;
+        --muted: #5d6a7c;
+        --line: rgba(11, 42, 91, 0.16);
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html, body {
+        width: 1440px;
+        height: 900px;
+        overflow: hidden;
+        background: var(--white);
+        color: var(--ink);
+        font-family: 'Manrope', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      ul { list-style: none; }
+
+      .page {
+        position: relative;
+        width: 1440px;
+        height: 900px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background: var(--white);
+      }
+
+      /* HEADER */
+      .header {
+        position: relative;
+        z-index: 5;
+        flex: 0 0 82px;
+        display: flex;
+        align-items: center;
+        padding: 0 56px;
+        gap: 34px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand { display: flex; align-items: center; gap: 13px; }
+
+      .mark {
+        width: 36px;
+        height: 36px;
+        background: var(--blue);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-family: 'GFS Neohellenic', serif;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .brand-name {
+        font-family: 'GFS Neohellenic', serif;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.005em;
+        line-height: 1.05;
+        color: var(--blue);
+      }
+
+      .brand-role {
+        margin-top: 3px;
+        font-size: 8px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .nav { display: flex; gap: 30px; margin-left: auto; }
+
+      .nav a {
+        font-size: 9.5px;
+        font-weight: 600;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--blue);
+        padding: 8px 0;
+        opacity: 0.72;
+      }
+
+      .nav a.active { opacity: 1; border-bottom: 2px solid var(--terracotta); }
+
+      .cta {
+        margin-left: 34px;
+        height: 44px;
+        padding: 0 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 24px;
+        background: var(--blue);
+        color: #fff;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 1fr 520px;
+        padding: 46px 56px 0;
+      }
+
+      .copy { position: relative; padding-top: 16px; }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--terracotta);
+      }
+
+      .eyebrow::before {
+        content: '';
+        width: 9px;
+        height: 9px;
+        background: var(--terracotta);
+      }
+
+      h1 {
+        margin-top: 26px;
+        font-family: 'GFS Neohellenic', serif;
+        font-size: 82px;
+        line-height: 0.98;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        color: var(--blue);
+        max-width: 760px;
+      }
+
+      h1 .outline {
+        color: transparent;
+        -webkit-text-stroke: 1.4px var(--blue);
+      }
+
+      .sub {
+        margin-top: 28px;
+        max-width: 440px;
+        font-size: 15.5px;
+        line-height: 1.7;
+        font-weight: 400;
+        color: #46566a;
+      }
+
+      .actions {
+        margin-top: 32px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .btn {
+        height: 50px;
+        padding: 0 22px;
+        display: inline-flex;
+        align-items: center;
+        gap: 26px;
+        background: var(--terracotta);
+        color: #fff;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .btn-outline {
+        height: 50px;
+        padding: 0 20px;
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid rgba(11, 42, 91, 0.24);
+        color: var(--blue);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .caption {
+        margin-top: 42px;
+        display: flex;
+        align-items: flex-end;
+        gap: 26px;
+      }
+
+      .caption-block {
+        padding-right: 26px;
+        border-right: 1px solid var(--line);
+      }
+
+      .caption-block:last-child { border-right: 0; }
+
+      .caption-block b {
+        display: block;
+        font-family: 'GFS Neohellenic', serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--blue);
+        line-height: 1;
+      }
+
+      .caption-block span {
+        display: block;
+        margin-top: 7px;
+        font-size: 8px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      /* VISUAL */
+      .visual { position: relative; }
+
+      .sand {
+        position: absolute;
+        right: 18px;
+        top: 30px;
+        width: 440px;
+        height: 570px;
+        background: var(--sand);
+      }
+
+      .panel {
+        position: absolute;
+        right: 38px;
+        top: 12px;
+        width: 440px;
+        height: 570px;
+        background: var(--blue);
+        padding: 12px;
+      }
+
+      .panel-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #132d55;
+      }
+
+      .panel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 10%;
+        filter: grayscale(1) contrast(1.04) brightness(1.34);
+      }
+
+      .panel-inner::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: var(--blue);
+        mix-blend-mode: multiply;
+        opacity: 0.26;
+      }
+
+      .sun {
+        position: absolute;
+        z-index: 4;
+        left: -62px;
+        top: 82px;
+        width: 154px;
+        height: 154px;
+        border-radius: 50%;
+        background: var(--terracotta);
+        display: grid;
+        place-items: center;
+      }
+
+      .sun::after {
+        content: '';
+        position: absolute;
+        inset: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 50%;
+      }
+
+      .sun-text {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        color: #fff;
+      }
+
+      .sun-text b {
+        display: block;
+        font-family: 'GFS Neohellenic', serif;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+
+      .sun-text span {
+        display: block;
+        margin-top: 3px;
+        font-size: 7px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        opacity: 0.82;
+      }
+
+      .coords {
+        position: absolute;
+        z-index: 5;
+        right: 24px;
+        bottom: 22px;
+        padding: 6px 8px;
+        background: rgba(7, 28, 62, 0.72);
+        font-size: 8px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      /* FOOTER BAR */
+      .bar {
+        position: relative;
+        z-index: 4;
+        flex: 0 0 92px;
+        margin-top: 22px;
+        background: var(--blue);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        padding: 0 56px;
+        gap: 34px;
+      }
+
+      .bar-mark {
+        width: 38px;
+        height: 38px;
+        background: var(--terracotta);
+        display: grid;
+        place-items: center;
+        font-family: 'GFS Neohellenic', serif;
+        font-size: 14px;
+        font-weight: 700;
+        flex: none;
+      }
+
+      .bar-items { display: flex; gap: 40px; }
+
+      .bar-item {
+        padding-left: 40px;
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .bar-item:first-child { border-left: 0; padding-left: 0; }
+
+      .bar-item b {
+        display: block;
+        font-family: 'GFS Neohellenic', serif;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .bar-item span {
+        display: block;
+        margin-top: 3px;
+        font-size: 7.5px;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .bar-right {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        font-size: 8.5px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .bar-right .dot { width: 6px; height: 6px; background: var(--terracotta); border-radius: 50%; }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="brand">
+          <span class="mark">ΑΔ</span>
+          <div>
+            <div class="brand-name">Αθανάσιος Δεσαλέρμος</div>
+            <div class="brand-role">Γαστρεντερολόγος · Ηπατολόγος</div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a class="active">Αρχική</a>
+          <a>Ο Ιατρός</a>
+          <a>Παθήσεις</a>
+          <a>Επεμβάσεις</a>
+          <a>Το Ιατρείο</a>
+          <a>Επικοινωνία</a>
+        </nav>
+
+        <a class="cta">Κλείστε ραντεβού <span>↗</span></a>
+      </header>
+
+      <main class="hero">
+        <div class="copy">
+          <p class="eyebrow">Αθήνα · Μαρούσι</p>
+
+          <h1>Διεθνής γνώση.<br /><span class="outline">Ελληνική</span> φροντίδα.</h1>
+
+          <p class="sub">
+            Γαστρεντερολογία και ηπατολογία με εκπαίδευση στο Harvard, το UC San Diego και το
+            UMass Chan.
+          </p>
+
+          <div class="actions">
+            <a class="btn">Κλείστε ραντεβού <span>→</span></a>
+            <a class="btn-outline">Ο ιατρός</a>
+          </div>
+
+          <div class="caption">
+            <div class="caption-block">
+              <b>2007</b>
+              <span>Ιατρική Σχολή Αθηνών</span>
+            </div>
+            <div class="caption-block">
+              <b>3</b>
+              <span>Κορυφαία κέντρα στις ΗΠΑ</span>
+            </div>
+            <div class="caption-block">
+              <b>FESBGH</b>
+              <span>Ευρωπαϊκή αναγνώριση</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual">
+          <div class="sand"></div>
+          <div class="panel">
+            <div class="panel-inner">
+              <img src="../assets/portrait.jpg" alt="" />
+            </div>
+            <div class="coords">38°02′N · 23°48′E</div>
+          </div>
+
+          <div class="sun">
+            <div class="sun-text"><b>FESBGH</b><span>Fellow</span></div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="bar">
+        <span class="bar-mark">ΑΔ</span>
+        <div class="bar-items">
+          <div class="bar-item">
+            <b>Harvard Medical School</b>
+            <span>Boston</span>
+          </div>
+          <div class="bar-item">
+            <b>UC San Diego</b>
+            <span>Gastroenterology</span>
+          </div>
+          <div class="bar-item">
+            <b>UMass Chan</b>
+            <span>Assistant Professor</span>
+          </div>
+        </div>
+        <div class="bar-right">
+          <span class="dot"></span>
+          <span>Κατόπιν ραντεβού · Μαρούσι</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
