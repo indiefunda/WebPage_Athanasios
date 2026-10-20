@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
+import PageHero from '../../../components/PageHero.astro';
+import CtaSection from '../../../components/CtaSection.astro';
+import { conditionsEn } from '../../../data/en/conditions';
+import { conditionCategoriesEn, groupConditionsEn } from '../../../data/en/taxonomy';
+import '../../../styles/pages.css';
+
+const groups = groupConditionsEn(conditionsEn).map((group) => ({
+  ...group,
+  items: [...group.items].sort((a, b) => a.title.localeCompare(b.title, 'en')),
+}));
+
+const countByCategory = (key: string) =>
+  conditionsEn.filter((condition) => condition.category === key).length;
+---
+
+<BaseLayout
+  title="Conditions — Gastroenterology & Hepatology"
+  description="Clear information on reflux, Barrett's esophagus, diarrhea, Crohn's disease, ulcerative colitis and colorectal cancer screening."
+>
+  <PageHero
+    eyebrow="Conditions"
+    index="04"
+    title="From prevention<br />to inflammatory disease."
+    lede="Colonoscopy and gastroscopy, diarrhea, reflux, Barrett’s, Crohn’s disease and ulcerative colitis — clear information on symptoms, diagnosis and treatment."
+    crumbs={[{ label: 'Conditions' }]}
+  />
+
+  <section class="directory">
+    <div class="container">
+      <div class="directory__toolbar">
+        <div class="directory__meta">
+          <p class="directory__count">{conditionsEn.length} conditions</p>
+          <p class="directory__hint">
+            Browse all conditions and find the information you need.
+          </p>
+        </div>
+        <ul class="filter-legend">
+          {
+            conditionCategoriesEn.map((category) => (
+              <li>
+                <span>{category.label}</span>
+                {String(countByCategory(category.key)).padStart(2, '0')}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      {
+        groups.map((group) => (
+          <section class="dir-group" id={group.key} aria-labelledby={`group-en-${group.key}`}>
+            <div class="dir-group__head">
+              <h2 id={`group-en-${group.key}`}>{group.label}</h2>
+              <p>{group.description}</p>
+              <span class="dir-group__count">{String(group.items.length).padStart(2, '0')}</span>
+            </div>
+
+            <div class="dir-list">
+              {group.items.map((condition) => (
+                <a class="dir-row" href={`/en/conditions/${condition.slug}`}>
+                  <span class="dir-row__main">
+                    <h3>{condition.title}</h3>
+                    <p>{condition.short}</p>
+                  </span>
+                  <span class="dir-row__arrow">
+                    <Icon name="arrow-up-right" size={13} />
+                  </span>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+
+      <div class="article-note" style="margin-top: 48px;">
+        <p class="article-note__label">
+          <Icon name="stethoscope" size={16} />
+          Important note
+        </p>
+        <p>
+          This information is educational and does not replace individualized medical advice. Read the
+          <a href="/en/disclaimer"> disclaimer</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    eyebrow="Appointments"
+    title="Not sure what is bothering you?"
+    text="The right diagnosis starts with a detailed discussion of your history and symptoms. Book an appointment for assessment."
+  />
+</BaseLayout>

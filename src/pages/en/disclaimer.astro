@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import '../../styles/pages.css';
+---
+
+<BaseLayout
+  title="Disclaimer"
+  description="Terms of use and disclaimer for the information on this website."
+  noindex
+>
+  <PageHero
+    eyebrow="Legal"
+    title="Disclaimer."
+    lede="The information on this website is educational and does not replace individualized medical advice."
+    crumbs={[{ label: 'Disclaimer' }]}
+  />
+
+  <section class="legal">
+    <div class="container">
+      <div class="legal__body">
+        <h2>General information</h2>
+        <p>
+          The information on this website must NOT be used as a substitute for advice from a suitably
+          qualified and licensed physician or other health professional. It is provided for educational
+          and informational purposes only and should not, under any circumstances, be considered
+          medical advice, diagnosis or treatment.
+        </p>
+
+        <h2>Medical advice</h2>
+        <p>
+          A sound medical decision requires an individualized assessment of each patient’s history,
+          clinical picture and tests. No information on this website can replace a visit to a specialist.
+          Do not start, stop or change medication based on what you read here.
+        </p>
+
+        <h2>Emergencies</h2>
+        <p>
+          This website is not an emergency medical service and is not continuously monitored. In an
+          emergency, call <a href="tel:112">112</a> or <a href="tel:166">166</a> (EKAB), or go to the
+          nearest hospital.
+        </p>
+
+        <h2>External links</h2>
+        <p>
+          This website may contain links to third-party websites (medical societies, journals,
+          universities). We do not control and are not responsible for the content, policies or
+          availability of those websites.
+        </p>
+
+        <h2>Copyright</h2>
+        <p>
+          All content, design and images on this website are protected by applicable copyright law.
+          Reproduction or republication is permitted only with prior written permission.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          For any clarification about the content of this website, contact
+          <a href="mailto:desalermosclinic@gmail.com">desalermosclinic@gmail.com</a>.
+        </p>
+
+        <p class="legal__meta">Last updated: October 2026</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,4 +1,4 @@
-﻿import { readdir, readFile, stat } from 'node:fs/promises';
+import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 const root = path.resolve('dist');
@@ -17,7 +17,6 @@ const exists = async (p) => { try { await stat(p); return true; } catch { return
 const bad = new Map();
 for (const file of files) {
   const rel = path.relative(root, file);
-  if (rel.startsWith('en' + path.sep)) continue; // English WIP not linked yet
   const html = await readFile(file, 'utf8');
   const hrefs = [...html.matchAll(/href="([^"#?]+)"/g)].map((m) => m[1]);
   for (const href of hrefs) {

@@ -158,3 +158,11 @@ export const authorityEn = {
     },
   ],
 } as const;
+
+export const institutions = [
+  'Harvard Medical School',
+  'UC San Diego',
+  'UMass Chan Medical School',
+  'FESBGH',
+  'American College of Gastroenterology',
+] as const;

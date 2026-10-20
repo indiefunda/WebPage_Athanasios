@@ -1,0 +1,621 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Pic from '../../components/Pic.astro';
+import Icon from '../../components/Icon.astro';
+import {
+  siteEn,
+  journeyEn,
+  principlesEn,
+  credentialsEn,
+  authorityEn,
+  institutions,
+} from '../../data/en/site';
+import { conditionsEn } from '../../data/en/conditions';
+import { proceduresEn } from '../../data/en/procedures';
+import { newsEn } from '../../data/en/news';
+import { conditionCategoriesEn, procedureCategoryLabelEn } from '../../data/en/taxonomy';
+import '../../styles/home.css';
+
+const featuredConditions = conditionsEn.filter((condition) => condition.featured).slice(0, 8);
+const orderedProcedures = [...proceduresEn].sort(
+  (a, b) => Number(b.featured) - Number(a.featured),
+);
+const featuredNews = [...newsEn].sort((a, b) => b.date.localeCompare(a.date))[0];
+
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+    new Date(iso),
+  );
+
+/**
+ * The English library is translated in stages, so the category chips and the
+ * "all conditions" link report the real size of the full library — not the
+ * number of entries that already exist in `conditionsEn`.
+ */
+const categoryCounts: Record<string, number> = {
+  oesophagus: 3,
+  stomach: 4,
+  intestine: 16,
+  liver: 4,
+  pancreas: 3,
+};
+
+const totalConditions = 30;
+---
+
+<BaseLayout
+  title="Gastroenterologist – Hepatologist in Athens"
+  description={siteEn.description}
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__ring" aria-hidden="true"></div>
+
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow hero__eyebrow" data-reveal>
+          <span class="eyebrow__dot"></span>
+          Gastroenterology · Hepatology — Athens
+        </p>
+
+        <h1 class="hero__title">
+          <span data-reveal style="--i:1">{siteEn.firstName}</span>
+          <span data-reveal style="--i:2">{siteEn.lastName}</span>
+        </h1>
+
+        <p class="hero__role" data-reveal style="--i:3">
+          {siteEn.role}
+          <span>{siteEn.credentials}</span>
+        </p>
+
+        <p class="hero__lede" data-reveal style="--i:4">
+          International training, modern technology and personal care for digestive and liver
+          problems — based in Marousi.
+        </p>
+
+        <div class="hero__actions" data-reveal style="--i:5">
+          <a class="btn" href="/en/contact#rantevou">
+            Book an appointment
+            <Icon name="arrow-up-right" size={15} />
+          </a>
+          <a class="btn btn--ghost" href="/en/about">The doctor</a>
+        </div>
+      </div>
+
+      <div class="hero__media" data-reveal="fade" style="--i:2">
+        <div class="hero__arch">
+          <div class="hero__arch-inner">
+            <Pic
+              name="portrait"
+              sizes="(min-width: 900px) 34vw, 90vw"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+
+        <div class="hero__seal" aria-hidden="true">
+          <svg viewBox="0 0 108 108">
+            <defs>
+              <path id="seal-top" d="M10,54 A44,44 0 0 1 98,54"></path>
+              <path id="seal-bottom" d="M10,54 A44,44 0 0 0 98,54"></path>
+            </defs>
+            <text>
+              <textPath href="#seal-top" startOffset="50%" text-anchor="middle">
+                BY APPOINTMENT
+              </textPath>
+            </text>
+            <text>
+              <textPath href="#seal-bottom" startOffset="50%" text-anchor="middle">
+                ATHENS · MAROUSI
+              </textPath>
+            </text>
+          </svg>
+          <span class="hero__seal-core"></span>
+        </div>
+
+        <div class="hero__badge">
+          <p class="hero__badge-label">Director</p>
+          <p class="hero__badge-text">
+            Gastroenterology – Hepatology Clinic, Athens Medical Center
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container hero__foot">
+      <ul class="hero__trust">
+        <li>Harvard Medical School</li>
+        <li>UC San Diego</li>
+        <li>UMass Chan</li>
+      </ul>
+      <a class="hero__scroll" href="#prosengisi">
+        More
+        <i aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Institutions -->
+  <div class="marquee" aria-label="Training and collaborations">
+    <div class="marquee__track">
+      {
+        [0, 1].map((groupIndex) => (
+          <div class="marquee__group" aria-hidden={groupIndex === 1 ? 'true' : undefined}>
+            {institutions.map((institution) => (
+              <span class="marquee__item">{institution}</span>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- US training and international practice -->
+  <section class="authority">
+    <div class="container authority__inner">
+      <div class="authority__copy">
+        <p class="eyebrow" data-reveal>
+          <span class="eyebrow__dot"></span>
+          {authorityEn.eyebrow}
+        </p>
+        <h2 data-reveal style="--i:1">{authorityEn.title}</h2>
+        <p class="authority__text" data-reveal style="--i:2">{authorityEn.text}</p>
+      </div>
+
+      <ul class="authority__points" data-reveal style="--i:3">
+        {
+          authorityEn.points.map((point) => (
+            <li>
+              <span>{point.num}</span>
+              <b>{point.title}</b>
+              <em>{point.detail}</em>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Approach -->
+  <section class="section" id="prosengisi">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__num">01</span>
+            The approach
+          </p>
+          <h2 data-reveal style="--i:1">Precise diagnosis.<br />Human care.</h2>
+        </div>
+        <p class="section-head__aside" data-reveal style="--i:2">
+          Care does not start with the examination, but with the conversation. We listen to the
+          history, explain the findings and plan the next step together.
+        </p>
+      </div>
+
+      <div class="approach__body">
+        <blockquote class="approach__quote" data-reveal>
+          “Every symptom has its own story. Our job is to read it correctly.”
+        </blockquote>
+
+        <div class="approach__text" data-reveal style="--i:1">
+          <p>
+            At Dr. Desalermos’s clinic, modern technology does not replace the relationship with the
+            patient — it supports it. Endoscopy, EndoFLIP, FibroScan and capsule endoscopy are used
+            with one goal: the right diagnosis, without unnecessary tests.
+          </p>
+          <p>
+            From the first visit to follow-up, the approach is individualized. Treatment options are
+            explained clearly and adapted to the needs, age and lifestyle of each person.
+          </p>
+          <p class="signature">
+            <span>{siteEn.name}</span>
+            <span>{siteEn.credentials}</span>
+          </p>
+        </div>
+      </div>
+
+      <ul class="principles">
+        {
+          principlesEn.map((principle, index) => (
+            <li class="principle" data-reveal style={`--i:${index}`}>
+              <span class="principle__num">{principle.num}</span>
+              <h3>{principle.title}</h3>
+              <p>{principle.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- About preview -->
+  <section class="section about-preview">
+    <div class="container about-preview__grid">
+      <div class="about-preview__media" data-reveal="fade">
+        <div class="about-preview__frame">
+          <Pic
+            name="portrait-crossed"
+            sizes="(min-width: 900px) 32vw, 90vw"
+            class="pic"
+          />
+        </div>
+        <p class="about-preview__caption">
+          <span>{siteEn.name}</span>
+          <span>Athens</span>
+        </p>
+      </div>
+
+      <div class="about-preview__content">
+        <p class="eyebrow" data-reveal>
+          <span class="eyebrow__num">02</span>
+          The doctor
+        </p>
+        <h2 data-reveal style="--i:1">A path with an international horizon.</h2>
+        <p class="lede" data-reveal style="--i:2">
+          Director of the Gastroenterology – Hepatology Clinic at Athens Medical Center and
+          Assistant Professor at UMass Chan Medical School.
+        </p>
+        <p data-reveal style="--i:3">
+          Dr. Desalermos graduated from Athens Medical School in 2007. In the United States he trained
+          in internal medicine at Boston University and in gastroenterology – hepatology at UC San
+          Diego, while working as a postdoctoral research fellow at Harvard Medical School.
+        </p>
+
+        <dl class="credential-list">
+          {
+            credentialsEn.map((credential, index) => (
+              <div class="credential" data-reveal style={`--i:${index}`}>
+                <dt>{credential.title}</dt>
+                <dd>{credential.detail}</dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        <a class="link-arrow" href="/en/about">
+          Full biography
+          <Icon name="arrow-right" size={15} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Procedures -->
+  <section class="section section--ink procedures">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__num">03</span>
+            Procedures
+          </p>
+          <h2 data-reveal style="--i:1">Diagnosis and treatment,<br />with precision.</h2>
+        </div>
+        <p class="section-head__aside" data-reveal style="--i:2">
+          Colonoscopy, gastroscopy and small-bowel capsule, together with manometry and pH-metry:
+          the mainstays of diagnosis and prevention. EndoFLIP and FibroScan remain available as
+          specialized options.
+        </p>
+      </div>
+
+      <div class="proc-grid">
+        {
+          orderedProcedures.map((procedure, index) => (
+            <a
+              class="proc-card"
+              href={`/en/procedures/${procedure.slug}`}
+              data-reveal
+              style={`--i:${index % 3}`}
+            >
+              <div class="proc-card__media">
+                <Pic
+                  name={procedure.image}
+                  sizes="(min-width: 1000px) 30vw, (min-width: 620px) 45vw, 92vw"
+                />
+              </div>
+              <div class="proc-card__body">
+                <div class="proc-card__meta">
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <span>{procedureCategoryLabelEn(procedure.category)}</span>
+                </div>
+                <h3>{procedure.title}</h3>
+                <p>{procedure.short}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <p class="proc-hint" aria-hidden="true">
+        Swipe to see all procedures
+        <span>→</span>
+      </p>
+
+      <div class="procedures__foot">
+        <a class="link-arrow" href="/en/procedures">
+          All procedures
+          <Icon name="arrow-right" size={15} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conditions -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__num">04</span>
+            Conditions
+          </p>
+          <h2 data-reveal style="--i:1">From prevention<br />to inflammatory disease.</h2>
+        </div>
+        <p class="section-head__aside" data-reveal style="--i:2">
+          Colonoscopy and gastroscopy, diarrhea, gastroesophageal reflux, Barrett’s, Crohn’s disease
+          and ulcerative colitis: the areas we focus on.
+        </p>
+      </div>
+
+      <div class="screen-band" data-reveal>
+        <a class="screen-card" href="/en/procedures/kolonoskophsh">
+          <span class="screen-card__label">Preventive screening</span>
+          <span class="screen-card__title">Colonoscopy</span>
+          <span class="screen-card__text">Prevention of colon cancer</span>
+          <Icon name="arrow-up-right" size={16} />
+        </a>
+        <a class="screen-card" href="/en/procedures/anwterh-endoskophsh">
+          <span class="screen-card__label">Preventive screening</span>
+          <span class="screen-card__title">Gastroscopy</span>
+          <span class="screen-card__text">Esophagus, stomach, duodenum</span>
+          <Icon name="arrow-up-right" size={16} />
+        </a>
+      </div>
+
+      <div class="condition-chips">
+        {
+          conditionCategoriesEn.map((category) => (
+            <a class="condition-chip" href={`/en/conditions#${category.key}`}>
+              {category.label}
+              <span>{String(categoryCounts[category.key] ?? 0).padStart(2, '0')}</span>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="condition-list">
+        {
+          featuredConditions.map((condition, index) => (
+            <a
+              class="condition-row"
+              href={`/en/conditions/${condition.slug}`}
+              data-reveal
+              style={`--i:${index % 2}`}
+            >
+              <span class="condition-row__main">
+                <h3>{condition.title}</h3>
+                <p>{condition.short}</p>
+              </span>
+              <span class="condition-row__arrow">
+                <Icon name="arrow-up-right" size={14} />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="conditions__foot">
+        <a class="btn" href="/en/conditions">
+          All {totalConditions} conditions
+          <Icon name="arrow-right" size={15} />
+        </a>
+        <a class="btn btn--ghost" href="/en/procedures">Procedures</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey -->
+  <section class="section journey">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__num">05</span>
+            The path
+          </p>
+          <h2 data-reveal style="--i:1">From Athens<br />to Boston — and back.</h2>
+        </div>
+        <p class="section-head__aside" data-reveal style="--i:2">
+          Two continents, four leading universities and one constant principle: clinical experience
+          in the service of the person in front of us.
+        </p>
+      </div>
+
+      <div class="journey__grid">
+        <div class="journey__media" data-reveal="fade">
+          <figure class="journey__figure-main">
+            <Pic name="boston" sizes="(min-width: 900px) 38vw, 92vw" />
+            <figcaption>Boston, USA</figcaption>
+          </figure>
+          <figure class="journey__figure-small">
+            <Pic name="san-diego" sizes="(min-width: 900px) 22vw, 52vw" />
+            <figcaption>San Diego</figcaption>
+          </figure>
+        </div>
+
+        <ol class="journey__list">
+          {
+            journeyEn.map((step, index) => (
+              <li class="journey__item" data-reveal style={`--i:${index % 3}`}>
+                <span class="journey__stage">{step.stage}</span>
+                <div>
+                  <p class="journey__place">{step.place}</p>
+                  <h3>{step.title}</h3>
+                  <p>{step.detail}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clinic -->
+  <section class="section clinic">
+    <div class="container clinic__grid">
+      <div class="clinic__content">
+        <p class="eyebrow" data-reveal>
+          <span class="eyebrow__num">06</span>
+          The clinic
+        </p>
+        <h2 data-reveal style="--i:1">Calm, discreet,<br />luxurious.</h2>
+        <p class="lede" data-reveal style="--i:2">
+          A space with the quiet and discretion of a private practice — and a sense of luxury that
+          makes the visit calmer.
+        </p>
+        <p data-reveal style="--i:3" class="clinic__body">
+          With attention to detail and a friendly atmosphere, we welcome patients into a space that
+          combines clinical excellence with personal care.
+        </p>
+
+        <dl class="clinic__facts" data-reveal style="--i:4">
+          <div class="clinic__fact">
+            <dt>Address</dt>
+            <dd>{siteEn.address.street}, {siteEn.address.locality} {siteEn.address.postalCode}</dd>
+          </div>
+          <div class="clinic__fact">
+            <dt>Appointments</dt>
+            <dd>{siteEn.bookNote}</dd>
+          </div>
+          <div class="clinic__fact">
+            <dt>Phone</dt>
+            <dd>
+              <a href={`tel:+30${siteEn.mobile}`}>{siteEn.mobileDisplay}</a> ·{' '}
+              <a href={`tel:+30${siteEn.phone}`}>{siteEn.phoneDisplay}</a>
+            </dd>
+          </div>
+        </dl>
+
+        <div class="clinic__actions">
+          <a class="btn" href="/en/clinic">
+            The clinic
+            <Icon name="arrow-up-right" size={15} />
+          </a>
+          <a class="btn btn--ghost" href={siteEn.mapsUrl} target="_blank" rel="noopener noreferrer">
+            Directions
+            <Icon name="external" size={14} />
+          </a>
+        </div>
+      </div>
+
+      <div class="clinic__gallery" data-reveal="fade">
+        <figure class="clinic__shot clinic__shot--wide">
+          <Pic name="clinic-1" sizes="(min-width: 900px) 52vw, 92vw" />
+          <figcaption>The examination room</figcaption>
+        </figure>
+        <figure class="clinic__shot">
+          <Pic name="clinic-2" sizes="(min-width: 900px) 26vw, 46vw" />
+          <figcaption>The practice</figcaption>
+        </figure>
+        <figure class="clinic__shot">
+          <Pic name="clinic-3" sizes="(min-width: 900px) 26vw, 46vw" />
+          <figcaption>The office</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__num">07</span>
+            Articles
+          </p>
+          <h2 data-reveal style="--i:1">Notes on<br />health.</h2>
+        </div>
+        <p class="section-head__aside" data-reveal style="--i:2">
+          Articles and notes on symptoms, tests and everyday habits that make a difference to gut
+          and liver health.
+        </p>
+      </div>
+
+      <a class="news-feature" href={`/en/articles/${featuredNews.slug}`} data-reveal>
+        <div class="news-feature__media">
+          <Pic
+            name={featuredNews.image}
+            sizes="(min-width: 860px) 55vw, 92vw"
+          />
+        </div>
+        <div>
+          <p class="news-feature__meta">
+            <span>{featuredNews.category}</span>
+            <span>{formatDate(featuredNews.date)}</span>
+          </p>
+          <h3>{featuredNews.title}</h3>
+          <p>{featuredNews.excerpt}</p>
+          <span class="link-arrow">
+            Read the article
+            <Icon name="arrow-right" size={15} />
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-band" id="epikoinonia">
+    <div class="container contact-band__inner">
+      <div>
+        <p class="eyebrow" data-reveal>
+          <span class="eyebrow__num">08</span>
+          Contact
+        </p>
+        <h2 data-reveal style="--i:1">The next step<br />is a conversation.</h2>
+        <p class="contact-band__aside" data-reveal style="--i:2">
+          Book an appointment at the Marousi clinic or call us with any question. For emergencies,
+          go to the nearest hospital.
+        </p>
+        <div class="contact-band__actions" data-reveal style="--i:3">
+          <a class="btn btn--light" href="/en/contact#rantevou">
+            Book an appointment
+            <Icon name="arrow-up-right" size={15} />
+          </a>
+          <a class="btn btn--ghost-light" href={`tel:+30${siteEn.mobile}`}>
+            {siteEn.mobileDisplay}
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-band__rows" data-reveal style="--i:2">
+        <a class="contact-band__row" href={`tel:+30${siteEn.mobile}`}>
+          <span class="contact-band__label">Mobile</span>
+          <span class="contact-band__value">{siteEn.mobileDisplay}</span>
+        </a>
+        <a class="contact-band__row" href={`tel:+30${siteEn.phone}`}>
+          <span class="contact-band__label">Landline</span>
+          <span class="contact-band__value">{siteEn.phoneDisplay}</span>
+        </a>
+        <a class="contact-band__row" href={`mailto:${siteEn.email}`}>
+          <span class="contact-band__label">Email</span>
+          <span class="contact-band__value">{siteEn.email}</span>
+        </a>
+        <a
+          class="contact-band__row"
+          href={siteEn.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="contact-band__label">Address</span>
+          <span class="contact-band__value">{siteEn.addressOneLine}</span>
+        </a>
+        <p class="contact-band__note">{siteEn.hours}</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

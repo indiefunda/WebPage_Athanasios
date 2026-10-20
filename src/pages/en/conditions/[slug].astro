@@ -1,0 +1,53 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { conditionsEn } from '../../../data/en/conditions';
+import { proceduresEn } from '../../../data/en/procedures';
+import { conditionCategoryLabelEn, relatedProceduresEn } from '../../../data/en/taxonomy';
+import type { Condition } from '../../../data/types';
+
+export function getStaticPaths() {
+  return conditionsEn.map((condition) => ({
+    params: { slug: condition.slug },
+    props: { condition },
+  }));
+}
+
+const { condition } = Astro.props as { condition: Condition };
+const related = relatedProceduresEn(condition, proceduresEn);
+const more = conditionsEn
+  .filter((item) => item.category === condition.category && item.slug !== condition.slug)
+  .slice(0, 3)
+  .map((item) => ({
+    title: item.title,
+    href: `/en/conditions/${item.slug}`,
+    short: item.short,
+  }));
+---
+
+<ArticleLayout
+  title={condition.title}
+  short={condition.short}
+  category={conditionCategoryLabelEn(condition.category)}
+  image={condition.image}
+  paragraphs={condition.paragraphs}
+  references={condition.references}
+  crumbs={[
+    { label: 'Conditions', href: '/en/conditions' },
+    { label: condition.title },
+  ]}
+  indexPath="/en/conditions"
+  indexLabel="Conditions"
+  backLabel="All conditions"
+  relatedTitle="Related procedures"
+  related={related.map((procedure) => ({
+    title: procedure.title,
+    href: `/en/procedures/${procedure.slug}`,
+    short: procedure.short,
+  }))}
+  more={more}
+  moreTitle="Related conditions"
+  schema={{
+    about: { '@type': 'MedicalCondition', name: condition.title },
+    specialty: { '@type': 'MedicalSpecialty', name: 'Gastroenterologic' },
+  }}
+/>

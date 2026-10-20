@@ -4,10 +4,11 @@ import Icon from './Icon.astro';
 import { nav, navEn, site } from '../data/site';
 import { alternatePath, langOf } from '../lib/i18n';
 
-const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const path =
+  Astro.url.pathname.replace(/\/+$/, '').replace(/\.html$/, '') || '/';
 const lang = langOf(Astro.url.pathname);
 const isEnglish = lang === 'en';
-const showLanguageSwitch = isEnglish;
+const showLanguageSwitch = true;
 const navItems = isEnglish ? navEn : nav;
 const switchHref = alternatePath(Astro.url.pathname);
 const switchLabel = isEnglish ? 'ΕΛ' : 'EN';
@@ -16,7 +17,8 @@ const switchLang = isEnglish ? 'el' : 'en';
 const normalize = (href: string) => href.replace(/\/+$/, '') || '/';
 const isActive = (href: string) => {
   const target = normalize(href);
-  return target === '/' ? path === '/' : path === target || path.startsWith(`${target}/`);
+  if (target === '/' || target === '/en') return path === target;
+  return path === target || path.startsWith(`${target}/`);
 };
 
 const telHref = `tel:+30${site.mobile}`;
@@ -110,16 +112,14 @@ const address = isEnglish ? '58 Kifisias Ave., 1st floor, Marousi 151 25' : site
         <p class="eyebrow">{isEnglish ? 'Appointments' : 'Ραντεβού'}</p>
         <a class="site-menu__tel" href={telHref}>{site.mobileDisplay}</a>
         <a class="site-menu__mail" href={`mailto:${site.email}`}>{site.email}</a>
-        {isEnglish && (
-          <a
-            class="site-menu__lang"
-            href={switchHref}
-            hreflang={switchLang}
-            lang={switchLang}
-          >
-            Ελληνική έκδοση
-          </a>
-        )}
+        <a
+          class="site-menu__lang"
+          href={switchHref}
+          hreflang={switchLang}
+          lang={switchLang}
+        >
+          {isEnglish ? 'Ελληνική έκδοση' : 'English version'}
+        </a>
       </div>
       <div>
         <p class="eyebrow">{isEnglish ? 'Clinic' : 'Ιατρείο'}</p>

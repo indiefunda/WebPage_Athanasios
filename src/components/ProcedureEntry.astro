@@ -1,6 +1,8 @@
 ---
 import Pic from './Pic.astro';
 import { procedureCategoryLabel } from '../data/taxonomy';
+import { procedureCategoryLabelEn } from '../data/en/taxonomy';
+import { langOf } from '../lib/i18n';
 import type { Procedure } from '../data/types';
 
 interface Props {
@@ -8,9 +10,13 @@ interface Props {
 }
 
 const { procedure } = Astro.props;
+const isEnglish = langOf(Astro.url.pathname) === 'en';
+const categoryLabel = isEnglish
+  ? procedureCategoryLabelEn(procedure.category)
+  : procedureCategoryLabel(procedure.category);
 ---
 
-<a class="entry-card" href={`/epemvaseis/${procedure.slug}`} data-reveal>
+<a class="entry-card" href={isEnglish ? `/en/procedures/${procedure.slug}` : `/epemvaseis/${procedure.slug}`} data-reveal>
   <div class="entry-card__media">
     <Pic
       name={procedure.image}
@@ -18,7 +24,7 @@ const { procedure } = Astro.props;
     />
   </div>
   <div>
-    <p class="entry-card__meta">{procedureCategoryLabel(procedure.category)}</p>
+    <p class="entry-card__meta">{categoryLabel}</p>
     <h3>{procedure.title}</h3>
     <p>{procedure.short}</p>
   </div>

@@ -1,23 +1,26 @@
 ---
 import Icon from './Icon.astro';
 import { site } from '../data/site';
+import { langOf } from '../lib/i18n';
+
+const isEnglish = langOf(Astro.url.pathname) === 'en';
 ---
 
 <form class="contact-form" data-contact-form novalidate>
   <div class="contact-form__head">
-    <p class="eyebrow"><span class="eyebrow__dot"></span>Φόρμα επικοινωνίας</p>
-    <h2>Στείλτε μας μήνυμα.</h2>
-    <p>Συμπληρώστε τα στοιχεία σας και θα επικοινωνήσουμε μαζί σας.</p>
+    <p class="eyebrow"><span class="eyebrow__dot"></span>{isEnglish ? 'Contact form' : 'Φόρμα επικοινωνίας'}</p>
+    <h2>{isEnglish ? 'Send us a message.' : 'Στείλτε μας μήνυμα.'}</h2>
+    <p>{isEnglish ? 'Fill in your details and we will get back to you.' : 'Συμπληρώστε τα στοιχεία σας και θα επικοινωνήσουμε μαζί σας.'}</p>
   </div>
 
   <div class="form-grid">
     <div class="field">
-      <label for="cf-name">Ονοματεπώνυμο *</label>
+      <label for="cf-name">{isEnglish ? 'Full name *' : 'Ονοματεπώνυμο *'}</label>
       <input id="cf-name" name="name" type="text" autocomplete="name" required />
     </div>
 
     <div class="field">
-      <label for="cf-phone">Τηλέφωνο</label>
+      <label for="cf-phone">{isEnglish ? 'Phone' : 'Τηλέφωνο'}</label>
       <input id="cf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" />
     </div>
 
@@ -27,50 +30,63 @@ import { site } from '../data/site';
     </div>
 
     <div class="field field--full">
-      <label for="cf-subject">Θέμα *</label>
+      <label for="cf-subject">{isEnglish ? 'Subject *' : 'Θέμα *'}</label>
       <select id="cf-subject" name="subject" required>
-        <option value="" selected disabled>Επιλέξτε θέμα</option>
-        <option value="Ραντεβού">Ραντεβού</option>
-        <option value="Ερώτηση για πάθηση">Ερώτηση για πάθηση</option>
-        <option value="Δεύτερη γνώμη">Δεύτερη γνώμη</option>
-        <option value="Επέμβαση / εξέταση">Επέμβαση / εξέταση</option>
-        <option value="Άλλο">Άλλο</option>
+        <option value="" selected disabled>{isEnglish ? 'Choose a subject' : 'Επιλέξτε θέμα'}</option>
+        <option value={isEnglish ? 'Appointment' : 'Ραντεβού'}>{isEnglish ? 'Appointment' : 'Ραντεβού'}</option>
+        <option value={isEnglish ? 'Question about a condition' : 'Ερώτηση για πάθηση'}>
+          {isEnglish ? 'Question about a condition' : 'Ερώτηση για πάθηση'}
+        </option>
+        <option value={isEnglish ? 'Second opinion' : 'Δεύτερη γνώμη'}>
+          {isEnglish ? 'Second opinion' : 'Δεύτερη γνώμη'}
+        </option>
+        <option value={isEnglish ? 'Procedure / test' : 'Επέμβαση / εξέταση'}>
+          {isEnglish ? 'Procedure / test' : 'Επέμβαση / εξέταση'}
+        </option>
+        <option value={isEnglish ? 'Other' : 'Άλλο'}>{isEnglish ? 'Other' : 'Άλλο'}</option>
       </select>
     </div>
 
     <div class="field field--full">
-      <label for="cf-message">Μήνυμα *</label>
+      <label for="cf-message">{isEnglish ? 'Message *' : 'Μήνυμα *'}</label>
       <textarea
         id="cf-message"
         name="message"
         required
-        placeholder="Γράψτε σύντομα τι σας απασχολεί. Μη συμπεριλάβετε ευαίσθητα ιατρικά δεδομένα."
+        placeholder={isEnglish ? 'Briefly describe what concerns you. Do not include sensitive medical data.' : 'Γράψτε σύντομα τι σας απασχολεί. Μη συμπεριλάβετε ευαίσθητα ιατρικά δεδομένα.'}
       ></textarea>
     </div>
 
     <label class="form-consent field--full">
       <input type="checkbox" name="consent" required />
       <span>
-        Συμφωνώ να χρησιμοποιηθούν τα στοιχεία μου για την επικοινωνία σχετικά με το αίτημά μου.
-        Διαβάστε την <a href="/apopoiisi">αποποίηση ευθύνης</a>.
+        {isEnglish
+          ? 'I agree that my details may be used to respond to my request. Read the '
+          : 'Συμφωνώ να χρησιμοποιηθούν τα στοιχεία μου για την επικοινωνία σχετικά με το αίτημά μου. Διαβάστε την '}
+        <a href={isEnglish ? '/en/disclaimer' : '/apopoiisi'}>
+          {isEnglish ? 'disclaimer' : 'αποποίηση ευθύνης'}
+        </a>.
       </span>
     </label>
   </div>
 
   <div class="form-submit">
     <button class="btn" type="submit">
-      Αποστολή μηνύματος
+      {isEnglish ? 'Send message' : 'Αποστολή μηνύματος'}
       <Icon name="arrow-up-right" size={15} />
     </button>
-    <p class="small muted">Η φόρμα ανοίγει το πρόγραμμα email σας.</p>
+    <p class="small muted">{isEnglish ? 'This form opens your email app.' : 'Η φόρμα ανοίγει το πρόγραμμα email σας.'}</p>
   </div>
 
   <p class="form-status" role="status" aria-live="polite" data-status></p>
 
   <noscript>
     <p class="small muted" style="margin-top: 16px;">
-      Για να στείλετε μήνυμα χωρίς JavaScript, καλέστε στο
-      <a href={`tel:+30${site.mobile}`}>{site.mobileDisplay}</a> ή στείλτε email στο
+      {isEnglish
+        ? 'To send a message without JavaScript, call '
+        : 'Για να στείλετε μήνυμα χωρίς JavaScript, καλέστε στο '}
+      <a href={`tel:+30${site.mobile}`}>{site.mobileDisplay}</a>
+      {isEnglish ? ' or email ' : ' ή στείλτε email στο '}
       <a href={`mailto:${site.email}`}>{site.email}</a>.
     </p>
   </noscript>
@@ -79,13 +95,18 @@ import { site } from '../data/site';
 <script>
   const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
   const status = document.querySelector<HTMLElement>('[data-status]');
+  const isEnglish = document.documentElement.lang === 'en';
 
   form?.addEventListener('submit', (event) => {
     event.preventDefault();
 
     if (!form.checkValidity()) {
       form.reportValidity();
-      if (status) status.textContent = 'Συμπληρώστε τα υποχρεωτικά πεδία.';
+      if (status) {
+        status.textContent = isEnglish
+          ? 'Please complete the required fields.'
+          : 'Συμπληρώστε τα υποχρεωτικά πεδία.';
+      }
       return;
     }
 
@@ -96,24 +117,36 @@ import { site } from '../data/site';
     const subject = String(data.get('subject') ?? '').trim();
     const message = String(data.get('message') ?? '').trim();
 
-    const body = [
-      `Ονοματεπώνυμο: ${name}`,
-      `Email: ${email}`,
-      phone ? `Τηλέφωνο: ${phone}` : null,
-      `Θέμα: ${subject}`,
-      '',
-      message,
-    ]
-      .filter((line) => line !== null)
-      .join('\n');
+    const body = isEnglish
+      ? [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          phone ? `Phone: ${phone}` : null,
+          `Subject: ${subject}`,
+          '',
+          message,
+        ]
+          .filter((line) => line !== null)
+          .join('\n')
+      : [
+          `Ονοματεπώνυμο: ${name}`,
+          `Email: ${email}`,
+          phone ? `Τηλέφωνο: ${phone}` : null,
+          `Θέμα: ${subject}`,
+          '',
+          message,
+        ]
+          .filter((line) => line !== null)
+          .join('\n');
 
     const mailto = `mailto:desalermosclinic@gmail.com?subject=${encodeURIComponent(
-      `Αίτημα μέσω ιστοσελίδας — ${subject}`,
+      isEnglish ? `Website enquiry — ${subject}` : `Αίτημα μέσω ιστοσελίδας — ${subject}`,
     )}&body=${encodeURIComponent(body)}`;
 
     if (status) {
-      status.textContent =
-        'Ανοίγει το πρόγραμμα email σας με το μήνυμα έτοιμο. Αν δεν ανοίξει, καλέστε στο 699 225 2277.';
+      status.textContent = isEnglish
+        ? 'Your email app is opening with the message ready. If it does not open, call 699 225 2277.'
+        : 'Ανοίγει το πρόγραμμα email σας με το μήνυμα έτοιμο. Αν δεν ανοίξει, καλέστε στο 699 225 2277.';
     }
 
     window.location.href = mailto;

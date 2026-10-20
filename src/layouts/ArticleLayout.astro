@@ -124,7 +124,12 @@ const pageSchema = {
       </header>
 
       <figure class="article-media" data-reveal="fade">
-        <Pic name={image} sizes="(min-width: 1100px) 1080px, 92vw" loading="eager" />
+        <Pic
+          name={image}
+          sizes="(min-width: 1100px) 1080px, 92vw"
+          loading="eager"
+          alt={isEnglish ? title : undefined}
+        />
       </figure>
 
       {
@@ -157,6 +162,7 @@ const pageSchema = {
                         name={inlineImage.name}
                         sizes="(min-width: 900px) 720px, 92vw"
                         loading="lazy"
+                        alt={isEnglish ? inlineImage.caption : undefined}
                       />
                       <figcaption>{inlineImage.caption}</figcaption>
                     </figure>

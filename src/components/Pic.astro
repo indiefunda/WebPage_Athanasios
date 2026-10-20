@@ -1,5 +1,7 @@
 ---
 import images from '../data/images.json';
+import altEn from '../data/images-en.json';
+import { langOf } from '../lib/i18n';
 
 interface Props {
   name: keyof typeof images | string;
@@ -27,6 +29,10 @@ if (!image) {
   throw new Error(`Unknown image "${name}" — add it to scripts/prepare-images.mjs`);
 }
 
+const isEnglish = langOf(Astro.url.pathname) === 'en';
+const englishAlt = (altEn as Record<string, string>)[name];
+const resolvedAlt = alt ?? (isEnglish ? englishAlt ?? image.alt : image.alt);
+
 const avif = image.variants.map((variant: any) => `${variant.avif} ${variant.width}w`).join(', ');
 const webp = image.variants.map((variant: any) => `${variant.webp} ${variant.width}w`).join(', ');
 const fallback = image.variants[image.variants.length - 1];
@@ -40,7 +46,7 @@ const fallback = image.variants[image.variants.length - 1];
     src={fallback.webp}
     width={image.width}
     height={image.height}
-    alt={alt ?? image.alt}
+    alt={resolvedAlt}
     loading={loading}
     decoding="async"
     fetchpriority={fetchpriority}

@@ -1,0 +1,58 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { newsEn } from '../../../data/en/news';
+import { conditionsEn } from '../../../data/en/conditions';
+import type { Post } from '../../../data/types';
+
+export function getStaticPaths() {
+  return newsEn.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as { post: Post };
+
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+    new Date(iso),
+  );
+
+const relatedSlugs = post.relatedConditions ?? [];
+const related = conditionsEn
+  .filter((condition) => relatedSlugs.includes(condition.slug))
+  .map((condition) => ({
+    title: condition.title,
+    href: `/en/conditions/${condition.slug}`,
+    short: condition.short,
+  }));
+
+const more = [...newsEn]
+  .filter((article) => article.slug !== post.slug)
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .map((article) => ({
+    title: article.title,
+    href: `/en/articles/${article.slug}`,
+    short: article.excerpt,
+  }));
+---
+
+<ArticleLayout
+  title={post.title}
+  short={post.excerpt}
+  category={post.category}
+  image={post.image}
+  paragraphs={post.paragraphs}
+  keyPoints={post.keyPoints ?? []}
+  inlineImage={post.inlineImage}
+  references={post.references}
+  crumbs={[{ label: 'Articles', href: '/en/articles' }, { label: 'Article' }]}
+  indexPath="/en/articles"
+  indexLabel="Articles"
+  backLabel="All articles"
+  relatedTitle="Related conditions"
+  related={related}
+  more={more}
+  moreTitle="More articles"
+  metaLabel={formatDate(post.date)}
+/>

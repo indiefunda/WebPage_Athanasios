@@ -11,7 +11,7 @@ const { compact = false, class: className = '' } = Astro.props;
 const isEnglish = langOf(Astro.url.pathname) === 'en';
 const name = isEnglish ? 'Athanasios Desalermos' : site.name;
 const lastName = isEnglish ? 'Desalermos' : site.lastName;
-const href = isEnglish ? '/en/' : '/';
+const href = isEnglish ? '/en' : '/';
 const meta = isEnglish ? 'Gastroenterology · Hepatology' : 'Γαστρεντερολογία · Ηπατολογία';
 ---
 

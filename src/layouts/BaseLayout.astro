@@ -33,7 +33,7 @@ const brandName = isEnglish ? 'Athanasios Desalermos' : site.name;
 const role = isEnglish ? 'Gastroenterologist – Hepatologist' : site.role;
 
 const pageTitle = /Desalermos|Δεσαλέρμος/.test(title) ? title : `${title} | ${brandName}`;
-const path = Astro.url.pathname.replace(/\/index\.html$/, '/');
+const path = Astro.url.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '') || '/';
 const canonical = new URL(path, Astro.site).href;
 const socialImage = new URL(image, Astro.site).href;
 const alternates = hreflangPaths(path);
@@ -109,13 +109,9 @@ const schemas = schema ? [physicianSchema, ...(Array.isArray(schema) ? schema : 
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {isEnglish && (
-      <>
-        <link rel="alternate" hreflang="el" href={alternateEl} />
-        <link rel="alternate" hreflang="en" href={alternateEn} />
-        <link rel="alternate" hreflang="x-default" href={alternateEl} />
-      </>
-    )}
+    <link rel="alternate" hreflang="el" href={alternateEl} />
+    <link rel="alternate" hreflang="en" href={alternateEn} />
+    <link rel="alternate" hreflang="x-default" href={alternateEl} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <meta name="author" content={brandName} />

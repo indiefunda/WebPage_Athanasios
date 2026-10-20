@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import MapCard from '../../components/MapCard.astro';
+import { siteEn } from '../../data/en/site';
+import '../../styles/pages.css';
+---
+
+<BaseLayout
+  title="Contact — Appointments in Marousi"
+  description="Contact Dr. Athanasios Desalermos's clinic: 58 Kifisias Avenue, Marousi. Phone 699 225 2277 and 210 615 7438, email desalermosclinic@gmail.com."
+>
+  <PageHero
+    eyebrow="Contact"
+    index="05"
+    title="Let’s talk."
+    lede="Book an appointment or send us your question. The clinic is in Marousi, at 58 Kifisias Avenue."
+    crumbs={[{ label: 'Contact' }]}
+  />
+
+  <section class="contact-page" id="rantevou">
+    <div class="container contact-page__grid">
+      <div class="contact-info">
+        <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>Contact details</p>
+        <h2 data-reveal style="--i:1">The clinic<br />in Marousi.</h2>
+        <p data-reveal style="--i:2">
+          Visits are by appointment, so there is enough time for every patient. For appointments or
+          questions, call us or send an email.
+        </p>
+
+        <dl class="contact-list" data-reveal style="--i:3">
+          <div class="contact-item">
+            <dt>Address</dt>
+            <dd>
+              {siteEn.address.street}<br />
+              {siteEn.address.locality} {siteEn.address.postalCode}
+            </dd>
+          </div>
+          <div class="contact-item">
+            <dt>Mobile</dt>
+            <dd><a href={`tel:+30${siteEn.mobile}`}>{siteEn.mobileDisplay}</a></dd>
+          </div>
+          <div class="contact-item">
+            <dt>Landline</dt>
+            <dd><a href={`tel:+30${siteEn.phone}`}>{siteEn.phoneDisplay}</a></dd>
+          </div>
+          <div class="contact-item">
+            <dt>Email</dt>
+            <dd><a href={`mailto:${siteEn.email}`}>{siteEn.email}</a></dd>
+          </div>
+          <div class="contact-item">
+            <dt>Visits</dt>
+            <dd>{siteEn.hours}</dd>
+          </div>
+          <div class="contact-item">
+            <dt>Access</dt>
+            <dd>
+              <a href={siteEn.mapsUrl} target="_blank" rel="noopener noreferrer">
+                Directions in maps <Icon name="external" size={13} />
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+        <div class="contact-note" data-reveal>
+          <Icon name="stethoscope" size={18} />
+          <p>
+            For emergencies, do not use the form. Call <a href="tel:112">112</a> or
+            <a href="tel:166">166</a>, or go to the nearest hospital.
+          </p>
+        </div>
+      </div>
+
+      <div data-reveal="fade">
+        <ContactForm />
+      </div>
+    </div>
+
+    <div class="container">
+      <MapCard />
+    </div>
+  </section>
+</BaseLayout>

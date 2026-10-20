@@ -1,7 +1,7 @@
 export type Lang = 'el' | 'en';
 
 const routePairs: Array<[string, string]> = [
-  ['/', '/en/'],
+  ['/', '/en'],
   ['/o-iatros', '/en/about'],
   ['/iatreio', '/en/clinic'],
   ['/pathiseis', '/en/conditions'],
@@ -11,8 +11,20 @@ const routePairs: Array<[string, string]> = [
   ['/apopoiisi', '/en/disclaimer'],
 ];
 
-export const isEnglish = (pathname: string): boolean =>
-  pathname === '/en' || pathname.startsWith('/en/');
+/**
+ * Astro's static build exposes `/en.html` (or `/o-iatros.html`) as the
+ * pathname, while production serves clean URLs. Normalise both forms so
+ * language detection, hreflang and the switcher work in dev and production.
+ */
+const normalize = (pathname: string): string => {
+  const clean = pathname.replace(/\/+$/, '').replace(/\.html$/, '');
+  return clean || '/';
+};
+
+export const isEnglish = (pathname: string): boolean => {
+  const path = normalize(pathname);
+  return path === '/en' || path.startsWith('/en/');
+};
 
 export const langOf = (pathname: string): Lang => (isEnglish(pathname) ? 'en' : 'el');
 
@@ -22,9 +34,9 @@ export const langOf = (pathname: string): Lang => (isEnglish(pathname) ? 'en' : 
  * reads better ("/o-iatros" → "/en/about").
  */
 export function alternatePath(pathname: string): string {
-  const path = pathname.replace(/\/+$/, '') || '/';
+  const path = normalize(pathname);
 
-  if (path === '/') return '/en/';
+  if (path === '/') return '/en';
   if (path === '/en') return '/';
 
   if (path.startsWith('/en/')) {
@@ -46,14 +58,15 @@ export function alternatePath(pathname: string): string {
     }
   }
 
-  return '/en/';
+  return '/en';
 }
 
 export function hreflangPaths(pathname: string): { el: string; en: string } {
-  const lang = langOf(pathname);
-  const alternate = alternatePath(pathname);
+  const path = normalize(pathname);
+  const lang = isEnglish(path);
+  const alternate = alternatePath(path);
   return {
-    el: lang === 'el' ? pathname : alternate,
-    en: lang === 'en' ? pathname : alternate,
+    el: lang ? alternate : path,
+    en: lang ? path : alternate,
   };
 }

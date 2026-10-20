@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Pic from '../../../components/Pic.astro';
+import Icon from '../../../components/Icon.astro';
+import PageHero from '../../../components/PageHero.astro';
+import { newsEn } from '../../../data/en/news';
+import '../../../styles/pages.css';
+
+const sorted = [...newsEn].sort((a, b) => b.date.localeCompare(a.date));
+const [featured, ...rest] = sorted;
+
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+    new Date(iso),
+  );
+---
+
+<BaseLayout
+  title="Articles — Notes on health"
+  description="Articles and notes by Athanasios Desalermos on symptoms, tests and daily habits that affect digestive and liver health."
+>
+  <PageHero
+    eyebrow="Articles"
+    index="06"
+    title="Notes<br />on health."
+    lede="Short, evidence-based articles on symptoms, tests and everyday habits that make a difference."
+    crumbs={[{ label: 'Articles' }]}
+  />
+
+  <section class="section">
+    <div class="container">
+      {
+        featured && (
+          <a class="news-lead" href={`/en/articles/${featured.slug}`} data-reveal>
+            <div class="news-lead__media">
+              <Pic name={featured.image} sizes="(min-width: 900px) 55vw, 92vw" />
+            </div>
+            <div>
+              <p class="news-meta">
+                <span>{featured.category}</span>
+                <span>{formatDate(featured.date)}</span>
+              </p>
+              <h2>{featured.title}</h2>
+              <p>{featured.excerpt}</p>
+              <span class="link-arrow">
+                Read the article
+                <Icon name="arrow-right" size={15} />
+              </span>
+            </div>
+          </a>
+        )
+      }
+
+      {
+        rest.length > 0 && (
+          <div class="news-grid">
+            {rest.map((post) => (
+              <a class="news-card" href={`/en/articles/${post.slug}`} data-reveal>
+                <div class="news-card__media">
+                  <Pic name={post.image} sizes="(min-width: 760px) 44vw, 92vw" />
+                </div>
+                <p class="news-meta">
+                  <span>{post.category}</span>
+                  <span>{formatDate(post.date)}</span>
+                </p>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <span class="link-arrow">
+                  Read the article
+                  <Icon name="arrow-right" size={15} />
+                </span>
+              </a>
+            ))}
+          </div>
+        )
+      }
+
+      <div class="article-note" style="margin-top: 64px;">
+        <p class="article-note__label">
+          <Icon name="stethoscope" size={16} />
+          About this content
+        </p>
+        <p>
+          These articles are for general information and do not replace individualized medical advice.
+          For personal medical concerns, book an appointment or contact the clinic.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

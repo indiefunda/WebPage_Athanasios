@@ -43,7 +43,7 @@ export const nav = [
 ] as const;
 
 export const navEn = [
-  { label: 'Home', href: '/en/' },
+  { label: 'Home', href: '/en' },
   { label: 'About', href: '/en/about' },
   { label: 'Clinic', href: '/en/clinic' },
   { label: 'Conditions', href: '/en/conditions' },

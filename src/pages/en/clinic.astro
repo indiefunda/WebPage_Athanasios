@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Pic from '../../components/Pic.astro';
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import MapCard from '../../components/MapCard.astro';
+import { siteEn } from '../../data/en/site';
+import '../../styles/pages.css';
+---
+
+<BaseLayout
+  title="The Clinic — Marousi, Athens"
+  description="Dr. Athanasios Desalermos's clinic in Marousi: 58 Kifisias Avenue, 1st floor. A calm, discreet and luxurious space for gastroenterology and hepatology care."
+>
+  <PageHero
+    eyebrow="The Clinic"
+    index="02"
+    title="A space<br />to be heard."
+    lede="In Marousi, a calm, discreet and luxurious space — designed for comfort and safety."
+    crumbs={[{ label: 'Clinic' }]}
+  />
+
+  <section class="section">
+    <div class="container about-page__grid">
+      <div class="about-page__body">
+        <h2 data-reveal>Care as an experience</h2>
+        <p data-reveal>
+          Our clinic is a modern, elegant and luxurious environment, designed to offer comfort, safety
+          and discretion to every patient.
+        </p>
+        <p data-reveal>
+          With attention to detail and a friendly atmosphere, we welcome patients into a space that
+          combines clinical excellence with personal care.
+        </p>
+        <p data-reveal>
+          The clinic is at 58 Kifisias Avenue, first floor, Marousi. Visits are by appointment, so there
+          is time for every person and every question.
+        </p>
+
+        <dl class="about-facts" data-reveal>
+          <div class="about-fact">
+            <dt>Address</dt>
+            <dd>{siteEn.address.street}, {siteEn.address.locality}</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Appointments</dt>
+            <dd>{siteEn.bookNote}</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Phone</dt>
+            <dd>{siteEn.mobileDisplay} · {siteEn.phoneDisplay}</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Email</dt>
+            <dd>{siteEn.email}</dd>
+          </div>
+        </dl>
+
+        <div class="about-page__links" data-reveal>
+          <a class="btn" href="/en/contact#rantevou">
+            Book an appointment
+            <Icon name="arrow-up-right" size={15} />
+          </a>
+          <a class="btn btn--ghost" href={siteEn.mapsUrl} target="_blank" rel="noopener noreferrer">
+            Directions
+            <Icon name="external" size={14} />
+          </a>
+        </div>
+      </div>
+
+      <div class="about-page__media">
+        <div class="about-page__portrait" data-reveal="fade" style="aspect-ratio: 4 / 5; max-width: none;">
+          <Pic name="clinic-1" sizes="(min-width: 900px) 42vw, 92vw" />
+        </div>
+        <p class="about-page__caption" data-reveal="fade">
+          <span>Marousi clinic</span>
+          <span>58 Kifisias Ave.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow"><span class="eyebrow__num">01</span>The space</p>
+          <h2>Calm, light<br />and luxury.</h2>
+        </div>
+        <p class="section-head__aside">
+          Every detail of the space has been chosen to make the visit as calm as possible — from
+          reception to the examination.
+        </p>
+      </div>
+
+      <div class="clinic__gallery" data-reveal="fade">
+        <figure class="clinic__shot">
+          <Pic name="clinic-2" sizes="(min-width: 900px) 44vw, 46vw" />
+          <figcaption>The examination room</figcaption>
+        </figure>
+        <figure class="clinic__shot">
+          <Pic name="clinic-3" sizes="(min-width: 900px) 44vw, 46vw" />
+          <figcaption>The consultation office</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="prosvasi">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow"><span class="eyebrow__num">02</span>Access</p>
+          <h2>How to find us.</h2>
+        </div>
+        <p class="section-head__aside">
+          The clinic is at 58 Kifisias Avenue, Marousi, on the first floor. It is easy to reach by car
+          or public transport.
+        </p>
+      </div>
+
+      <div class="about-page__grid">
+        <div>
+          <dl class="about-facts" style="margin-top: 0;">
+            <div class="about-fact">
+              <dt>Address</dt>
+              <dd>{siteEn.address.street}, {siteEn.address.locality} {siteEn.address.postalCode}</dd>
+            </div>
+            <div class="about-fact">
+              <dt>Floor</dt>
+              <dd>1st floor</dd>
+            </div>
+            <div class="about-fact">
+              <dt>Appointments</dt>
+              <dd>{siteEn.bookNote}</dd>
+            </div>
+          </dl>
+
+          <div class="about-page__links">
+            <a class="btn" href={siteEn.mapsUrl} target="_blank" rel="noopener noreferrer">
+              Open in maps
+              <Icon name="external" size={14} />
+            </a>
+            <a class="btn btn--ghost" href={`tel:+30${siteEn.mobile}`}>
+              <Icon name="phone" size={15} />
+              {siteEn.mobileDisplay}
+            </a>
+          </div>
+        </div>
+
+        <div class="map" style="margin-top: 0;">
+          <MapCard />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    eyebrow="Contact"
+    title="We will be glad to help."
+    text="Call for an appointment or send us a message. We will explain the process and what you need to know before your visit."
+  />
+</BaseLayout>

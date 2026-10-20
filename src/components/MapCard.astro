@@ -1,15 +1,20 @@
 ---
 import Icon from './Icon.astro';
 import { site } from '../data/site';
+import { siteEn } from '../data/en/site';
+import { langOf } from '../lib/i18n';
+
+const isEnglish = langOf(Astro.url.pathname) === 'en';
+const clinic = isEnglish ? siteEn : site;
 ---
 
 <figure class="map-card">
   <a
     class="map-card__link"
-    href={site.mapsUrl}
+    href={clinic.mapsUrl}
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="Άνοιγμα της διεύθυνσης του ιατρείου στους χάρτες"
+    aria-label={isEnglish ? 'Open the clinic address in maps' : 'Άνοιγμα της διεύθυνσης του ιατρείου στους χάρτες'}
   >
     <img
       src="/images/map-marousi.jpg"
@@ -17,21 +22,21 @@ import { site } from '../data/site';
       sizes="(min-width: 1000px) 54vw, 94vw"
       width="1600"
       height="720"
-      alt={`Χάρτης της περιοχής του ιατρείου: ${site.addressOneLine}`}
+      alt={isEnglish ? `Map of the clinic area: ${clinic.addressOneLine}` : `Χάρτης της περιοχής του ιατρείου: ${clinic.addressOneLine}`}
       loading="lazy"
       decoding="async"
     />
     <span class="map-card__tag">
       <Icon name="pin" size={14} />
-      {site.address.street}, {site.address.locality}
+      {clinic.address.street}, {clinic.address.locality}
     </span>
     <span class="map-card__cta">
-      Οδηγίες στους χάρτες
+      {isEnglish ? 'Directions in maps' : 'Οδηγίες στους χάρτες'}
       <Icon name="arrow-up-right" size={14} />
     </span>
   </a>
   <figcaption class="map-card__caption">
-    <span>{site.addressOneLine}</span>
-    <span>Χάρτης © OpenStreetMap contributors</span>
+    <span>{clinic.addressOneLine}</span>
+    <span>Map © OpenStreetMap contributors</span>
   </figcaption>
 </figure>

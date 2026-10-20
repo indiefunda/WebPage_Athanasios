@@ -367,7 +367,8 @@
 }
 
 .site-menu__lang {
-  display: inline-block;
+  display: block;
+  width: fit-content;
   margin-top: 12px;
   font-size: 0.78rem;
   font-weight: 600;

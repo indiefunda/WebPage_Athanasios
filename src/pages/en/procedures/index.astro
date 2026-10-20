@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProcedureEntry from '../../../components/ProcedureEntry.astro';
+import Icon from '../../../components/Icon.astro';
+import PageHero from '../../../components/PageHero.astro';
+import CtaSection from '../../../components/CtaSection.astro';
+import { proceduresEn } from '../../../data/en/procedures';
+import { procedureCategoriesEn } from '../../../data/en/taxonomy';
+import '../../../styles/pages.css';
+
+const featured = proceduresEn.filter((procedure) => procedure.featured);
+const secondary = proceduresEn.filter((procedure) => !procedure.featured);
+---
+
+<BaseLayout
+  title="Procedures — Colonoscopy, gastroscopy and specialized tests"
+  description="Colonoscopy, gastroscopy, small-bowel capsule, esophageal manometry and pH-metry at Dr. Athanasios Desalermos's clinic in Athens."
+>
+  <PageHero
+    eyebrow="Procedures"
+    index="03"
+    title="Diagnostic<br />and therapeutic<br />procedures."
+    lede="Colonoscopy, gastroscopy, small-bowel capsule, manometry and pH-metry — with a focus on prevention and functional diagnosis."
+    crumbs={[{ label: 'Procedures' }]}
+  />
+
+  <section class="directory">
+    <div class="container">
+      <div class="directory__toolbar">
+        <div class="directory__meta">
+          <p class="directory__count">{proceduresEn.length} procedures</p>
+          <p class="directory__hint">
+            The priority procedures are listed first; specialized tests follow.
+          </p>
+        </div>
+        <ul class="filter-legend">
+          {
+            procedureCategoriesEn.map((category) => (
+              <li>
+                <span>{category.label}</span>
+                {String(proceduresEn.filter((procedure) => procedure.category === category.key).length).padStart(2, '0')}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <section class="category-block" style="margin-top: 0;">
+        <div class="category-block__head">
+          <h2>Priority procedures</h2>
+          <p>The procedures we focus on in daily practice.</p>
+        </div>
+        <div class="entry-grid">
+          {featured.map((procedure) => <ProcedureEntry procedure={procedure} />)}
+        </div>
+      </section>
+
+      {
+        secondary.length > 0 && (
+          <section class="category-block">
+            <div class="category-block__head">
+              <h2>Specialized procedures</h2>
+              <p>Additional procedures for specific indications.</p>
+            </div>
+            <div class="entry-grid">
+              {secondary.map((procedure) => <ProcedureEntry procedure={procedure} />)}
+            </div>
+          </section>
+        )
+      }
+
+      <div class="article-note" style="margin-top: 56px;">
+        <p class="article-note__label">
+          <Icon name="stethoscope" size={16} />
+          Before the procedure
+        </p>
+        <p>
+          Preparation instructions, sedation and the procedure itself are discussed individually
+          before every test. Contact the clinic with any question.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    eyebrow="Appointments"
+    title="Do you need a procedure?"
+    text="Book an appointment to discuss the right procedure, the preparation and the time it requires."
+  />
+</BaseLayout>

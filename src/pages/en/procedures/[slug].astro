@@ -1,0 +1,57 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { proceduresEn } from '../../../data/en/procedures';
+import { conditionsEn } from '../../../data/en/conditions';
+import { procedureCategoryLabelEn, relatedConditionsEn } from '../../../data/en/taxonomy';
+import type { Procedure } from '../../../data/types';
+
+export function getStaticPaths() {
+  return proceduresEn.map((procedure) => ({
+    params: { slug: procedure.slug },
+    props: { procedure },
+  }));
+}
+
+const { procedure } = Astro.props as { procedure: Procedure };
+const related = relatedConditionsEn(procedure, conditionsEn);
+const more = proceduresEn
+  .filter((item) => item.category === procedure.category && item.slug !== procedure.slug)
+  .slice(0, 3)
+  .map((item) => ({
+    title: item.title,
+    href: `/en/procedures/${item.slug}`,
+    short: item.short,
+  }));
+
+const note =
+  'Preparation instructions, sedation and after-care are discussed individually. Contact the clinic with any question before or after the procedure.';
+---
+
+<ArticleLayout
+  title={procedure.title}
+  short={procedure.short}
+  category={procedureCategoryLabelEn(procedure.category)}
+  image={procedure.image}
+  paragraphs={procedure.paragraphs}
+  references={procedure.references}
+  crumbs={[
+    { label: 'Procedures', href: '/en/procedures' },
+    { label: procedure.title },
+  ]}
+  indexPath="/en/procedures"
+  indexLabel="Procedures"
+  backLabel="All procedures"
+  relatedTitle="Related conditions"
+  related={related.map((condition) => ({
+    title: condition.title,
+    href: `/en/conditions/${condition.slug}`,
+    short: condition.short,
+  }))}
+  more={more}
+  moreTitle="Related procedures"
+  note={note}
+  schema={{
+    about: { '@type': 'MedicalProcedure', name: procedure.title },
+    specialty: { '@type': 'MedicalSpecialty', name: 'Gastroenterologic' },
+  }}
+/>

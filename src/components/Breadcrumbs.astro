@@ -13,7 +13,7 @@ interface Props {
 
 const { items, class: className = '' } = Astro.props;
 const isEnglish = langOf(Astro.url.pathname) === 'en';
-const homeHref = isEnglish ? '/en/' : '/';
+const homeHref = isEnglish ? '/en' : '/';
 const homeLabel = isEnglish ? 'Home' : 'Αρχική';
 ---
 
