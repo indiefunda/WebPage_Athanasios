@@ -1,0 +1,25 @@
+---
+import Pic from './Pic.astro';
+import { procedureCategoryLabel } from '../data/taxonomy';
+import type { Procedure } from '../data/types';
+
+interface Props {
+  procedure: Procedure;
+}
+
+const { procedure } = Astro.props;
+---
+
+<a class="entry-card" href={`/epemvaseis/${procedure.slug}`} data-reveal>
+  <div class="entry-card__media">
+    <Pic
+      name={procedure.image}
+      sizes="(min-width: 1000px) 30vw, (min-width: 620px) 45vw, 92vw"
+    />
+  </div>
+  <div>
+    <p class="entry-card__meta">{procedureCategoryLabel(procedure.category)}</p>
+    <h3>{procedure.title}</h3>
+    <p>{procedure.short}</p>
+  </div>
+</a>

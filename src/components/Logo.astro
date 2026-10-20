@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import { langOf } from '../lib/i18n';
 
 interface Props {
   compact?: boolean;
@@ -7,9 +8,14 @@ interface Props {
 }
 
 const { compact = false, class: className = '' } = Astro.props;
+const isEnglish = langOf(Astro.url.pathname) === 'en';
+const name = isEnglish ? 'Athanasios Desalermos' : site.name;
+const lastName = isEnglish ? 'Desalermos' : site.lastName;
+const href = isEnglish ? '/en/' : '/';
+const meta = isEnglish ? 'Gastroenterology · Hepatology' : 'Γαστρεντερολογία · Ηπατολογία';
 ---
 
-<a class={`brand ${className}`} href="/" aria-label={`${site.name} — Αρχική`}>
+<a class={`brand ${className}`} href={href} aria-label={`${name} — ${isEnglish ? 'Home' : 'Αρχική'}`}>
   <svg class="brand__mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
     <path
       d="M20 4.5 35.5 33.5H4.5L20 4.5Z"
@@ -20,7 +26,7 @@ const { compact = false, class: className = '' } = Astro.props;
     <circle cx="20" cy="27" r="2.3" fill="var(--accent)"></circle>
   </svg>
   <span class="brand__text">
-    <span class="brand__name">{compact ? site.lastName : site.name}</span>
-    <span class="brand__meta">Γαστρεντερολογία · Ηπατολογία</span>
+    <span class="brand__name">{compact ? lastName : name}</span>
+    <span class="brand__meta">{meta}</span>
   </span>
 </a>

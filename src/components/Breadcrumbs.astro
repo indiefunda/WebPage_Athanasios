@@ -1,4 +1,6 @@
 ---
+import { langOf } from '../lib/i18n';
+
 interface Item {
   label: string;
   href?: string;
@@ -10,11 +12,14 @@ interface Props {
 }
 
 const { items, class: className = '' } = Astro.props;
+const isEnglish = langOf(Astro.url.pathname) === 'en';
+const homeHref = isEnglish ? '/en/' : '/';
+const homeLabel = isEnglish ? 'Home' : 'Αρχική';
 ---
 
-<nav class={`breadcrumbs ${className}`} aria-label="Διαδρομή πλοήγησης">
+<nav class={`breadcrumbs ${className}`} aria-label={isEnglish ? 'Breadcrumb' : 'Διαδρομή πλοήγησης'}>
   <ol>
-    <li><a href="/">Αρχική</a></li>
+    <li><a href={homeHref}>{homeLabel}</a></li>
     {
       items.map((item, index) => (
         <li>

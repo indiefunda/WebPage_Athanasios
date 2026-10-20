@@ -4,6 +4,7 @@ import Pic from '../components/Pic.astro';
 import Icon from '../components/Icon.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { site } from '../data/site';
+import { langOf } from '../lib/i18n';
 import imageData from '../data/images.json';
 import '../styles/pages.css';
 
@@ -19,6 +20,8 @@ interface Props {
   category: string;
   image: string;
   paragraphs: string[];
+  keyPoints?: string[];
+  inlineImage?: { name: string; caption: string };
   references?: { label: string; url: string }[];
   crumbs: { label: string; href?: string }[];
   indexPath?: string;
@@ -33,34 +36,42 @@ interface Props {
   schema?: Record<string, unknown>;
 }
 
+const isEnglish = langOf(Astro.url.pathname) === 'en';
+
 const {
   title,
   short,
   category,
   image,
   paragraphs,
+  keyPoints = [],
+  inlineImage,
   references = [],
   crumbs,
-  indexPath = '/pathiseis',
-  indexLabel = 'Παθήσεις',
+  indexPath = isEnglish ? '/en/conditions' : '/pathiseis',
+  indexLabel = isEnglish ? 'Conditions' : 'Παθήσεις',
   backLabel,
   related = [],
-  relatedTitle = 'Σχετικά',
+  relatedTitle = isEnglish ? 'Related' : 'Σχετικά',
   more = [],
-  moreTitle = 'Σχετικά θέματα',
+  moreTitle = isEnglish ? 'Related articles' : 'Σχετικά θέματα',
   note,
-  metaLabel = 'Ιατρική ενημέρωση',
+  metaLabel = isEnglish ? 'Medical information' : 'Ιατρική ενημέρωση',
   schema,
 } = Astro.props;
 
 const words = paragraphs.join(' ').split(/\s+/).filter(Boolean).length;
 const readingTime = Math.max(2, Math.ceil(words / 180));
-const backText = backLabel ?? `Όλες οι ${indexLabel.toLowerCase()}`;
+const firstHeading = paragraphs.findIndex((paragraph, index) => index > 0 && paragraph.startsWith('## '));
+const inlineAfter =
+  firstHeading > 0 ? firstHeading - 1 : Math.min(2, paragraphs.length - 1);
+const backText = backLabel ?? (isEnglish ? `All ${indexLabel.toLowerCase()}` : `Όλες οι ${indexLabel.toLowerCase()}`);
 const socialImage =
   (imageData as Record<string, any>)[image]?.variants?.at(-1)?.webp ?? '/og.jpg';
 
-const defaultNote =
-  'Αν εμφανίσετε έντονο ή επίμονο πόνο, αιμορραγία από το πεπτικό, πυρετό, ανεξήγητη απώλεια βάρους ή επίμονη αλλαγή στις κενώσεις, αναζητήστε άμεσα ιατρική εκτίμηση.';
+const defaultNote = isEnglish
+  ? 'If you have severe or persistent pain, bleeding from the digestive tract, fever, unexplained weight loss or a persistent change in bowel habits, seek medical assessment promptly.'
+  : 'Αν εμφανίσετε έντονο ή επίμονο πόνο, αιμορραγία από το πεπτικό, πυρετό, ανεξήγητη απώλεια βάρους ή επίμονη αλλαγή στις κενώσεις, αναζητήστε άμεσα ιατρική εκτίμηση.';
 
 const pageSchema = {
   '@context': 'https://schema.org',
@@ -68,11 +79,15 @@ const pageSchema = {
   name: title,
   description: short,
   url: new URL(Astro.url.pathname, Astro.site).href,
-  inLanguage: 'el',
-  isPartOf: { '@type': 'WebSite', name: site.name, url: site.url },
+  inLanguage: isEnglish ? 'en' : 'el',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: isEnglish ? 'Athanasios Desalermos' : site.name,
+    url: site.url,
+  },
   author: {
     '@type': 'Physician',
-    name: site.name,
+    name: isEnglish ? 'Athanasios Desalermos' : site.name,
     url: site.url,
   },
   ...schema,
@@ -101,7 +116,7 @@ const pageSchema = {
           <div class="article-head__aside" data-reveal style="--i:2">
             <p class="article-head__lede">{short}</p>
             <p class="article-head__meta">
-              <span>{readingTime} λεπτά ανάγνωσης</span>
+              <span>{readingTime} {isEnglish ? 'min read' : 'λεπτά ανάγνωσης'}</span>
               <span>{metaLabel}</span>
             </p>
           </div>
@@ -112,24 +127,49 @@ const pageSchema = {
         <Pic name={image} sizes="(min-width: 1100px) 1080px, 92vw" loading="eager" />
       </figure>
 
+      {
+        keyPoints.length > 0 && (
+          <aside class="article-keypoints" data-reveal>
+            <p class="eyebrow">{isEnglish ? 'In 30 seconds' : 'Σε 30 δευτερόλεπτα'}</p>
+            <ul>
+              {keyPoints.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </aside>
+        )
+      }
+
       <div class="article-grid">
         <div class="article-body">
           <div class="prose">
             {
-              paragraphs.map((paragraph) =>
-                paragraph.startsWith('## ') ? (
-                  <h2>{paragraph.replace('## ', '')}</h2>
-                ) : (
-                  <p set:html={paragraph} />
-                ),
-              )
+              paragraphs.map((paragraph, index) => (
+                <Fragment>
+                  {paragraph.startsWith('## ') ? (
+                    <h2>{paragraph.replace('## ', '')}</h2>
+                  ) : (
+                    <p set:html={paragraph} />
+                  )}
+                  {inlineImage && index === inlineAfter && (
+                    <figure class="article-inline">
+                      <Pic
+                        name={inlineImage.name}
+                        sizes="(min-width: 900px) 720px, 92vw"
+                        loading="lazy"
+                      />
+                      <figcaption>{inlineImage.caption}</figcaption>
+                    </figure>
+                  )}
+                </Fragment>
+              ))
             }
           </div>
 
           <div class="article-note">
             <p class="article-note__label">
               <Icon name="stethoscope" size={16} />
-              Πότε να αναζητήσετε βοήθεια
+              {isEnglish ? 'When to seek help' : 'Πότε να αναζητήσετε βοήθεια'}
             </p>
             <p>{note ?? defaultNote}</p>
           </div>
@@ -137,7 +177,7 @@ const pageSchema = {
           {
             references.length > 0 && (
               <div class="article-references">
-                <p class="eyebrow">Πηγές</p>
+                <p class="eyebrow">{isEnglish ? 'Sources' : 'Πηγές'}</p>
                 <ul>
                   {references.map((reference) => (
                     <li>
@@ -152,7 +192,7 @@ const pageSchema = {
             )
           }
 
-          <nav class="article-back" aria-label="Επιστροφή">
+          <nav class="article-back" aria-label={isEnglish ? 'Back' : 'Επιστροφή'}>
             <a class="link-arrow" href={indexPath}>
               <Icon name="arrow-right" size={15} />
               {backText}
@@ -162,14 +202,15 @@ const pageSchema = {
 
         <aside class="article-aside">
           <div class="book-card">
-            <p class="eyebrow"><span class="eyebrow__dot"></span>Ραντεβού</p>
-            <p class="book-card__title">Χρειάζεστε εκτίμηση;</p>
+            <p class="eyebrow"><span class="eyebrow__dot"></span>{isEnglish ? 'Appointments' : 'Ραντεβού'}</p>
+            <p class="book-card__title">{isEnglish ? 'Need an assessment?' : 'Χρειάζεστε εκτίμηση;'}</p>
             <p class="book-card__text">
-              Κλείστε ραντεβού στο ιατρείο του Μαρούσι. Θα συζητήσουμε το ιστορικό και τις
-              εξετάσεις που χρειάζονται.
+              {isEnglish
+                ? 'Book an appointment at the Marousi clinic. We will discuss your history and the tests you need.'
+                : 'Κλείστε ραντεβού στο ιατρείο του Μαρούσι. Θα συζητήσουμε το ιστορικό και τις εξετάσεις που χρειάζονται.'}
             </p>
-            <a class="btn btn--sm book-card__btn" href="/epikoinonia#rantevou">
-              Κλείστε ραντεβού
+            <a class="btn btn--sm book-card__btn" href={isEnglish ? '/en/contact#rantevou' : '/epikoinonia#rantevou'}>
+              {isEnglish ? 'Book an appointment' : 'Κλείστε ραντεβού'}
               <Icon name="arrow-up-right" size={14} />
             </a>
             <a class="book-card__link" href={`tel:+30${site.mobile}`}>
@@ -210,7 +251,7 @@ const pageSchema = {
         <div class="container">
           <div class="section-head">
             <div class="section-head__top">
-              <p class="eyebrow">Συνέχεια</p>
+              <p class="eyebrow">{isEnglish ? 'More' : 'Συνέχεια'}</p>
               <h2>{moreTitle}</h2>
             </div>
           </div>
@@ -220,7 +261,7 @@ const pageSchema = {
                 <h3>{item.title}</h3>
                 {item.short && <p>{item.short}</p>}
                 <span class="link-arrow">
-                  Περισσότερα
+                  {isEnglish ? 'Read more' : 'Περισσότερα'}
                   <Icon name="arrow-right" size={14} />
                 </span>
               </a>

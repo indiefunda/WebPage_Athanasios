@@ -18,14 +18,23 @@ const formatDate = (iso: string) =>
     new Date(iso),
   );
 
+const relatedSlugs = post.relatedConditions ?? [];
+
 const related = conditions
-  .filter((condition) =>
-    ['dyskoiliothta', 'eyerethisto-entero', 'dyspepsia-kai-metewrismos'].includes(condition.slug),
-  )
+  .filter((condition) => relatedSlugs.includes(condition.slug))
   .map((condition) => ({
     title: condition.title,
     href: `/pathiseis/${condition.slug}`,
     short: condition.short,
+  }));
+
+const more = [...news]
+  .filter((article) => article.slug !== post.slug)
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .map((article) => ({
+    title: article.title,
+    href: `/nea/${article.slug}`,
+    short: article.excerpt,
   }));
 ---
 
@@ -35,6 +44,8 @@ const related = conditions
   category={post.category}
   image={post.image}
   paragraphs={post.paragraphs}
+  keyPoints={post.keyPoints ?? []}
+  inlineImage={post.inlineImage}
   references={post.references}
   crumbs={[{ label: 'Νέα', href: '/nea' }, { label: 'Άρθρο' }]}
   indexPath="/nea"
@@ -42,5 +53,7 @@ const related = conditions
   backLabel="Όλα τα άρθρα"
   relatedTitle="Σχετικές παθήσεις"
   related={related}
+  more={more}
+  moreTitle="Περισσότερα άρθρα"
   metaLabel={formatDate(post.date)}
 />

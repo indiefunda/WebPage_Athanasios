@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import { site } from '../data/site';
+import { langOf } from '../lib/i18n';
 
 interface Props {
   title?: string;
@@ -11,12 +12,16 @@ interface Props {
   class?: string;
 }
 
+const isEnglish = langOf(Astro.url.pathname) === 'en';
+
 const {
-  title = 'Το επόμενο βήμα είναι μια συζήτηση.',
-  text = 'Κλείστε ραντεβού στο ιατρείο του Μαρούσι ή επικοινωνήστε τηλεφωνικά για οποιαδήποτε απορία.',
-  eyebrow = 'Ραντεβού',
-  primaryLabel = 'Κλείστε ραντεβού',
-  primaryHref = '/epikoinonia#rantevou',
+  title = isEnglish ? 'The next step is a conversation.' : 'Το επόμενο βήμα είναι μια συζήτηση.',
+  text = isEnglish
+    ? 'Book an appointment at the Marousi clinic or call us with any question.'
+    : 'Κλείστε ραντεβού στο ιατρείο του Μαρούσι ή επικοινωνήστε τηλεφωνικά για οποιαδήποτε απορία.',
+  eyebrow = isEnglish ? 'Appointments' : 'Ραντεβού',
+  primaryLabel = isEnglish ? 'Book an appointment' : 'Κλείστε ραντεβού',
+  primaryHref = isEnglish ? '/en/contact#rantevou' : '/epikoinonia#rantevou',
   class: className = '',
 } = Astro.props;
 ---
@@ -35,7 +40,7 @@ const {
         <Icon name="arrow-up-right" size={15} />
       </a>
       <a class="cta__tel" href={`tel:+30${site.mobile}`}>
-        <span class="cta__tel-label">Τηλέφωνο</span>
+        <span class="cta__tel-label">{isEnglish ? 'Phone' : 'Τηλέφωνο'}</span>
         <span class="cta__tel-value">{site.mobileDisplay}</span>
       </a>
       <a class="cta__mail" href={`mailto:${site.email}`}>{site.email}</a>

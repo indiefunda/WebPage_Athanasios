@@ -6,7 +6,8 @@ import PageHero from '../../components/PageHero.astro';
 import { news } from '../../data/news';
 import '../../styles/pages.css';
 
-const [featured] = news;
+const sorted = [...news].sort((a, b) => b.date.localeCompare(a.date));
+const [featured, ...rest] = sorted;
 
 const formatDate = (iso: string) =>
   new Intl.DateTimeFormat('el-GR', { day: 'numeric', month: 'long', year: 'numeric' }).format(
@@ -22,7 +23,7 @@ const formatDate = (iso: string) =>
     eyebrow="Νέα"
     index="06"
     title="Σημειώσεις<br />για την υγεία."
-    lede="Σύντομα, τεκμηριωμένα άρθρα για συμπτώματα, εξετάσεις και καθημερινές συνήθειες που κάνουν τη διαφορά."
+    lede="Σύντομα και τεκμηριωμένα άρθρα για συμπτώματα, εξετάσεις και καθημερινές συνήθειες που κάνουν τη διαφορά."
     crumbs={[{ label: 'Νέα' }]}
   />
 
@@ -47,6 +48,30 @@ const formatDate = (iso: string) =>
               </span>
             </div>
           </a>
+        )
+      }
+
+      {
+        rest.length > 0 && (
+          <div class="news-grid">
+            {rest.map((post) => (
+              <a class="news-card" href={`/nea/${post.slug}`} data-reveal>
+                <div class="news-card__media">
+                  <Pic name={post.image} sizes="(min-width: 760px) 44vw, 92vw" />
+                </div>
+                <p class="news-meta">
+                  <span>{post.category}</span>
+                  <span>{formatDate(post.date)}</span>
+                </p>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <span class="link-arrow">
+                  Διαβάστε το άρθρο
+                  <Icon name="arrow-right" size={15} />
+                </span>
+              </a>
+            ))}
+          </div>
         )
       }
 

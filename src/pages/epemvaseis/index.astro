@@ -1,23 +1,26 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Pic from '../../components/Pic.astro';
+import ProcedureEntry from '../../components/ProcedureEntry.astro';
 import Icon from '../../components/Icon.astro';
 import PageHero from '../../components/PageHero.astro';
 import CtaSection from '../../components/CtaSection.astro';
 import { procedures } from '../../data/procedures';
-import { procedureCategories, procedureCategoryLabel } from '../../data/taxonomy';
+import { procedureCategories } from '../../data/taxonomy';
 import '../../styles/pages.css';
+
+const featured = procedures.filter((procedure) => procedure.featured);
+const secondary = procedures.filter((procedure) => !procedure.featured);
 ---
 
 <BaseLayout
-  title="Επεμβάσεις — Ενδοσκοπήσεις & διαγνωστικές εξετάσεις"
-  description="Ενδοσκοπήσεις, λειτουργικές εξετάσεις οισοφάγου, FibroScan και θεραπευτικές επεμβάσεις στο ιατρείο του Αθανάσιου Δεσαλέρμου στην Αθήνα."
+  title="Επεμβάσεις — Κολονοσκόπηση, γαστροσκόπηση & εξετάσεις"
+  description="Κολονοσκόπηση, γαστροσκόπηση, κάψουλα λεπτού εντέρου, μανομετρία και pH-μετρία στο ιατρείο του Αθανάσιου Δεσαλέρμου στην Αθήνα."
 >
   <PageHero
     eyebrow="Επεμβάσεις"
     index="03"
     title="Διαγνωστικές<br />και θεραπευτικές<br />επεμβάσεις."
-    lede="Εννέα σύγχρονες διαδικασίες για τη διάγνωση, την παρακολούθηση και τη θεραπεία παθήσεων του πεπτικού και του ήπατος."
+    lede="Κολονοσκόπηση, γαστροσκόπηση, κάψουλα λεπτού εντέρου, μανομετρία και pH-μετρία — με έμφαση στην πρόληψη και στη λειτουργική διάγνωση."
     crumbs={[{ label: 'Επεμβάσεις' }]}
   />
 
@@ -27,7 +30,7 @@ import '../../styles/pages.css';
         <div class="directory__meta">
           <p class="directory__count">{procedures.length} επεμβάσεις</p>
           <p class="directory__hint">
-            Ενδοσκοπήσεις, λειτουργικές εξετάσεις, ηπατική ελαστογραφία και θεραπευτικές διαδικασίες.
+            Οι βασικές εξετάσεις πρώτα· οι εξειδικευμένες διαδικασίες στη συνέχεια.
           </p>
         </div>
         <ul class="filter-legend">
@@ -42,25 +45,21 @@ import '../../styles/pages.css';
         </ul>
       </div>
 
-      <div class="entry-grid">
-        {
-          procedures.map((procedure) => (
-            <a class="entry-card" href={`/epemvaseis/${procedure.slug}`} data-reveal>
-              <div class="entry-card__media">
-                <Pic
-                  name={procedure.image}
-                  sizes="(min-width: 1000px) 30vw, (min-width: 620px) 45vw, 92vw"
-                />
-              </div>
-              <div>
-                <p class="entry-card__meta">{procedureCategoryLabel(procedure.category)}</p>
-                <h3>{procedure.title}</h3>
-                <p>{procedure.short}</p>
-              </div>
-            </a>
-          ))
-        }
-      </div>
+      <section class="category-block" style="margin-top: 0;">
+        <div class="category-block__head">
+          <h2>Προτεινόμενες εξετάσεις</h2>
+          <p>Οι εξετάσεις στις οποίες δίνουμε έμφαση.</p>
+        </div>
+        <div class="entry-grid">{featured.map((procedure) => <ProcedureEntry procedure={procedure} />)}</div>
+      </section>
+
+      <section class="category-block">
+        <div class="category-block__head">
+          <h2>Εξειδικευμένες εξετάσεις</h2>
+          <p>Συμπληρωματικές διαδικασίες για ειδικές ενδείξεις.</p>
+        </div>
+        <div class="entry-grid">{secondary.map((procedure) => <ProcedureEntry procedure={procedure} />)}</div>
+      </section>
 
       <div class="article-note" style="margin-top: 56px;">
         <p class="article-note__label">

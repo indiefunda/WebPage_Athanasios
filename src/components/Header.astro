@@ -1,24 +1,37 @@
 ---
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
-import { nav, site } from '../data/site';
+import { nav, navEn, site } from '../data/site';
+import { alternatePath, langOf } from '../lib/i18n';
 
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const lang = langOf(Astro.url.pathname);
+const isEnglish = lang === 'en';
+const showLanguageSwitch = isEnglish;
+const navItems = isEnglish ? navEn : nav;
+const switchHref = alternatePath(Astro.url.pathname);
+const switchLabel = isEnglish ? 'ΕΛ' : 'EN';
+const switchLang = isEnglish ? 'el' : 'en';
 
-const isActive = (href: string) =>
-  href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`);
+const normalize = (href: string) => href.replace(/\/+$/, '') || '/';
+const isActive = (href: string) => {
+  const target = normalize(href);
+  return target === '/' ? path === '/' : path === target || path.startsWith(`${target}/`);
+};
 
 const telHref = `tel:+30${site.mobile}`;
+const ctaHref = isEnglish ? '/en/contact#rantevou' : '/epikoinonia#rantevou';
+const address = isEnglish ? '58 Kifisias Ave., 1st floor, Marousi 151 25' : site.addressOneLine;
 ---
 
 <header class="site-header" data-header>
   <div class="header-inner container">
     <Logo class="header-brand" />
 
-    <nav class="primary-nav" aria-label="Κύρια πλοήγηση">
+    <nav class="primary-nav" aria-label={isEnglish ? 'Main navigation' : 'Κύρια πλοήγηση'}>
       <ul>
         {
-          nav.map((item) => (
+          navItems.map((item) => (
             <li>
               <a
                 href={item.href}
@@ -33,12 +46,23 @@ const telHref = `tel:+30${site.mobile}`;
     </nav>
 
     <div class="header-actions">
+      {showLanguageSwitch && (
+        <a
+          class="header-lang"
+          href={switchHref}
+          hreflang={switchLang}
+          lang={switchLang}
+          aria-label={isEnglish ? 'Ελληνική έκδοση' : 'English version'}
+        >
+          {switchLabel}
+        </a>
+      )}
       <a class="header-tel" href={telHref}>
         <Icon name="phone" size={15} />
         <span>{site.mobileDisplay}</span>
       </a>
-      <a class="btn btn--sm header-cta" href="/epikoinonia#rantevou">
-        Ραντεβού
+      <a class="btn btn--sm header-cta" href={ctaHref}>
+        {isEnglish ? 'Book' : 'Ραντεβού'}
         <Icon name="arrow-up-right" size={14} />
       </a>
       <button
@@ -48,27 +72,27 @@ const telHref = `tel:+30${site.mobile}`;
         aria-expanded="false"
         aria-controls="site-menu"
       >
-        <span class="menu-toggle__label">Μενού</span>
+        <span class="menu-toggle__label">{isEnglish ? 'Menu' : 'Μενού'}</span>
         <span class="menu-toggle__lines" aria-hidden="true"><i></i><i></i></span>
       </button>
     </div>
   </div>
 </header>
 
-<dialog class="site-menu" id="site-menu" data-menu aria-label="Μενού ιστότοπου">
+<dialog class="site-menu" id="site-menu" data-menu aria-label={isEnglish ? 'Site menu' : 'Μενού ιστότοπου'}>
   <div class="site-menu__inner container">
     <div class="site-menu__top">
       <Logo />
       <button class="site-menu__close" type="button" data-menu-close autofocus>
-        <span>Κλείσιμο</span>
+        <span>{isEnglish ? 'Close' : 'Κλείσιμο'}</span>
         <Icon name="close" size={18} />
       </button>
     </div>
 
-    <nav class="site-menu__nav" aria-label="Πλοήγηση">
+    <nav class="site-menu__nav" aria-label={isEnglish ? 'Navigation' : 'Πλοήγηση'}>
       <ul>
         {
-          nav.map((item, index) => (
+          navItems.map((item, index) => (
             <li style={`--i:${index}`}>
               <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
                 <span class="site-menu__num">{String(index + 1).padStart(2, '0')}</span>
@@ -83,13 +107,23 @@ const telHref = `tel:+30${site.mobile}`;
 
     <div class="site-menu__foot">
       <div>
-        <p class="eyebrow">Ραντεβού</p>
+        <p class="eyebrow">{isEnglish ? 'Appointments' : 'Ραντεβού'}</p>
         <a class="site-menu__tel" href={telHref}>{site.mobileDisplay}</a>
         <a class="site-menu__mail" href={`mailto:${site.email}`}>{site.email}</a>
+        {isEnglish && (
+          <a
+            class="site-menu__lang"
+            href={switchHref}
+            hreflang={switchLang}
+            lang={switchLang}
+          >
+            Ελληνική έκδοση
+          </a>
+        )}
       </div>
       <div>
-        <p class="eyebrow">Ιατρείο</p>
-        <p class="site-menu__address">{site.addressOneLine}</p>
+        <p class="eyebrow">{isEnglish ? 'Clinic' : 'Ιατρείο'}</p>
+        <p class="site-menu__address">{address}</p>
       </div>
     </div>
   </div>

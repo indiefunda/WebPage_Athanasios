@@ -12,3 +12,4 @@ concepts/pdf-pages/
 *.log
 .DS_Store
 Thumbs.db
+preview-feedback/

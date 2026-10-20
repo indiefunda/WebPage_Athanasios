@@ -1,0 +1,313 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Pic from '../../components/Pic.astro';
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import { siteEn, journeyEn } from '../../data/en/site';
+import '../../styles/pages.css';
+
+const publications = [
+  {
+    title:
+      'Safety of Immunizations for the Adult Patient With Inflammatory Bowel Disease — A Systematic Review and Meta-analysis',
+    journal: 'Inflammatory Bowel Diseases',
+    year: '2022',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/34849941/',
+  },
+  {
+    title:
+      'Outcomes of endoscopic retrograde cholangiopancreatography in patients with inflammatory bowel disease: a nationwide study',
+    journal: 'International Journal of Colorectal Disease',
+    year: '2023',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/36692549/',
+  },
+  {
+    title:
+      'Effect of Obesogenic Medications on Weight-Loss Outcomes in a Behavioral Weight-Management Program',
+    journal: 'Obesity',
+    year: '2019',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/31012292/',
+  },
+  {
+    title:
+      'The effects of provider-prescribed obesogenic drugs on post-laparoscopic sleeve gastrectomy outcomes',
+    journal: 'International Journal of Obesity',
+    year: '2019',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/30242239/',
+  },
+  {
+    title: 'Short-Term Effects of Tirzepatide in Obese Adults: A Real-World Prospective Study',
+    journal: 'Cureus',
+    year: '2025',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/40662047/',
+  },
+  {
+    title:
+      'A multi-host approach for the systematic analysis of virulence factors in Cryptococcus neoformans',
+    journal: 'The Journal of Infectious Diseases',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/25114160/',
+  },
+];
+
+const stats = [
+  { value: '2007', label: 'Graduated from Athens Medical School' },
+  { value: '5', label: 'Universities in Greece and the United States' },
+  { value: '2', label: 'Continents of clinical and research experience' },
+  { value: 'FESBGH', label: 'Fellow of the European Section and Board of Gastroenterology and Hepatology' },
+];
+
+const profileSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Physician',
+    name: siteEn.name,
+    medicalSpecialty: ['Gastroenterologic', 'Hepatology'],
+    url: `${siteEn.url}/en/about`,
+    sameAs: [siteEn.umass, siteEn.pubmed, siteEn.linkedin],
+  },
+};
+---
+
+<BaseLayout
+  title="About — Biography"
+  description="The path of Athanasios Desalermos: Athens Medical School, Harvard, Boston University, UC San Diego, UMass Chan — and an active clinic in the United States, with hospital collaborations."
+  schema={profileSchema}
+>
+  <PageHero
+    eyebrow="Biography"
+    index="01"
+    title="The Doctor."
+    lede="Gastroenterologist – Hepatologist with training and clinical experience at leading centers in Greece and the United States."
+    crumbs={[{ label: 'About' }]}
+  />
+
+  <section class="section about-page">
+    <div class="container about-page__grid">
+      <div class="about-page__media">
+        <div class="about-page__portrait" data-reveal="fade">
+          <Pic name="portrait-profile" sizes="(min-width: 900px) 34vw, 90vw" />
+        </div>
+        <p class="about-page__caption" data-reveal="fade">
+          <span>Athanasios Desalermos</span>
+          <span>MD, FESBGH</span>
+        </p>
+
+        <dl class="about-facts" data-reveal>
+          <div class="about-fact">
+            <dt>Specialty</dt>
+            <dd>Gastroenterologist – Hepatologist</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Position</dt>
+            <dd>Director, Athens Medical Center</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Academic</dt>
+            <dd>Assistant Professor, UMass Chan</dd>
+          </div>
+          <div class="about-fact">
+            <dt>US clinic</dt>
+            <dd>UMass Chan, Massachusetts</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Collaborations</dt>
+            <dd>Hospitals in the United States</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Fellow</dt>
+            <dd>FESBGH</dd>
+          </div>
+          <div class="about-fact">
+            <dt>Based in</dt>
+            <dd>Marousi, Athens</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="about-page__body">
+        <h2 data-reveal>The path</h2>
+        <p data-reveal>
+          Athanasios Desalermos is a gastroenterologist and hepatologist, Director of the
+          Gastroenterology – Hepatology Clinic at Athens Medical Center. He is an Assistant Professor
+          of Gastroenterology at UMass Chan Medical School and a Fellow of the European Section and
+          Board of Gastroenterology and Hepatology.
+        </p>
+        <p data-reveal>
+          He graduated from Athens Medical School in 2007. After completing his military service, he
+          moved to the United States, where he was appointed a postdoctoral research fellow in
+          Pathology at Massachusetts General Hospital, Harvard Medical School. During that time he
+          took part in numerous research programs and published work in basic and clinical research.
+        </p>
+        <p data-reveal>
+          He completed his internal medicine residency at Boston University, where he was recognized
+          for his clinical and research work and for teaching medical students. He worked alongside
+          Dr. Francis Farraye, then Director of the IBD Unit at Mayo Clinic, and obtained his US board
+          certification in internal medicine.
+        </p>
+        <p data-reveal>
+          He then completed a three-year fellowship in gastroenterology and hepatology at UC San Diego,
+          one of the world’s leading programs. There he focused on inflammatory bowel disease under
+          Dr. William Sandborn and collaborated with Dr. Amir Zarrinpar’s microbiome laboratory. His
+          research was recognized with the NIH Ruth L. Kirschstein Institutional National Research
+          Service Award.
+        </p>
+
+        <blockquote class="about-quote" data-reveal>
+          “We aim for comprehensive diagnosis and treatment, using the most advanced interventional
+          techniques and current medical knowledge.”
+        </blockquote>
+
+        <h2 data-reveal>In the United States and Greece</h2>
+        <p data-reveal>
+          As an Assistant Professor at UMass Chan Medical School, he developed an innovative
+          gastroenterology and hepatology clinic in Massachusetts, where he managed thousands of cases
+          and performed thousands of endoscopic procedures. He was actively involved in teaching
+          students and residents and in the medical school admissions committee, while maintaining
+          collaborations with centers such as Mayo Clinic and Brown University. He currently maintains
+          an active clinic in Massachusetts and collaborations with hospitals across the United States.
+        </p>
+        <p data-reveal>
+          After returning to Greece, he organized and directed the Fourth Gastroenterology and
+          Hepatology Clinic at Metropolitan General. Today he continues to provide high-level care as
+          Director of the corresponding clinic at Athens Medical Center, dividing his time between
+          Athens and the United States.
+        </p>
+
+        <div class="about-page__links" data-reveal>
+          <a class="btn btn--ghost" href={siteEn.umass} target="_blank" rel="noopener noreferrer">
+            UMass profile
+            <Icon name="external" size={14} />
+          </a>
+          <a class="btn btn--ghost" href={siteEn.pubmed} target="_blank" rel="noopener noreferrer">
+            Publications
+            <Icon name="external" size={14} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow"><span class="eyebrow__num">02</span>In numbers</p>
+          <h2>A consistent<br />path.</h2>
+        </div>
+        <p class="section-head__aside">
+          From Athens to Boston and San Diego, with clinical practice and scientific evidence as the
+          constant.
+        </p>
+      </div>
+
+      <div class="stats">
+        {
+          stats.map((stat) => (
+            <div class="stat">
+              <p class="stat__value">{stat.value}</p>
+              <p class="stat__label">{stat.label}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <ol class="timeline">
+        {
+          journeyEn.map((step) => (
+            <li class="timeline__item">
+              <span class="timeline__stage">{step.stage}</span>
+              <div>
+                <p class="timeline__place">{step.place}</p>
+                <h3>{step.title}</h3>
+                <p>{step.detail}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--paper-soft">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__top">
+          <p class="eyebrow"><span class="eyebrow__num">03</span>Research</p>
+          <h2>Publications<br />and collaborations.</h2>
+        </div>
+        <p class="section-head__aside">
+          Selected papers in international journals, with a focus on inflammatory bowel disease,
+          microbiology and metabolism.
+        </p>
+      </div>
+
+      <div class="about-page__grid">
+        <div>
+          <p class="lede">
+            Dr. Desalermos’s research ranges from basic microbiology to clinical epidemiology and
+            modern therapies.
+          </p>
+          <div class="academic-links">
+            <a class="academic-link" href={siteEn.pubmed} target="_blank" rel="noopener noreferrer">
+              <span>
+                <span class="academic-link__label">PubMed</span>
+                <span class="academic-link__title">All publications</span>
+              </span>
+              <Icon name="arrow-up-right" size={18} />
+            </a>
+            <a class="academic-link" href={siteEn.umass} target="_blank" rel="noopener noreferrer">
+              <span>
+                <span class="academic-link__label">UMass Chan</span>
+                <span class="academic-link__title">Academic profile</span>
+              </span>
+              <Icon name="arrow-up-right" size={18} />
+            </a>
+            <a class="academic-link" href={siteEn.linkedin} target="_blank" rel="noopener noreferrer">
+              <span>
+                <span class="academic-link__label">LinkedIn</span>
+                <span class="academic-link__title">Professional profile</span>
+              </span>
+              <Icon name="arrow-up-right" size={18} />
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="publication-list">
+            {
+              publications.map((publication, index) => (
+                <a
+                  class="publication"
+                  href={publication.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="publication__num">{String(index + 1).padStart(2, '0')}</span>
+                  <span>
+                    <span class="publication__title">{publication.title}</span>
+                    <span class="publication__meta">
+                      <em>{publication.journal}</em> · {publication.year}
+                    </span>
+                  </span>
+                </a>
+              ))
+            }
+          </div>
+          <a class="link-arrow" href={siteEn.pubmed} target="_blank" rel="noopener noreferrer">
+            Full list on PubMed
+            <Icon name="external" size={14} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    eyebrow="Appointments"
+    title="A second opinion, with international experience."
+    text="For complex or persistent digestive and liver problems, assessment by a specialized gastroenterologist can change the course."
+  />
+</BaseLayout>

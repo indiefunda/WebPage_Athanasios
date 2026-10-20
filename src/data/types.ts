@@ -35,6 +35,9 @@ export interface Post {
   category: string;
   excerpt: string;
   image: string;
+  keyPoints?: string[];
+  inlineImage?: { name: string; caption: string };
+  relatedConditions?: string[];
   paragraphs: string[];
   references: Reference[];
 }

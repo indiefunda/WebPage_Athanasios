@@ -185,6 +185,7 @@
   letter-spacing: 2.1px;
   fill: var(--ink-soft);
   text-transform: uppercase;
+  text-anchor: middle;
 }
 
 .hero__seal-core {
@@ -1338,5 +1339,153 @@
 
   .contact-band__actions .btn {
     flex: 1 1 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Authority — US training and international practice
+   -------------------------------------------------------------------------- */
+
+.authority {
+  background: var(--paper-soft);
+  border-block: 1px solid var(--line);
+  padding-block: clamp(44px, 6vw, 84px);
+}
+
+.authority__inner {
+  display: grid;
+  gap: 32px;
+}
+
+.authority__copy h2 {
+  margin-top: 16px;
+  font-size: clamp(2.1rem, 3.8vw, 3.5rem);
+  max-width: 15ch;
+}
+
+.authority__text {
+  margin-top: 16px;
+  max-width: 54ch;
+  color: var(--ink-soft);
+  font-size: 0.97rem;
+  line-height: 1.72;
+}
+
+.authority__points {
+  border-top: 1px solid var(--line);
+}
+
+.authority__points li {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 2px 12px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.authority__points span {
+  grid-row: 1 / 3;
+  font-size: 0.6rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.authority__points b {
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+.authority__points em {
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+@media (min-width: 900px) {
+  .authority__inner {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(40px, 6vw, 90px);
+    align-items: end;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Preventive screening band
+   -------------------------------------------------------------------------- */
+
+.screen-band {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 30px;
+}
+
+.screen-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 18px 34px 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.screen-card:last-child {
+  border-bottom: 0;
+}
+
+.screen-card__label {
+  font-size: 0.58rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.screen-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.2vw, 1.95rem);
+  line-height: 1.1;
+}
+
+.screen-card__text {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.screen-card .icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  transition: transform 0.35s var(--ease), color 0.25s;
+}
+
+.screen-card:hover .icon {
+  transform: translate(3px, -50%);
+  color: var(--accent);
+}
+
+@media (min-width: 760px) {
+  .screen-band {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .screen-card {
+    padding: 22px 34px 22px 26px;
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+  }
+
+  .screen-card:first-child {
+    padding-left: 0;
+  }
+
+  .screen-card:last-child {
+    border-right: 0;
+    padding-right: 34px;
   }
 }

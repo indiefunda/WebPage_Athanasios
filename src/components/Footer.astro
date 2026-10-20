@@ -1,39 +1,66 @@
 ---
 import Icon from './Icon.astro';
 import { site } from '../data/site';
+import { langOf } from '../lib/i18n';
 
 const year = new Date().getFullYear();
+const isEnglish = langOf(Astro.url.pathname) === 'en';
+const name = isEnglish ? 'Athanasios Desalermos' : site.name;
+const role = isEnglish ? 'Gastroenterologist – Hepatologist' : site.role;
+const address = isEnglish ? '58 Kifisias Ave., 1st floor, Marousi 151 25' : site.addressOneLine;
+const ctaHref = isEnglish ? '/en/contact#rantevou' : '/epikoinonia#rantevou';
 
-const columns = [
-  {
-    title: 'Πλοήγηση',
-    links: [
-      { label: 'Αρχική', href: '/' },
-      { label: 'Ο Ιατρός', href: '/o-iatros' },
-      { label: 'Το Ιατρείο', href: '/iatreio' },
-      { label: 'Νέα', href: '/nea' },
-    ],
-  },
-  {
-    title: 'Κλινική',
-    links: [
-      { label: 'Παθήσεις', href: '/pathiseis' },
-      { label: 'Επεμβάσεις', href: '/epemvaseis' },
-      { label: 'Επικοινωνία', href: '/epikoinonia' },
-      { label: 'Αποποίηση', href: '/apopoiisi' },
-    ],
-  },
-];
+const columns = isEnglish
+  ? [
+      {
+        title: 'Navigation',
+        links: [
+          { label: 'Home', href: '/en/' },
+          { label: 'About', href: '/en/about' },
+          { label: 'Clinic', href: '/en/clinic' },
+          { label: 'Articles', href: '/en/articles' },
+        ],
+      },
+      {
+        title: 'Clinic',
+        links: [
+          { label: 'Conditions', href: '/en/conditions' },
+          { label: 'Procedures', href: '/en/procedures' },
+          { label: 'Contact', href: '/en/contact' },
+          { label: 'Disclaimer', href: '/en/disclaimer' },
+        ],
+      },
+    ]
+  : [
+      {
+        title: 'Πλοήγηση',
+        links: [
+          { label: 'Αρχική', href: '/' },
+          { label: 'Ο Ιατρός', href: '/o-iatros' },
+          { label: 'Το Ιατρείο', href: '/iatreio' },
+          { label: 'Νέα', href: '/nea' },
+        ],
+      },
+      {
+        title: 'Κλινική',
+        links: [
+          { label: 'Παθήσεις', href: '/pathiseis' },
+          { label: 'Επεμβάσεις', href: '/epemvaseis' },
+          { label: 'Επικοινωνία', href: '/epikoinonia' },
+          { label: 'Αποποίηση', href: '/apopoiisi' },
+        ],
+      },
+    ];
 ---
 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <p class="footer-name">{site.name}</p>
-        <p class="footer-role">{site.role} <span>·</span> {site.credentials}</p>
-        <a class="footer-cta" href="/epikoinonia#rantevou">
-          Κλείστε ραντεβού
+        <p class="footer-name">{name}</p>
+        <p class="footer-role">{role} <span>·</span> {site.credentials}</p>
+        <a class="footer-cta" href={ctaHref}>
+          {isEnglish ? 'Book an appointment' : 'Κλείστε ραντεβού'}
           <Icon name="arrow-up-right" size={18} />
         </a>
       </div>
@@ -54,12 +81,12 @@ const columns = [
           ))
         }
         <div class="footer-col footer-col--contact">
-          <p class="eyebrow">Επικοινωνία</p>
+          <p class="eyebrow">{isEnglish ? 'Contact' : 'Επικοινωνία'}</p>
           <ul>
             <li><a href={`tel:+30${site.mobile}`}>{site.mobileDisplay}</a></li>
             <li><a href={`tel:+30${site.phone}`}>{site.phoneDisplay}</a></li>
             <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
-            <li><span>{site.addressOneLine}</span></li>
+            <li><span>{address}</span></li>
           </ul>
           <div class="footer-social">
             <a href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -67,11 +94,15 @@ const columns = [
             </a>
             <a href={site.pubmed} target="_blank" rel="noopener noreferrer" aria-label="PubMed">
               <span aria-hidden="true">PubMed</span>
-              <span class="visually-hidden">Δημοσιεύσεις στο PubMed</span>
+              <span class="visually-hidden">
+                {isEnglish ? 'Publications on PubMed' : 'Δημοσιεύσεις στο PubMed'}
+              </span>
             </a>
             <a href={site.umass} target="_blank" rel="noopener noreferrer" aria-label="UMass Chan Medical School">
               <span aria-hidden="true">UMass</span>
-              <span class="visually-hidden">Προφίλ στο UMass Chan Medical School</span>
+              <span class="visually-hidden">
+                {isEnglish ? 'UMass Chan Medical School profile' : 'Προφίλ στο UMass Chan Medical School'}
+              </span>
             </a>
           </div>
         </div>
@@ -79,20 +110,40 @@ const columns = [
     </div>
 
     <div class="footer-disclaimer">
-      <p>
-        Οι πληροφορίες που παρέχονται σε αυτόν τον ιστότοπο είναι γενικής ενημερωτικής φύσης και δεν
-        αντικαθιστούν την εξατομικευμένη ιατρική συμβουλή, διάγνωση ή θεραπεία. Για οποιοδήποτε
-        πρόβλημα υγείας, απευθυνθείτε σε εξειδικευμένο ιατρό.
-      </p>
-      <p>
-        Σε περίπτωση επείγοντος περιστατικού καλέστε το <a href="tel:166">166</a> ή απευθυνθείτε στο
-        πλησιέστερο νοσοκομείο.
-      </p>
+      {
+        isEnglish ? (
+          <>
+            <p>
+              The information on this website is for general educational purposes and does not replace
+              individual medical advice, diagnosis or treatment. For any health concern, consult a
+              qualified physician.
+            </p>
+            <p>
+              In an emergency, call <a href="tel:112">112</a> or <a href="tel:166">166</a>, or go to the
+              nearest hospital.
+            </p>
+          </>
+        ) : (
+          <>
+            <p>
+              Οι πληροφορίες που παρέχονται σε αυτόν τον ιστότοπο είναι γενικής ενημερωτικής φύσης και
+              δεν αντικαθιστούν την εξατομικευμένη ιατρική συμβουλή, διάγνωση ή θεραπεία. Για
+              οποιοδήποτε πρόβλημα υγείας, απευθυνθείτε σε εξειδικευμένο ιατρό.
+            </p>
+            <p>
+              Σε περίπτωση επείγοντος περιστατικού καλέστε το <a href="tel:166">166</a> ή απευθυνθείτε
+              στο πλησιέστερο νοσοκομείο.
+            </p>
+          </>
+        )
+      }
     </div>
 
     <div class="footer-bottom">
-      <p>© {year} {site.name}. Με την επιφύλαξη παντός δικαιώματος.</p>
-      <p class="footer-credit">Αθήνα, Ελλάδα</p>
+      <p>
+        © {year} {name}. {isEnglish ? 'All rights reserved.' : 'Με την επιφύλαξη παντός δικαιώματος.'}
+      </p>
+      <p class="footer-credit">{isEnglish ? 'Athens, Greece' : 'Αθήνα, Ελλάδα'}</p>
     </div>
   </div>
 </footer>

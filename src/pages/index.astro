@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Pic from '../components/Pic.astro';
 import Icon from '../components/Icon.astro';
-import { site, journey, principles, institutions, credentials } from '../data/site';
+import { site, journey, principles, institutions, credentials, authority } from '../data/site';
 import { conditions } from '../data/conditions';
 import { procedures } from '../data/procedures';
 import { news } from '../data/news';
@@ -13,7 +13,7 @@ const featuredConditions = conditions.filter((condition) => condition.featured).
 const orderedProcedures = [...procedures].sort(
   (a, b) => Number(b.featured) - Number(a.featured),
 );
-const featuredNews = news[0];
+const featuredNews = [...news].sort((a, b) => b.date.localeCompare(a.date))[0];
 
 const formatDate = (iso: string) =>
   new Intl.DateTimeFormat('el-GR', { day: 'numeric', month: 'long', year: 'numeric' }).format(
@@ -75,14 +75,17 @@ const countByCategory = (key: string) =>
         <div class="hero__seal" aria-hidden="true">
           <svg viewBox="0 0 108 108">
             <defs>
-              <path
-                id="seal-circle"
-                d="M54,54 m-39,0 a39,39 0 1,1 78,0 a39,39 0 1,1 -78,0"
-              ></path>
+              <path id="seal-top" d="M10,54 A44,44 0 0 1 98,54"></path>
+              <path id="seal-bottom" d="M10,54 A44,44 0 0 0 98,54"></path>
             </defs>
             <text>
-              <textPath href="#seal-circle">
-                ΚΑΤΟΠΙΝ ΡΑΝΤΕΒΟΥ · ΑΘΗΝΑ · ΚΑΤΟΠΙΝ ΡΑΝΤΕΒΟΥ ·
+              <textPath href="#seal-top" startOffset="50%" text-anchor="middle">
+                ΚΑΤΟΠΙΝ ΡΑΝΤΕΒΟΥ
+              </textPath>
+            </text>
+            <text>
+              <textPath href="#seal-bottom" startOffset="50%" text-anchor="middle">
+                ΑΘΗΝΑ · ΜΑΡΟΥΣΙ
               </textPath>
             </text>
           </svg>
@@ -125,6 +128,32 @@ const countByCategory = (key: string) =>
       }
     </div>
   </div>
+
+  <!-- US training and international practice -->
+  <section class="authority">
+    <div class="container authority__inner">
+      <div class="authority__copy">
+        <p class="eyebrow" data-reveal>
+          <span class="eyebrow__dot"></span>
+          {authority.eyebrow}
+        </p>
+        <h2 data-reveal style="--i:1">{authority.title}</h2>
+        <p class="authority__text" data-reveal style="--i:2">{authority.text}</p>
+      </div>
+
+      <ul class="authority__points" data-reveal style="--i:3">
+        {
+          authority.points.map((point) => (
+            <li>
+              <span>{point.num}</span>
+              <b>{point.title}</b>
+              <em>{point.detail}</em>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 
   <!-- Approach -->
   <section class="section" id="prosengisi">
@@ -246,8 +275,9 @@ const countByCategory = (key: string) =>
           <h2 data-reveal style="--i:1">Διάγνωση και θεραπεία,<br />με ακρίβεια.</h2>
         </div>
         <p class="section-head__aside" data-reveal style="--i:2">
-          Εννέα διαδικασίες που καλύπτουν τη διάγνωση, την παρακολούθηση και τη θεραπεία παθήσεων
-          του πεπτικού και του ήπατος — σε περιβάλλον με έμφαση στην ασφάλεια και την άνεση.
+          Κολονοσκόπηση, γαστροσκόπηση και κάψουλα λεπτού εντέρου, μαζί με μανομετρία και
+          pH-μετρία: οι βασικοί άξονες διάγνωσης και πρόληψης. Το EndoFLIP και το FibroScan
+          παραμένουν διαθέσιμα ως εξειδικευμένες επιλογές.
         </p>
       </div>
 
@@ -302,12 +332,27 @@ const countByCategory = (key: string) =>
             <span class="eyebrow__num">04</span>
             Παθήσεις
           </p>
-          <h2 data-reveal style="--i:1">Από την καούρα<br />στην ηπατική υγεία.</h2>
+          <h2 data-reveal style="--i:1">Από την πρόληψη<br />στη φλεγμονώδη νόσο.</h2>
         </div>
         <p class="section-head__aside" data-reveal style="--i:2">
-          Ενημερωθείτε για τα συμπτώματα, τις αιτίες και τις σύγχρονες επιλογές αντιμετώπισης. Η
-          λίστα καλύπτει τις πιο συχνές παθήσεις που αντιμετωπίζονται στην κλινική.
+          Κολονοσκόπηση και γαστροσκόπηση, διάρροια, γαστροοισοφαγική παλινδρόμηση, Barrett,
+          νόσος Crohn και ελκώδης κολίτιδα: οι περιοχές στις οποίες εστιάζουμε.
         </p>
+      </div>
+
+      <div class="screen-band" data-reveal>
+        <a class="screen-card" href="/epemvaseis/kolonoskophsh">
+          <span class="screen-card__label">Προληπτικός έλεγχος</span>
+          <span class="screen-card__title">Κολονοσκόπηση</span>
+          <span class="screen-card__text">Πρόληψη καρκίνου παχέος εντέρου</span>
+          <Icon name="arrow-up-right" size={16} />
+        </a>
+        <a class="screen-card" href="/epemvaseis/anwterh-endoskophsh">
+          <span class="screen-card__label">Προληπτικός έλεγχος</span>
+          <span class="screen-card__title">Γαστροσκόπηση</span>
+          <span class="screen-card__text">Οισοφάγος, στόμαχος, δωδεκαδάκτυλο</span>
+          <Icon name="arrow-up-right" size={16} />
+        </a>
       </div>
 
       <div class="condition-chips">
@@ -407,10 +452,10 @@ const countByCategory = (key: string) =>
           <span class="eyebrow__num">06</span>
           Το Ιατρείο
         </p>
-        <h2 data-reveal style="--i:1">Ήρεμο, διακριτικό,<br />στο Μαρούσι.</h2>
+        <h2 data-reveal style="--i:1">Ήρεμο, διακριτικό,<br />πολυτελές.</h2>
         <p class="lede" data-reveal style="--i:2">
-          Ένα σύγχρονο και καλαίσθητο περιβάλλον, σχεδιασμένο για να προσφέρει άνεση, ασφάλεια και
-          διακριτικότητα σε κάθε ασθενή.
+          Ένας χώρος με την ησυχία και τη διακριτικότητα ενός ιδιωτικού ιατρείου — και την αίσθηση
+          πολυτέλειας που κάνει την επίσκεψη πιο ήρεμη.
         </p>
         <p data-reveal style="--i:3" class="clinic__body">
           Με προσοχή στη λεπτομέρεια και φιλικό κλίμα, υποδεχόμαστε τους ασθενείς σε έναν χώρο που

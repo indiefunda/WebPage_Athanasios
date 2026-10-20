@@ -9,7 +9,7 @@ export const site = {
   url: 'https://drdesalermos.gr',
   title: 'Γαστρεντερολόγος – Ηπατολόγος στην Αθήνα | Αθανάσιος Δεσαλέρμος',
   description:
-    'Ο Αθανάσιος Δεσαλέρμος, MD, FESBGH είναι γαστρεντερολόγος – ηπατολόγος στην Αθήνα, με εκπαίδευση στο Harvard, το UC San Diego και το UMass Chan. Σύγχρονη διάγνωση και θεραπεία στο Μαρούσι.',
+    'Ο Αθανάσιος Δεσαλέρμος, MD, FESBGH είναι γαστρεντερολόγος – ηπατολόγος στην Αθήνα, με εκπαίδευση και πιστοποίηση στις ΗΠΑ. Κολονοσκόπηση, γαστροσκόπηση και εξειδικευμένη φροντίδα στο Μαρούσι.',
   email: 'desalermosclinic@gmail.com',
   phone: '2106157438',
   mobile: '6992252277',
@@ -42,6 +42,16 @@ export const nav = [
   { label: 'Επικοινωνία', href: '/epikoinonia' },
 ] as const;
 
+export const navEn = [
+  { label: 'Home', href: '/en/' },
+  { label: 'About', href: '/en/about' },
+  { label: 'Clinic', href: '/en/clinic' },
+  { label: 'Conditions', href: '/en/conditions' },
+  { label: 'Procedures', href: '/en/procedures' },
+  { label: 'Articles', href: '/en/articles' },
+  { label: 'Contact', href: '/en/contact' },
+] as const;
+
 export const credentials = [
   {
     title: 'Διευθυντής',
@@ -63,7 +73,43 @@ export const credentials = [
     title: 'Μέλος',
     detail: 'American College of Gastroenterology',
   },
+  {
+    title: 'Κλινική στις ΗΠΑ',
+    detail: 'UMass Chan Medical School, Μασαχουσέτη',
+  },
+  {
+    title: 'Διεθνείς συνεργασίες',
+    detail: 'Νοσοκομεία στις Ηνωμένες Πολιτείες',
+  },
 ] as const;
+
+export const authority = {
+  eyebrow: 'US-trained & board-certified',
+  title: 'Από τους ελάχιστους στην Αθήνα.',
+  text: 'Ο Δρ. Δεσαλέρμος είναι από τους ελάχιστους γαστρεντερολόγους – ηπατολόγους στην Αθήνα με εκπαίδευση και πιστοποίηση στις ΗΠΑ. Στο Ιατρικό Κέντρο Αθηνών ανήκει στους ελάχιστους με αυτό το προφίλ.',
+  points: [
+    {
+      num: '01',
+      title: 'Εκπαίδευση στις ΗΠΑ',
+      detail: 'Harvard Medical School · UC San Diego',
+    },
+    {
+      num: '02',
+      title: 'Board certified',
+      detail: 'Gastroenterology & Hepatology, ΗΠΑ',
+    },
+    {
+      num: '03',
+      title: 'Κλινική στις ΗΠΑ',
+      detail: 'UMass Chan Medical School, Μασαχουσέτη',
+    },
+    {
+      num: '04',
+      title: 'Συνεργασίες',
+      detail: 'Νοσοκομεία στις Ηνωμένες Πολιτείες',
+    },
+  ],
+} as const;
 
 export const institutions = [
   'Harvard Medical School',

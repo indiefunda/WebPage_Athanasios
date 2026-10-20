@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
+import { hreflangPaths, langOf } from '../lib/i18n';
 import '../styles/fonts.css';
 import '../styles/base.css';
 import '../styles/site.css';
@@ -26,37 +27,47 @@ const {
   schema,
 } = Astro.props;
 
-const pageTitle = title.includes(site.lastName) ? title : `${title} | ${site.name}`;
+const lang = langOf(Astro.url.pathname);
+const isEnglish = lang === 'en';
+const brandName = isEnglish ? 'Athanasios Desalermos' : site.name;
+const role = isEnglish ? 'Gastroenterologist – Hepatologist' : site.role;
+
+const pageTitle = /Desalermos|Δεσαλέρμος/.test(title) ? title : `${title} | ${brandName}`;
 const path = Astro.url.pathname.replace(/\/index\.html$/, '/');
 const canonical = new URL(path, Astro.site).href;
 const socialImage = new URL(image, Astro.site).href;
+const alternates = hreflangPaths(path);
+const alternateEl = new URL(alternates.el, Astro.site).href;
+const alternateEn = new URL(alternates.en, Astro.site).href;
 
 const physicianSchema = {
   '@context': 'https://schema.org',
   '@type': 'Physician',
-  name: site.name,
-  alternateName: 'Athanasios Desalermos',
+  name: brandName,
+  alternateName: isEnglish ? 'Αθανάσιος Δεσαλέρμος' : 'Athanasios Desalermos',
   url: site.url,
   image: socialImage,
-  description: site.description,
+  description: isEnglish
+    ? 'Athanasios Desalermos, MD, FESBGH is a US-trained, board-certified gastroenterologist and hepatologist in Athens, Greece.'
+    : site.description,
   medicalSpecialty: ['Gastroenterologic', 'Hepatology'],
   telephone: `+30${site.phone}`,
   email: site.email,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: site.address.street,
-    addressLocality: site.address.locality,
+    streetAddress: isEnglish ? '58 Kifisias Ave., 1st floor' : site.address.street,
+    addressLocality: isEnglish ? 'Marousi' : site.address.locality,
     postalCode: site.address.postalCode,
-    addressRegion: site.address.region,
+    addressRegion: isEnglish ? 'Attica' : site.address.region,
     addressCountry: site.address.country,
   },
   areaServed: {
     '@type': 'City',
-    name: 'Αθήνα',
+    name: isEnglish ? 'Athens' : 'Αθήνα',
   },
   worksFor: {
     '@type': 'MedicalClinic',
-    name: 'Ιατρικό Κέντρο Αθηνών',
+    name: isEnglish ? 'Athens Medical Center' : 'Ιατρικό Κέντρο Αθηνών',
   },
   alumniOf: [
     { '@type': 'CollegeOrUniversity', name: 'National and Kapodistrian University of Athens' },
@@ -70,40 +81,58 @@ const physicianSchema = {
     { '@type': 'Organization', name: 'European Section and Board of Gastroenterology and Hepatology' },
   ],
   sameAs: [site.linkedin, site.pubmed, site.umass],
-  availableService: [
-    { '@type': 'MedicalProcedure', name: 'Κολονοσκόπηση' },
-    { '@type': 'MedicalProcedure', name: 'Ανώτερη Ενδοσκόπηση' },
-    { '@type': 'MedicalProcedure', name: 'Ελαστογραφία ήπατος με FibroScan' },
-  ],
+  availableService: isEnglish
+    ? [
+        { '@type': 'MedicalProcedure', name: 'Colonoscopy' },
+        { '@type': 'MedicalProcedure', name: 'Gastroscopy (upper endoscopy)' },
+        { '@type': 'MedicalProcedure', name: 'Small-bowel capsule endoscopy' },
+        { '@type': 'MedicalProcedure', name: 'Oesophageal manometry' },
+        { '@type': 'MedicalProcedure', name: 'pH-metry' },
+      ]
+    : [
+        { '@type': 'MedicalProcedure', name: 'Κολονοσκόπηση' },
+        { '@type': 'MedicalProcedure', name: 'Γαστροσκόπηση (ανώτερη ενδοσκόπηση)' },
+        { '@type': 'MedicalProcedure', name: 'Κάψουλα λεπτού εντέρου' },
+        { '@type': 'MedicalProcedure', name: 'Μανομετρία οισοφάγου' },
+        { '@type': 'MedicalProcedure', name: 'pH-μετρία' },
+      ],
 };
 
 const schemas = schema ? [physicianSchema, ...(Array.isArray(schema) ? schema : [schema])] : [physicianSchema];
 ---
 
 <!doctype html>
-<html lang="el">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {isEnglish && (
+      <>
+        <link rel="alternate" hreflang="el" href={alternateEl} />
+        <link rel="alternate" hreflang="en" href={alternateEn} />
+        <link rel="alternate" hreflang="x-default" href={alternateEl} />
+      </>
+    )}
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <meta name="author" content={site.name} />
+    <meta name="author" content={brandName} />
     <meta name="theme-color" content="#f3f0e8" />
     <meta name="color-scheme" content="light" />
 
     <meta property="og:type" content={type} />
-    <meta property="og:site_name" content={site.name} />
-    <meta property="og:locale" content="el_GR" />
+    <meta property="og:site_name" content={brandName} />
+    <meta property="og:locale" content={isEnglish ? 'en_US' : 'el_GR'} />
+    <meta property="og:locale:alternate" content={isEnglish ? 'el_GR' : 'en_US'} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`${site.name} — ${site.role}`} />
+    <meta property="og:image:alt" content={`${brandName} — ${role}`} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
@@ -128,7 +157,7 @@ const schemas = schema ? [physicianSchema, ...(Array.isArray(schema) ? schema : 
   </head>
 
   <body class={bodyClass} id="top">
-    <a class="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
+    <a class="skip-link" href="#main">{isEnglish ? 'Skip to content' : 'Μετάβαση στο περιεχόμενο'}</a>
     <Header />
     <main id="main" tabindex="-1">
       <slot />
