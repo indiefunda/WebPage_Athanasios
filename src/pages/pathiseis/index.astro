@@ -8,12 +8,15 @@ import {
   conditionCategories,
   conditionCategoryLabel,
   groupConditions,
+  priorityRank,
 } from '../../data/taxonomy';
 import '../../styles/pages.css';
 
 const groups = groupConditions(conditions).map((group) => ({
   ...group,
-  items: [...group.items].sort((a, b) => a.title.localeCompare(b.title, 'el')),
+  items: [...group.items].sort(
+    (a, b) => priorityRank(a.slug) - priorityRank(b.slug) || a.title.localeCompare(b.title, 'el'),
+  ),
 }));
 
 const countByCategory = (key: string) =>
@@ -22,13 +25,13 @@ const countByCategory = (key: string) =>
 
 <BaseLayout
   title="Παθήσεις — Γαστρεντερολογία & Ηπατολογία"
-  description="Κολονοσκόπηση, γαστροσκόπηση, διάρροια, παλινδρόμηση, Barrett, Crohn και ελκώδης κολίτιδα: σαφής ενημέρωση για συμπτώματα, διάγνωση και θεραπεία."
+  description="Γαστρεντερολογικές και ηπατολογικές παθήσεις: συμπτώματα, διάγνωση και θεραπεία — από την πρόληψη έως τις πιο εξειδικευμένες καταστάσεις."
 >
   <PageHero
     eyebrow="Παθήσεις"
     index="04"
     title="Από την πρόληψη<br />στη φλεγμονώδη νόσο."
-    lede="Κολονοσκόπηση, γαστροσκόπηση, διάρροια, παλινδρόμηση, Barrett, Crohn και ελκώδης κολίτιδα — με σαφή ενημέρωση για συμπτώματα, διάγνωση και θεραπεία."
+    lede="Ένα ευρύ φάσμα γαστρεντερολογικών και ηπατολογικών παθήσεων — με σαφή ενημέρωση για συμπτώματα, διάγνωση και θεραπεία."
     crumbs={[{ label: 'Παθήσεις' }]}
   />
 

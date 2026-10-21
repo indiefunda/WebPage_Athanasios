@@ -98,3 +98,21 @@ export function groupConditions(items: Condition[]) {
     }))
     .filter((group) => group.items.length > 0);
 }
+
+/**
+ * Priority is a display order, not a statement that these are the only
+ * conditions the clinic treats. Every condition remains listed.
+ */
+export const priorityConditionSlugs = [
+  'kaysos-kai-palindromhsh',
+  'oisofagos-barretts',
+  'diarrhea',
+  'nosos-toy-crohn',
+  'elkwdhs-kolitida',
+  'prolhpsh-kasrkinoy-paxeos-enteroy',
+];
+
+export function priorityRank(slug: string) {
+  const index = priorityConditionSlugs.indexOf(slug);
+  return index === -1 ? 999 : index;
+}

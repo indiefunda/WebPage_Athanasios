@@ -20,7 +20,7 @@ const secondary = procedures.filter((procedure) => !procedure.featured);
     eyebrow="Επεμβάσεις"
     index="03"
     title="Διαγνωστικές<br />και θεραπευτικές<br />επεμβάσεις."
-    lede="Κολονοσκόπηση, γαστροσκόπηση, κάψουλα λεπτού εντέρου, μανομετρία και pH-μετρία — με έμφαση στην πρόληψη και στη λειτουργική διάγνωση."
+    lede="Κολονοσκόπηση, γαστροσκόπηση, κάψουλα λεπτού εντέρου, μανομετρία και pH-μετρία — με σαφή ενημέρωση για κάθε εξέταση."
     crumbs={[{ label: 'Επεμβάσεις' }]}
   />
 
@@ -48,7 +48,7 @@ const secondary = procedures.filter((procedure) => !procedure.featured);
       <section class="category-block" style="margin-top: 0;">
         <div class="category-block__head">
           <h2>Προτεινόμενες εξετάσεις</h2>
-          <p>Οι εξετάσεις στις οποίες δίνουμε έμφαση.</p>
+          <p>Οι βασικές εξετάσεις, πρώτες.</p>
         </div>
         <div class="entry-grid">{featured.map((procedure) => <ProcedureEntry procedure={procedure} />)}</div>
       </section>

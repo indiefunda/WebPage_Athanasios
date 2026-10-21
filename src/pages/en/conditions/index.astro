@@ -4,12 +4,19 @@ import Icon from '../../../components/Icon.astro';
 import PageHero from '../../../components/PageHero.astro';
 import CtaSection from '../../../components/CtaSection.astro';
 import { conditionsEn } from '../../../data/en/conditions';
-import { conditionCategoriesEn, groupConditionsEn } from '../../../data/en/taxonomy';
+import {
+  conditionCategoriesEn,
+  conditionCategoryLabelEn,
+  groupConditionsEn,
+} from '../../../data/en/taxonomy';
+import { priorityRank } from '../../../data/taxonomy';
 import '../../../styles/pages.css';
 
 const groups = groupConditionsEn(conditionsEn).map((group) => ({
   ...group,
-  items: [...group.items].sort((a, b) => a.title.localeCompare(b.title, 'en')),
+  items: [...group.items].sort(
+    (a, b) => priorityRank(a.slug) - priorityRank(b.slug) || a.title.localeCompare(b.title, 'en'),
+  ),
 }));
 
 const countByCategory = (key: string) =>
@@ -18,40 +25,62 @@ const countByCategory = (key: string) =>
 
 <BaseLayout
   title="Conditions — Gastroenterology & Hepatology"
-  description="Clear information on reflux, Barrett's esophagus, diarrhea, Crohn's disease, ulcerative colitis and colorectal cancer screening."
+  description="Gastroenterology and hepatology conditions: symptoms, diagnosis and treatment — from prevention to the most specialized conditions."
 >
   <PageHero
     eyebrow="Conditions"
     index="04"
     title="From prevention<br />to inflammatory disease."
-    lede="Colonoscopy and gastroscopy, diarrhea, reflux, Barrett’s, Crohn’s disease and ulcerative colitis — clear information on symptoms, diagnosis and treatment."
+    lede="A wide range of gastroenterology and hepatology conditions — with clear information on symptoms, diagnosis and treatment."
     crumbs={[{ label: 'Conditions' }]}
   />
 
   <section class="directory">
     <div class="container">
       <div class="directory__toolbar">
-        <div class="directory__meta">
-          <p class="directory__count">{conditionsEn.length} conditions</p>
-          <p class="directory__hint">
-            Browse all conditions and find the information you need.
-          </p>
+        <div class="search-field">
+          <label class="visually-hidden" for="condition-search-en">Search conditions</label>
+          <input
+            id="condition-search-en"
+            type="search"
+            placeholder="Search: heartburn, liver, Crohn…"
+            autocomplete="off"
+            data-search
+          />
+          <Icon name="search" size={17} />
         </div>
-        <ul class="filter-legend">
+
+        <div class="filter-chips" role="group" aria-label="Filter by category">
+          <button class="filter-chip" type="button" data-filter="all" aria-pressed="true">
+            All
+            <span>{String(conditionsEn.length).padStart(2, '0')}</span>
+          </button>
           {
             conditionCategoriesEn.map((category) => (
-              <li>
-                <span>{category.label}</span>
-                {String(countByCategory(category.key)).padStart(2, '0')}
-              </li>
+              <button
+                class="filter-chip"
+                type="button"
+                data-filter={category.key}
+                aria-pressed="false"
+              >
+                {category.label}
+                <span>{String(countByCategory(category.key)).padStart(2, '0')}</span>
+              </button>
             ))
           }
-        </ul>
+        </div>
+
+        <div class="directory__meta">
+          <p class="directory__count" data-count aria-live="polite">
+            {conditionsEn.length} conditions
+          </p>
+          <p class="directory__hint">Select a condition for more information.</p>
+        </div>
       </div>
 
       {
         groups.map((group) => (
-          <section class="dir-group" id={group.key} aria-labelledby={`group-en-${group.key}`}>
+          <section class="dir-group" id={group.key} data-group={group.key} aria-labelledby={`group-en-${group.key}`}>
             <div class="dir-group__head">
               <h2 id={`group-en-${group.key}`}>{group.label}</h2>
               <p>{group.description}</p>
@@ -60,7 +89,13 @@ const countByCategory = (key: string) =>
 
             <div class="dir-list">
               {group.items.map((condition) => (
-                <a class="dir-row" href={`/en/conditions/${condition.slug}`}>
+                <a
+                  class="dir-row"
+                  href={`/en/conditions/${condition.slug}`}
+                  data-condition-row
+                  data-category={condition.category}
+                  data-search={`${condition.title} ${condition.short} ${conditionCategoryLabelEn(condition.category)}`.toLowerCase()}
+                >
                   <span class="dir-row__main">
                     <h3>{condition.title}</h3>
                     <p>{condition.short}</p>
@@ -74,6 +109,10 @@ const countByCategory = (key: string) =>
           </section>
         ))
       }
+
+      <p class="empty-state" data-empty hidden>
+        No conditions found for those terms. Try a different search or choose “All”.
+      </p>
 
       <div class="article-note" style="margin-top: 48px;">
         <p class="article-note__label">
@@ -94,3 +133,57 @@ const countByCategory = (key: string) =>
     text="The right diagnosis starts with a detailed discussion of your history and symptoms. Book an appointment for assessment."
   />
 </BaseLayout>
+
+<script>
+  const normalize = (value: string) =>
+    value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim();
+
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('[data-condition-row]'));
+  const groups = Array.from(document.querySelectorAll<HTMLElement>('[data-group]'));
+  const search = document.querySelector<HTMLInputElement>('[data-search]');
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter]'));
+  const count = document.querySelector<HTMLElement>('[data-count]');
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+
+  let activeCategory = 'all';
+
+  const apply = () => {
+    const query = normalize(search?.value ?? '');
+    let visible = 0;
+
+    rows.forEach((row) => {
+      const matchesCategory =
+        activeCategory === 'all' || row.dataset.category === activeCategory;
+      const matchesText = !query || normalize(row.dataset.search ?? '').includes(query);
+      const show = matchesCategory && matchesText;
+      row.hidden = !show;
+      if (show) visible += 1;
+    });
+
+    groups.forEach((group) => {
+      const countInGroup = group.querySelectorAll('[data-condition-row]:not([hidden])').length;
+      group.hidden = countInGroup === 0;
+    });
+
+    if (count) {
+      count.textContent = `${visible} ${visible === 1 ? 'condition' : 'conditions'}`;
+    }
+    if (empty) empty.hidden = visible > 0;
+  };
+
+  search?.addEventListener('input', apply);
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      activeCategory = chip.dataset.filter ?? 'all';
+      chips.forEach((item) => item.setAttribute('aria-pressed', String(item === chip)));
+      apply();
+    });
+  });
+
+  apply();
+</script>

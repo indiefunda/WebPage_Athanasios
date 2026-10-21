@@ -20,7 +20,7 @@ const secondary = proceduresEn.filter((procedure) => !procedure.featured);
     eyebrow="Procedures"
     index="03"
     title="Diagnostic<br />and therapeutic<br />procedures."
-    lede="Colonoscopy, gastroscopy, small-bowel capsule, manometry and pH-metry — with a focus on prevention and functional diagnosis."
+    lede="Colonoscopy, gastroscopy, small-bowel capsule, manometry and pH-metry — with clear information on each procedure."
     crumbs={[{ label: 'Procedures' }]}
   />
 
@@ -48,7 +48,7 @@ const secondary = proceduresEn.filter((procedure) => !procedure.featured);
       <section class="category-block" style="margin-top: 0;">
         <div class="category-block__head">
           <h2>Priority procedures</h2>
-          <p>The procedures we focus on in daily practice.</p>
+          <p>The core procedures, first.</p>
         </div>
         <div class="entry-grid">
           {featured.map((procedure) => <ProcedureEntry procedure={procedure} />)}
