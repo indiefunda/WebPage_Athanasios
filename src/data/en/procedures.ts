@@ -14,7 +14,9 @@ export const proceduresEn: Procedure[] = [
       "Polyps can be removed, biopsies taken and some bleeding treated during colonoscopy. The test is performed with sedation to keep it as comfortable as possible. Bowel preparation is critical: if the colon is not clean, lesions can be missed and the test may need to be repeated.",
       "## When it is needed",
       "It is used for screening, for investigating symptoms such as blood in the stool, a change in bowel habits or pain, and for surveillance in people with polyps or inflammatory bowel disease. The right interval depends on the findings and personal history.",
-      "Colonoscopy is one of the most effective tests for detecting and preventing colon cancer, because it allows polyps to be removed before they progress. When performed by an experienced gastroenterologist, the risk of serious complications is low."
+      "Colonoscopy is one of the most effective tests for detecting and preventing colon cancer, because it allows polyps to be removed before they progress. When performed by an experienced gastroenterologist, the risk of serious complications is low.",
+      "## The equipment",
+      "Colonoscopy is performed with the Olympus EVIS X1 endoscopy system and a high-definition colonoscope. The same system is used for gastroscopy and flexible sigmoidoscopy. TXI, NBI and RDI enhance visualization of the mucosal surface and help identify subtle lesions such as polyps."
     ],
     "references": []
   },
@@ -33,7 +35,7 @@ export const proceduresEn: Procedure[] = [
       "The test is performed with sedation and usually takes 10–15 minutes. You need to fast for several hours beforehand. It is safe when performed by an experienced gastroenterologist; as with any endoscopy, there are rare risks, which we discuss beforehand.",
       "After the test you are informed of the findings and, when needed, of the biopsy results. Not everyone with heartburn needs a gastroscopy; the decision is individualized.",
       "## The equipment",
-      "Gastroscopy is performed with the Olympus EVIS X1 endoscopy system and the GIF-1100 gastroscope — Olympus’s most advanced endoscopy platform. TXI, NBI and RDI enhance visualization of the mucosal surface and help identify subtle lesions. The slim 8.9 mm design and 2.8 mm working channel support a comfortable examination and, when needed, biopsy or minor therapy."
+      "Gastroscopy is performed with the Olympus EVIS X1 endoscopy system and the GIF-1100 gastroscope — Olympus’s most advanced endoscopy platform. The same system is used for colonoscopy and flexible sigmoidoscopy. TXI, NBI and RDI enhance visualization of the mucosal surface and help identify subtle lesions. The slim 8.9 mm design and 2.8 mm working channel support a comfortable examination and, when needed, biopsy or minor therapy."
     ],
     "references": []
   },
@@ -46,7 +48,9 @@ export const proceduresEn: Procedure[] = [
     "featured": false,
     "paragraphs": [
       "Flexible sigmoidoscopy is a test in which we look at the mucosa (the inner lining) of the sigmoid colon and the rectum — the two lowest parts of the large intestine. The procedure is similar to colonoscopy: the sigmoidoscope, a thin, flexible tube with a camera and light at its tip, is inserted through the anus and advanced so that the surface of the lower colon can be assessed. It is a good choice when the whole colon does not need to be examined. Preparation for flexible sigmoidoscopy is easier than for colonoscopy.",
-      "During the test, small tissue samples (biopsies) can also be taken, and lesions such as polyps can be removed. For this test you will be under sedation."
+      "During the test, small tissue samples (biopsies) can also be taken, and lesions such as polyps can be removed. For this test you will be under sedation.",
+      "## The equipment",
+      "Flexible sigmoidoscopy is performed with the Olympus EVIS X1 endoscopy system and a high-definition sigmoidoscope. The same system is used for colonoscopy and gastroscopy. TXI, NBI and RDI enhance visualization of the mucosal surface and help identify subtle lesions."
     ],
     "references": [
       {
