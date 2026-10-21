@@ -138,7 +138,7 @@ const pageSchema = {
             <p class="eyebrow">{isEnglish ? 'In 30 seconds' : 'Σε 30 δευτερόλεπτα'}</p>
             <ul>
               {keyPoints.map((point) => (
-                <li>{point}</li>
+                <li set:html={point} />
               ))}
             </ul>
           </aside>

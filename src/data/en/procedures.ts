@@ -31,7 +31,9 @@ export const proceduresEn: Procedure[] = [
       "It is used to investigate heartburn, difficulty swallowing, pain, nausea, vomiting or bleeding, and to examine the stomach and duodenum. Biopsies can be taken — for example for H. pylori or celiac disease — and some lesions, such as bleeding or strictures, can be treated.",
       "## How it is done",
       "The test is performed with sedation and usually takes 10–15 minutes. You need to fast for several hours beforehand. It is safe when performed by an experienced gastroenterologist; as with any endoscopy, there are rare risks, which we discuss beforehand.",
-      "After the test you are informed of the findings and, when needed, of the biopsy results. Not everyone with heartburn needs a gastroscopy; the decision is individualized."
+      "After the test you are informed of the findings and, when needed, of the biopsy results. Not everyone with heartburn needs a gastroscopy; the decision is individualized.",
+      "## The equipment",
+      "Gastroscopy is performed with the Olympus EVIS X1 endoscopy system and the GIF-1100 gastroscope — Olympus’s most advanced endoscopy platform. TXI, NBI and RDI enhance visualization of the mucosal surface and help identify subtle lesions. The slim 8.9 mm design and 2.8 mm working channel support a comfortable examination and, when needed, biopsy or minor therapy."
     ],
     "references": []
   },

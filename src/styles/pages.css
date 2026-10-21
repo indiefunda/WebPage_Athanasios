@@ -1063,6 +1063,15 @@
   display: grid;
   gap: 8px;
   margin-top: 12px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.article-body .prose sup {
+  margin-left: 1px;
+  font-size: 0.62em;
+  font-weight: 650;
+  color: var(--accent-deep);
 }
 
 .article-references a {

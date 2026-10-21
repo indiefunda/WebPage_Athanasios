@@ -133,8 +133,8 @@ export const principlesEn = [
 
 export const authorityEn = {
   eyebrow: 'US-trained & board-certified',
-  title: 'One of the very few in Athens.',
-  text: 'Dr. Desalermos is one of the very few gastroenterologists–hepatologists in Athens with US training and board certification. At Athens Medical Center, he is among the very few with this profile.',
+  title: 'US training and board certification.',
+  text: 'Dr. Desalermos is a gastroenterologist–hepatologist with US training and board certification. He maintains a clinic in Massachusetts and collaborations with hospitals across the United States.',
   points: [
     {
       num: '01',
