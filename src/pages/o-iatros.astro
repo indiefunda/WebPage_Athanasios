@@ -66,7 +66,7 @@ const profileSchema = {
     name: site.name,
     medicalSpecialty: ['Gastroenterologic', 'Hepatology'],
     url: `${site.url}/o-iatros`,
-    sameAs: [site.umass, site.pubmed],
+    sameAs: [site.umass, site.pubmed, site.linkedin],
   },
 };
 ---
@@ -267,6 +267,13 @@ const profileSchema = {
               <span>
                 <span class="academic-link__label">UMass Chan</span>
                 <span class="academic-link__title">Ακαδημαϊκό προφίλ</span>
+              </span>
+              <Icon name="arrow-up-right" size={18} />
+            </a>
+            <a class="academic-link" href={site.linkedin} target="_blank" rel="noopener noreferrer">
+              <span>
+                <span class="academic-link__label">LinkedIn</span>
+                <span class="academic-link__title">Επαγγελματικό προφίλ</span>
               </span>
               <Icon name="arrow-up-right" size={18} />
             </a>
