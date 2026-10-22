@@ -107,9 +107,18 @@
   color: var(--muted);
 }
 
+.hero__alma {
+  margin-top: 8px;
+  font-family: var(--font-sans);
+  font-size: clamp(0.82rem, 0.9vw, 0.92rem);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--accent-deep);
+}
+
 .hero__academic {
   max-width: 60ch;
-  margin-top: 8px;
+  margin-top: 6px;
   font-family: var(--font-sans);
   font-size: clamp(0.86rem, 0.95vw, 0.98rem);
   font-weight: 600;
