@@ -113,17 +113,17 @@ html[lang='en'] .hero__title {
 }
 
 .hero__alma {
-  margin-top: 8px;
+  margin-top: 5px;
   font-family: var(--font-sans);
-  font-size: clamp(0.82rem, 0.9vw, 0.92rem);
-  font-weight: 600;
+  font-size: clamp(0.78rem, 0.86vw, 0.88rem);
+  font-weight: 500;
   line-height: 1.5;
-  color: var(--accent-deep);
+  color: var(--muted);
 }
 
 .hero__academic {
   max-width: 60ch;
-  margin-top: 6px;
+  margin-top: 8px;
   font-family: var(--font-sans);
   font-size: clamp(0.86rem, 0.95vw, 0.98rem);
   font-weight: 600;
