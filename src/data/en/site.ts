@@ -54,7 +54,7 @@ export const credentialsEn = [
   },
   {
     title: 'US clinic',
-    detail: 'UMass Chan Medical School, Massachusetts',
+    detail: 'Illinois, USA',
   },
   {
     title: 'International collaborations',
@@ -134,7 +134,7 @@ export const principlesEn = [
 export const authorityEn = {
   eyebrow: 'US-trained & board-certified',
   title: 'US training and board certification.',
-  text: 'Dr. Desalermos is a gastroenterologist–hepatologist with US training and board certification. He maintains a clinic in Massachusetts and collaborations with hospitals across the United States.',
+  text: 'Dr. Desalermos is a gastroenterologist–hepatologist with US training and board certification. He is an Assistant Professor of Medicine at UMass Chan Medical School and maintains a clinic in Illinois, with collaborations across US hospitals.',
   points: [
     {
       num: '01',
@@ -143,13 +143,13 @@ export const authorityEn = {
     },
     {
       num: '02',
-      title: 'Board certified',
-      detail: 'Gastroenterology & Hepatology, USA',
+      title: 'Assistant Professor',
+      detail: 'UMass Chan Medical School',
     },
     {
       num: '03',
-      title: 'US clinic',
-      detail: 'UMass Chan Medical School, Massachusetts',
+      title: 'Clinic in Illinois',
+      detail: 'USA',
     },
     {
       num: '04',

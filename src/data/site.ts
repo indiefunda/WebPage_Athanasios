@@ -75,7 +75,7 @@ export const credentials = [
   },
   {
     title: 'Κλινική στις ΗΠΑ',
-    detail: 'UMass Chan Medical School, Μασαχουσέτη',
+    detail: 'Ιλινόις, ΗΠΑ',
   },
   {
     title: 'Διεθνείς συνεργασίες',
@@ -86,7 +86,7 @@ export const credentials = [
 export const authority = {
   eyebrow: 'US-trained & board-certified',
   title: 'Εκπαίδευση και πιστοποίηση στις ΗΠΑ.',
-  text: 'Ο Δρ. Δεσαλέρμος είναι γαστρεντερολόγος – ηπατολόγος με εκπαίδευση και πιστοποίηση στις ΗΠΑ. Διατηρεί κλινική στη Μασαχουσέτη και συνεργασίες με νοσοκομεία στις ΗΠΑ.',
+  text: 'Ο Δρ. Δεσαλέρμος είναι γαστρεντερολόγος – ηπατολόγος με εκπαίδευση και πιστοποίηση στις ΗΠΑ. Είναι επίκουρος καθηγητής ιατρικής στο UMass Chan Medical School και διατηρεί κλινική στο Ιλινόις και συνεργασίες με νοσοκομεία στις ΗΠΑ.',
   points: [
     {
       num: '01',
@@ -95,13 +95,13 @@ export const authority = {
     },
     {
       num: '02',
-      title: 'Board certified',
-      detail: 'Gastroenterology & Hepatology, ΗΠΑ',
+      title: 'Επίκουρος καθηγητής',
+      detail: 'UMass Chan Medical School',
     },
     {
       num: '03',
-      title: 'Κλινική στις ΗΠΑ',
-      detail: 'UMass Chan Medical School, Μασαχουσέτη',
+      title: 'Κλινική στο Ιλινόις',
+      detail: 'ΗΠΑ',
     },
     {
       num: '04',
