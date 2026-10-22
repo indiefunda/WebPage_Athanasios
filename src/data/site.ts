@@ -25,7 +25,6 @@ export const site = {
   addressOneLine: 'Κηφισίας 58, 1ος όροφος, Μαρούσι 151 25',
   mapsUrl: 'https://maps.app.goo.gl/PtTngBoeXt2KMfd69',
   mapQuery: 'Κηφισίας 58, Μαρούσι 151 25, Ελλάδα',
-  linkedin: 'https://www.linkedin.com/in/athanasios-desalermos-md-fesbgh-0a9aa7b6',
   pubmed: 'https://pubmed.ncbi.nlm.nih.gov/?term=desalermos',
   umass: 'https://profiles.umassmed.edu/display/19900773',
   bookNote: 'Κατόπιν ραντεβού',
