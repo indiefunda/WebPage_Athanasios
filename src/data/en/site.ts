@@ -160,6 +160,7 @@ export const authorityEn = {
 } as const;
 
 export const institutions = [
+  'University of Athens',
   'Harvard Medical School',
   'UC San Diego',
   'UMass Chan Medical School',
