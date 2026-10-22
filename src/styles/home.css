@@ -112,6 +112,16 @@ html[lang='en'] .hero__title {
   color: var(--muted);
 }
 
+.hero__director {
+  max-width: 58ch;
+  margin-top: 8px;
+  font-family: var(--font-sans);
+  font-size: clamp(0.86rem, 0.95vw, 0.98rem);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
 .hero__alma {
   margin-top: 5px;
   font-family: var(--font-sans);

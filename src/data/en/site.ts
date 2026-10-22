@@ -122,7 +122,7 @@ export const principlesEn = [
   {
     num: '02',
     title: 'Modern technology',
-    body: 'High-definition endoscopy, EndoFLIP, FibroScan and capsule endoscopy, with safety at the center.',
+    body: 'High-definition endoscopy and specialized diagnostic methods, with safety at the center.',
   },
   {
     num: '03',
@@ -144,7 +144,7 @@ export const authorityEn = {
     {
       num: '02',
       title: 'Academic appointment',
-      detail: 'Assistant Professor of Gastroenterology, UMass Chan',
+      detail: 'Assistant Professor, UMass Chan, Worcester, MA, USA',
     },
     {
       num: '03',
