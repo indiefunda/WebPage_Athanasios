@@ -100,7 +100,7 @@ export const journeyEn = [
     place: 'Massachusetts',
     title: 'UMass Chan Medical School — Assistant Professor',
     detail:
-      'Developed an innovative gastroenterology and hepatology clinic, taught medical students and residents, and remained active in research.',
+      'Academic appointment, teaching medical students and residents, admissions committee service and ongoing research.',
     image: null,
   },
   {
@@ -117,7 +117,7 @@ export const principlesEn = [
   {
     num: '01',
     title: 'International experience',
-    body: 'Training and clinical practice at Harvard, UC San Diego and UMass Chan, with ongoing academic activity.',
+    body: 'Training at Harvard and UC San Diego, an academic appointment at UMass Chan and ongoing academic activity.',
   },
   {
     num: '02',
@@ -134,7 +134,7 @@ export const principlesEn = [
 export const authorityEn = {
   eyebrow: 'US-trained & board-certified',
   title: 'US training and board certification.',
-  text: 'Dr. Desalermos is a gastroenterologist–hepatologist with US training and board certification. He is an Assistant Professor of Medicine at UMass Chan Medical School and maintains a clinic in Illinois, with collaborations across US hospitals.',
+  text: 'Dr. Desalermos is a gastroenterologist–hepatologist with US training and board certification. He is an Assistant Professor of Gastroenterology at UMass Chan Medical School and maintains a clinic in Illinois, with collaborations across US hospitals.',
   points: [
     {
       num: '01',
@@ -143,8 +143,8 @@ export const authorityEn = {
     },
     {
       num: '02',
-      title: 'Assistant Professor',
-      detail: 'UMass Chan Medical School',
+      title: 'Academic appointment',
+      detail: 'Assistant Professor of Gastroenterology, UMass Chan',
     },
     {
       num: '03',

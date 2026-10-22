@@ -107,6 +107,26 @@
   color: var(--muted);
 }
 
+.hero__academic {
+  max-width: 60ch;
+  margin-top: 8px;
+  font-family: var(--font-sans);
+  font-size: clamp(0.86rem, 0.95vw, 0.98rem);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.hero__credentials {
+  margin-top: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 .hero__lede {
   margin-top: 18px;
   max-width: 42ch;
