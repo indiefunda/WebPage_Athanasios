@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="title desc">
+  <title id="title">Current mark</title>
+  <desc id="desc">The current triangle and dot mark.</desc>
+  <path d="M32 8 56 54H8L32 8Z" fill="none" stroke="#0f221c" stroke-width="2.2" stroke-linejoin="round"/>
+  <circle cx="32" cy="43" r="3.4" fill="#b0522e"/>
+</svg>

@@ -1,0 +1,471 @@
+﻿<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Logo directions — Athanasios Desalermos</title>
+  <style>
+    @font-face {
+      font-family: 'GFS Didot';
+      src: url('../../public/fonts/gfs-didot-greek.woff2') format('woff2');
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'GFS Didot';
+      src: url('../../public/fonts/gfs-didot-latin.woff2') format('woff2');
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      unicode-range: U+0000-00FF;
+    }
+    @font-face {
+      font-family: 'Manrope';
+      src: url('../../public/fonts/manrope-greek.woff2') format('woff2');
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Manrope';
+      src: url('../../public/fonts/manrope-latin.woff2') format('woff2');
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      unicode-range: U+0000-00FF;
+    }
+
+    :root {
+      --paper: #f3f0e8;
+      --paper-soft: #faf8f2;
+      --paper-deep: #e9e3d6;
+      --ink: #0f221c;
+      --ink-soft: #243b33;
+      --clay: #b0522e;
+      --line: #d8d1c2;
+      --muted: #6f6d63;
+      --display: 'GFS Didot', 'Times New Roman', Georgia, serif;
+      --sans: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      background: var(--paper-deep);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: min(1280px, calc(100% - 64px));
+      margin: 0 auto;
+      padding: 56px 0 72px;
+    }
+
+    .page-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      padding-bottom: 34px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 34px;
+    }
+
+    .page-head h1 {
+      margin: 0;
+      max-width: 760px;
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 4.5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+
+    .page-head p {
+      max-width: 360px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--clay);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .concept {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      margin-bottom: 22px;
+      overflow: hidden;
+    }
+
+    .concept-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 20px 28px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .concept-head .num {
+      color: var(--clay);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .concept-head h2 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .concept-head .note {
+      max-width: 390px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .mock {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 28px 38px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 280px;
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      display: block;
+      flex: 0 0 40px;
+    }
+
+    .brand-text { display: grid; gap: 3px; }
+
+    .brand-name {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      line-height: 1;
+      letter-spacing: -0.015em;
+    }
+
+    .brand-meta {
+      color: var(--muted);
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .mock nav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      color: var(--ink-soft);
+      font-size: 0.63rem;
+      font-weight: 650;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 0 0 auto;
+    }
+
+    .lang {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 32px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.57rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 140px;
+      height: 42px;
+      padding: 0 18px;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .favicon-row {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 16px 38px 18px;
+      background: var(--paper-soft);
+    }
+
+    .favicon-row .fav-label {
+      width: 58px;
+      color: var(--muted);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .fav {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .fav img { display: block; }
+
+    .fav span {
+      color: var(--muted);
+      font-size: 0.55rem;
+      letter-spacing: 0.06em;
+    }
+
+    .tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+      padding: 7px 14px 7px 9px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px 10px 0 0;
+      color: var(--ink-soft);
+      font-size: 0.62rem;
+      letter-spacing: 0.01em;
+    }
+
+    .tab img { width: 16px; height: 16px; display: block; }
+
+    .fineprint {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="page-head">
+      <div>
+        <p class="eyebrow">Logo directions · 2026</p>
+        <h1>Πέντε σήματα.<br />Μία ίδια φωνή.</h1>
+      </div>
+      <p>Ίδια χρώματα, ίδια τυπογραφία, ίδιο wordmark. Αλλάζει μόνο το mark. Δοκιμή σε header και favicon — χωρίς αλλαγή στο live site.</p>
+    </header>
+
+    <!-- current -->
+    <section class="concept">
+      <div class="concept-head">
+        <span class="num">00</span>
+        <h2>Current</h2>
+        <p class="note">Το σημερινό τρίγωνο + κουκκίδα. Καθαρό και αναγνωρίσιμο, αλλά διαβάζεται και ως warning/play.</p>
+      </div>
+      <div class="mock">
+        <div class="brand">
+          <img src="00-current.svg" alt="" />
+          <div class="brand-text">
+            <span class="brand-name">Αθανάσιος Δεσαλέρμος</span>
+            <span class="brand-meta">Γαστρεντερολογία · Ηπατολογία</span>
+          </div>
+        </div>
+        <nav><span>Αρχική</span><span>Ο Ιατρός</span><span>Παθήσεις</span><span>Επεμβάσεις</span><span>Άρθρα</span></nav>
+        <div class="actions"><span class="lang">EN</span><span class="cta">Ραντεβού</span></div>
+      </div>
+      <div class="favicon-row">
+        <span class="fav-label">Favicon</span>
+        <div class="fav"><img src="00-current.svg" width="16" height="16" alt="" /><span>16</span></div>
+        <div class="fav"><img src="00-current.svg" width="24" height="24" alt="" /><span>24</span></div>
+        <div class="fav"><img src="00-current.svg" width="32" height="32" alt="" /><span>32</span></div>
+        <div class="fav"><img src="00-current.svg" width="48" height="48" alt="" /><span>48</span></div>
+        <div class="tab"><img src="00-current.svg" alt="" /><span>Αθανάσιος Δεσαλέρμος</span></div>
+      </div>
+    </section>
+
+    <!-- 01 -->
+    <section class="concept">
+      <div class="concept-head">
+        <span class="num">01</span>
+        <h2>Arch + light</h2>
+        <p class="note">Ανοιχτή αψίδα με μια κουκκίδα φωτός. Ζεστό, αρχιτεκτονικό, χωρίς literal ανατομία. Το πιο ισορροπημένο.</p>
+      </div>
+      <div class="mock">
+        <div class="brand">
+          <img src="01-arch-light.svg" alt="" />
+          <div class="brand-text">
+            <span class="brand-name">Αθανάσιος Δεσαλέρμος</span>
+            <span class="brand-meta">Γαστρεντερολογία · Ηπατολογία</span>
+          </div>
+        </div>
+        <nav><span>Αρχική</span><span>Ο Ιατρός</span><span>Παθήσεις</span><span>Επεμβάσεις</span><span>Άρθρα</span></nav>
+        <div class="actions"><span class="lang">EN</span><span class="cta">Ραντεβού</span></div>
+      </div>
+      <div class="favicon-row">
+        <span class="fav-label">Favicon</span>
+        <div class="fav"><img src="01-arch-light.svg" width="16" height="16" alt="" /><span>16</span></div>
+        <div class="fav"><img src="01-arch-light.svg" width="24" height="24" alt="" /><span>24</span></div>
+        <div class="fav"><img src="01-arch-light.svg" width="32" height="32" alt="" /><span>32</span></div>
+        <div class="fav"><img src="01-arch-light.svg" width="48" height="48" alt="" /><span>48</span></div>
+        <div class="tab"><img src="01-arch-light.svg" alt="" /><span>Αθανάσιος Δεσαλέρμος</span></div>
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section class="concept">
+      <div class="concept-head">
+        <span class="num">02</span>
+        <h2>ΑΔ seal</h2>
+        <p class="note">Τα αρχικά σε λεπτή σφραγίδα. Προσωπικό, διαχρονικό, “γιατρός” χωρίς κλισέ. Στο 16px διαβάζεται ως σφραγίδα, όχι ως γράμματα.</p>
+      </div>
+      <div class="mock">
+        <div class="brand">
+          <img src="02-ad-seal.svg" alt="" />
+          <div class="brand-text">
+            <span class="brand-name">Αθανάσιος Δεσαλέρμος</span>
+            <span class="brand-meta">Γαστρεντερολογία · Ηπατολογία</span>
+          </div>
+        </div>
+        <nav><span>Αρχική</span><span>Ο Ιατρός</span><span>Παθήσεις</span><span>Επεμβάσεις</span><span>Άρθρα</span></nav>
+        <div class="actions"><span class="lang">EN</span><span class="cta">Ραντεβού</span></div>
+      </div>
+      <div class="favicon-row">
+        <span class="fav-label">Favicon</span>
+        <div class="fav"><img src="02-ad-seal.svg" width="16" height="16" alt="" /><span>16</span></div>
+        <div class="fav"><img src="02-ad-seal.svg" width="24" height="24" alt="" /><span>24</span></div>
+        <div class="fav"><img src="02-ad-seal.svg" width="32" height="32" alt="" /><span>32</span></div>
+        <div class="fav"><img src="02-ad-seal.svg" width="48" height="48" alt="" /><span>48</span></div>
+        <div class="tab"><img src="02-ad-seal.svg" alt="" /><span>Αθανάσιος Δεσαλέρμος</span></div>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="concept">
+      <div class="concept-head">
+        <span class="num">03</span>
+        <h2>The coil</h2>
+        <p class="note">Μία συνεχής έλικα που θυμίζει εντερική αγκύλη — αφηρημένα, όχι ανατομικό σχέδιο. Το πιο “γαστρεντερολογικό” της σειράς.</p>
+      </div>
+      <div class="mock">
+        <div class="brand">
+          <img src="03-intestinal-fold.svg" alt="" />
+          <div class="brand-text">
+            <span class="brand-name">Αθανάσιος Δεσαλέρμος</span>
+            <span class="brand-meta">Γαστρεντερολογία · Ηπατολογία</span>
+          </div>
+        </div>
+        <nav><span>Αρχική</span><span>Ο Ιατρός</span><span>Παθήσεις</span><span>Επεμβάσεις</span><span>Άρθρα</span></nav>
+        <div class="actions"><span class="lang">EN</span><span class="cta">Ραντεβού</span></div>
+      </div>
+      <div class="favicon-row">
+        <span class="fav-label">Favicon</span>
+        <div class="fav"><img src="03-intestinal-fold.svg" width="16" height="16" alt="" /><span>16</span></div>
+        <div class="fav"><img src="03-intestinal-fold.svg" width="24" height="24" alt="" /><span>24</span></div>
+        <div class="fav"><img src="03-intestinal-fold.svg" width="32" height="32" alt="" /><span>32</span></div>
+        <div class="fav"><img src="03-intestinal-fold.svg" width="48" height="48" alt="" /><span>48</span></div>
+        <div class="tab"><img src="03-intestinal-fold.svg" alt="" /><span>Αθανάσιος Δεσαλέρμος</span></div>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section class="concept">
+      <div class="concept-head">
+        <span class="num">04</span>
+        <h2>Lumen</h2>
+        <p class="note">Δακτύλιος με άνοιγμα και φως. Πιο τεχνολογικό, favicon-first, καθαρό. Λιγότερο ανθρώπινο από την αψίδα.</p>
+      </div>
+      <div class="mock">
+        <div class="brand">
+          <img src="04-lumen.svg" alt="" />
+          <div class="brand-text">
+            <span class="brand-name">Αθανάσιος Δεσαλέρμος</span>
+            <span class="brand-meta">Γαστρεντερολογία · Ηπατολογία</span>
+          </div>
+        </div>
+        <nav><span>Αρχική</span><span>Ο Ιατρός</span><span>Παθήσεις</span><span>Επεμβάσεις</span><span>Άρθρα</span></nav>
+        <div class="actions"><span class="lang">EN</span><span class="cta">Ραντεβού</span></div>
+      </div>
+      <div class="favicon-row">
+        <span class="fav-label">Favicon</span>
+        <div class="fav"><img src="04-lumen.svg" width="16" height="16" alt="" /><span>16</span></div>
+        <div class="fav"><img src="04-lumen.svg" width="24" height="24" alt="" /><span>24</span></div>
+        <div class="fav"><img src="04-lumen.svg" width="32" height="32" alt="" /><span>32</span></div>
+        <div class="fav"><img src="04-lumen.svg" width="48" height="48" alt="" /><span>48</span></div>
+        <div class="tab"><img src="04-lumen.svg" alt="" /><span>Αθανάσιος Δεσαλέρμος</span></div>
+      </div>
+    </section>
+
+    <!-- 05 -->
+    <section class="concept">
+      <div class="concept-head">
+        <span class="num">05</span>
+        <h2>Open delta</h2>
+        <p class="note">Εξέλιξη του τρέχοντος Δ: ανοιχτή βάση, στρογγυλεμένη κορυφή. Κρατά την αναγνώριση, κόβει την αυστηρότητα. Η ασφαλέστερη μετάβαση.</p>
+      </div>
+      <div class="mock">
+        <div class="brand">
+          <img src="05-open-delta.svg" alt="" />
+          <div class="brand-text">
+            <span class="brand-name">Αθανάσιος Δεσαλέρμος</span>
+            <span class="brand-meta">Γαστρεντερολογία · Ηπατολογία</span>
+          </div>
+        </div>
+        <nav><span>Αρχική</span><span>Ο Ιατρός</span><span>Παθήσεις</span><span>Επεμβάσεις</span><span>Άρθρα</span></nav>
+        <div class="actions"><span class="lang">EN</span><span class="cta">Ραντεβού</span></div>
+      </div>
+      <div class="favicon-row">
+        <span class="fav-label">Favicon</span>
+        <div class="fav"><img src="05-open-delta.svg" width="16" height="16" alt="" /><span>16</span></div>
+        <div class="fav"><img src="05-open-delta.svg" width="24" height="24" alt="" /><span>24</span></div>
+        <div class="fav"><img src="05-open-delta.svg" width="32" height="32" alt="" /><span>32</span></div>
+        <div class="fav"><img src="05-open-delta.svg" width="48" height="48" alt="" /><span>48</span></div>
+        <div class="tab"><img src="05-open-delta.svg" alt="" /><span>Αθανάσιος Δεσαλέρμος</span></div>
+      </div>
+    </section>
+
+    <p class="fineprint">Το preview χρησιμοποιεί τα πραγματικά tokens του site: paper #f3f0e8, ink #0f221c, clay #b0522e, GFS Didot + Manrope. Τα favicons είναι τα ίδια SVG, χωρίς ξεχωριστή απλοποίηση — γι’ αυτό φαίνεται ποιο αντέχει στο 16px. Δεν έχει αλλάξει τίποτα στο live.</p>
+  </main>
+</body>
+</html>
+
+

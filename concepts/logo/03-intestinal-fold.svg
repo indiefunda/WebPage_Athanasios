@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="title desc">
+  <title id="title">The coil</title>
+  <desc id="desc">A continuous coil inspired by the folds and loops of the human intestine.</desc>
+  <path d="M32 30c0-5 8-4 8 2 0 8-16 8-16-2 0-12 18-12 22 1" fill="none" stroke="#0f221c" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="32" cy="30" r="2.6" fill="#b0522e"/>
+</svg>

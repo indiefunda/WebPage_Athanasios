@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="title desc">
+  <title id="title">Open delta</title>
+  <desc id="desc">A softened delta with an open base and a clay point inside.</desc>
+  <path d="M18 48 29 20q3-6 6 0l11 28" fill="none" stroke="#0f221c" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M13 48h6M45 48h6" fill="none" stroke="#0f221c" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="32" cy="36" r="2.8" fill="#b0522e"/>
+</svg>
