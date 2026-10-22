@@ -38,13 +38,13 @@ export const nav = [
   { label: 'Το Ιατρείο', href: '/iatreio' },
   { label: 'Παθήσεις', href: '/pathiseis' },
   { label: 'Επεμβάσεις', href: '/epemvaseis' },
-  { label: 'Νέα', href: '/nea' },
+  { label: 'Άρθρα', href: '/nea' },
   { label: 'Επικοινωνία', href: '/epikoinonia' },
 ] as const;
 
 export const navEn = [
   { label: 'Home', href: '/en' },
-  { label: 'About', href: '/en/about' },
+  { label: 'The Doctor', href: '/en/about' },
   { label: 'Clinic', href: '/en/clinic' },
   { label: 'Conditions', href: '/en/conditions' },
   { label: 'Procedures', href: '/en/procedures' },
